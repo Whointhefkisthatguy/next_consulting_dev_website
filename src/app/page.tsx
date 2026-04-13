@@ -13,13 +13,8 @@ export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
   const pinnedRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
-    lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add((time) => lenis.raf(time * 1000));
-    gsap.ticker.lagSmoothing(0);
-    return () => { lenis.destroy(); };
-  }, []);
+  /* Lenis removed — scrub:0.3 provides all the smoothing needed.
+     Lenis + scrub was double-smoothing, causing 4000px of dead scroll. */
 
   useGSAP(() => {
     const build = () => {
@@ -41,7 +36,7 @@ export default function Home() {
           trigger: containerRef.current,
           start: "top top",
           end: "bottom bottom",
-          scrub: 0.3,
+          scrub: true,
           pin: pinnedRef.current,
           pinSpacing: false,
         },
@@ -160,7 +155,7 @@ export default function Home() {
 
   return (
     <>
-      <div ref={containerRef} className="relative" style={{ height: "1200vh" }}>
+      <div ref={containerRef} className="relative" style={{ height: "800vh" }}>
         <div ref={pinnedRef} className="h-dvh w-full overflow-hidden relative bg-canvas">
 
           {/* Orbs */}
