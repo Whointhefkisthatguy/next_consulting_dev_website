@@ -11,27 +11,19 @@ export function MonogramSection() {
         transition={{ duration: 1.5, ease: [0.25, 0.1, 0.25, 1] }}
         className="text-amber"
       >
-        {/* NEXT wordmark — extracted from Next_Consulting_RGB.svg Layer_3, coordinates normalized by subtracting min-x=73.8, min-y=99.9 */}
+        {/* N> icon mark — extracted from Next_Consulting_RGB.svg, normalized by subtracting min-x=945.9, min-y=92.4 */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 202.2 35.7"
+          viewBox="0 0 215.1 94.2"
           fill="currentColor"
           role="img"
           aria-label="Next Consulting"
-          className="h-16 w-auto sm:h-20 md:h-24"
+          className="h-24 w-auto sm:h-32 md:h-40"
         >
-          {/* N */}
-          <polygon points="35.8,0.0 35.8,24.0 42.5,31.9 35.8,25.5 10.3,0.0 10.2,0.1 10.2,0.0 0.0,0.0 0.0,35.7 10.2,35.7 10.2,16.3 4.7,8.7 10.2,14.4 31.5,35.7 39.4,35.7 46.0,35.7 46.0,0.0" />
-          {/* E */}
-          <polygon points="66.6,0.0 56.4,0.0 56.4,35.7 56.4,35.7 66.6,35.7 95.6,35.7 95.6,26.4 66.6,26.4 66.6,22.5 95.6,22.5 95.6,13.2 66.6,13.2 66.6,9.4 95.6,9.4 95.6,0.0 66.6,0.0" />
-          {/* X upper-right */}
-          <polygon points="139.0,14.2 153.2,0.0 138.7,0.0 131.5,7.2" />
-          {/* X lower-right */}
-          <polygon points="138.3,19.5 131.1,26.8 140.1,35.7 148.0,35.7 154.5,35.7" />
-          {/* X chevron / arrow accent */}
-          <polygon points="136.0,17.2 128.7,9.9 128.7,9.9 127.6,8.8 118.8,0.0 104.3,0.0 120.8,16.4 126.2,12.3 121.5,17.1 121.5,17.2 115.8,22.9 115.8,22.9 115.8,22.9 103.0,35.7 109.5,35.7 117.4,35.7 125.6,27.5 132.0,21.1 131.8,21.3" />
-          {/* T */}
-          <polygon points="202.2,0.0 159.5,0.0 159.5,10.2 175.8,10.2 175.8,35.7 186.0,35.7 186.0,10.2 202.2,10.2" />
+          {/* N letterform */}
+          <polygon points="94.5,0 94.5,63.4 112.2,84.1 94.5,67.2 27.2,0 27,0.2 27,0 0,0 0,94.2 27,94.2 27,43 12.5,23 27,38 83.3,94.2 104.1,94.2 121.4,94.2 121.4,0" />
+          {/* > chevron arrow */}
+          <polyline points="193.1,23.3 169.8,0 131.6,0 176.9,45.3 128,94.2 145.3,94.2 166.2,94.2 187.8,72.6 204.5,55.7 204.1,56.3 215.1,45.3 196,26.2 196,26.2" />
         </svg>
       </motion.div>
       <div
