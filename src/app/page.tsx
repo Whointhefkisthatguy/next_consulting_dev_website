@@ -158,6 +158,12 @@ export default function Home() {
             <polyline points="193.1,23.3 169.8,0 131.6,0 176.9,45.3 128,94.2 145.3,94.2 166.2,94.2 187.8,72.6 204.5,55.7 204.1,56.3 215.1,45.3 196,26.2 196,26.2" />
           </svg>
         </div>
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-pulse">
+          <div className="w-5 h-8 rounded-full border border-white/20 flex items-start justify-center pt-1.5">
+            <div className="w-0.5 h-2 bg-white/40 rounded-full animate-bounce" />
+          </div>
+        </div>
       </section>
 
       {/* ═══ DRUCKER QUOTE ═══ */}
@@ -326,12 +332,13 @@ export default function Home() {
         <div className="block-inner text-center max-w-xl">
           <a
             href="mailto:inquiry@gonextconsulting.dev"
-            className={`group relative inline-block ${disp} uppercase text-[14px] tracking-[0.3em] text-text-primary/70 transition-colors duration-300 hover:text-amber`}
+            className={`group inline-block border-2 border-amber/60 px-12 py-6 sm:px-16 sm:py-8 transition-all duration-300 hover:border-amber hover:bg-amber/[0.06]`}
           >
-            Request a Conversation
-            <span className="absolute -bottom-2 left-0 h-px w-0 bg-amber/50 transition-all duration-500 group-hover:w-full" />
+            <span className={`${disp} uppercase text-[clamp(1rem,2.5vw,1.5rem)] tracking-[0.3em] text-amber/90 group-hover:text-amber transition-colors duration-300`}>
+              Request a Conversation
+            </span>
           </a>
-          <p className={`mt-12 ${txt} text-[clamp(0.7rem,1.2vw,0.85rem)] leading-[2] tracking-[0.08em] text-text-secondary/60`}>
+          <p className={`mt-14 ${txt} text-[clamp(0.7rem,1.2vw,0.85rem)] leading-[2] tracking-[0.08em] text-text-secondary/60`}>
             The question was never whether something needs to change.
             <br />
             It&rsquo;s whether you&rsquo;ll be the one who changes it.
