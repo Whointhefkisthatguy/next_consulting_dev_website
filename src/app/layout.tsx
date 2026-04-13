@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
+import { Cormorant_Garamond, Outfit } from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
   variable: "--font-display",
   display: "swap",
 });
 
-const inter = Inter({
+const outfit = Outfit({
   subsets: ["latin"],
+  weight: ["300", "400", "500"],
   variable: "--font-body",
   display: "swap",
 });
@@ -26,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${outfit.variable}`}>
       <body className="grain">
         {children}
       </body>
