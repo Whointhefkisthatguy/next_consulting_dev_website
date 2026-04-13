@@ -16,8 +16,8 @@
   --color-ink: #1A2F4A;
   --color-border: rgba(201, 150, 63, 0.08);
   --color-border-hover: rgba(201, 150, 63, 0.2);
-  --font-display: "Cormorant Garamond", "Georgia", serif;
-  --font-body: "Outfit", system-ui, sans-serif;
+  --font-display: "Instrument Serif", "Georgia", serif;
+  --font-body: "Instrument Sans", system-ui, sans-serif;
 }
 
 html {

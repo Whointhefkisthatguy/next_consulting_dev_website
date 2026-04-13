@@ -260,7 +260,7 @@ export default function Home() {
                 Request a Conversation
                 <span className="absolute -bottom-2 left-0 h-px w-0 bg-amber/50 transition-all duration-500 group-hover:w-full" />
               </a>
-              <p className="mt-12 font-display text-[clamp(1rem,2vw,1.3rem)] leading-[1.6] italic text-text-muted/40 tracking-wide">
+              <p className="mt-12 font-display text-[clamp(1rem,2vw,1.3rem)] leading-[1.6] italic text-text-secondary/70 tracking-wide">
                 The question was never whether something needs to change.
                 <br />
                 It&rsquo;s whether you&rsquo;ll be the one who changes it.
