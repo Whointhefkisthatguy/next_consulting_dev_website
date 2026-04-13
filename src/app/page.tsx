@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 
 /* ── N> Icon Mark ── */
 function Monogram({ className }: { className?: string }) {
@@ -20,81 +20,49 @@ function Monogram({ className }: { className?: string }) {
   );
 }
 
-/* ── Inquiry Form ── */
-function InquiryForm() {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
-
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setStatus("sending");
-    const form = e.currentTarget;
-    const data = {
-      name: (form.elements.namedItem("name") as HTMLInputElement).value,
-      company: (form.elements.namedItem("company") as HTMLInputElement).value,
-      problem: (form.elements.namedItem("problem") as HTMLTextAreaElement).value,
-    };
-    try {
-      const res = await fetch("/api/inquiry", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) throw new Error();
-      setStatus("sent");
-    } catch {
-      setStatus("error");
-    }
-  }
-
-  if (status === "sent") {
-    return (
-      <p className="font-display text-2xl italic text-text-secondary tracking-wide">
-        Received. We&rsquo;ll be in touch.
-      </p>
-    );
-  }
+/* ── Scroll-driven layer ── */
+function Layer({
+  children,
+  scrollProgress,
+  enterStart,
+  enterEnd,
+  exitStart,
+  exitEnd,
+  className,
+}: {
+  children: React.ReactNode;
+  scrollProgress: MotionValue<number>;
+  enterStart: number;
+  enterEnd: number;
+  exitStart: number;
+  exitEnd: number;
+  className?: string;
+}) {
+  const opacity = useTransform(
+    scrollProgress,
+    [enterStart, enterEnd, exitStart, exitEnd],
+    [0, 1, 1, 0]
+  );
+  const y = useTransform(
+    scrollProgress,
+    [enterStart, enterEnd, exitStart, exitEnd],
+    [30, 0, 0, -20]
+  );
+  const scale = useTransform(
+    scrollProgress,
+    [enterStart, enterEnd, exitStart, exitEnd],
+    [0.97, 1, 1, 0.98]
+  );
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-md space-y-8">
-      {[
-        { name: "name", placeholder: "Name", type: "text" },
-        { name: "company", placeholder: "Company", type: "text" },
-      ].map((field) => (
-        <div key={field.name} className="group relative">
-          <input
-            name={field.name}
-            type={field.type}
-            placeholder={field.placeholder}
-            required
-            className="w-full bg-transparent border-0 border-b border-text-faint/60 pb-3 pt-1 text-text-primary font-body text-sm tracking-wider placeholder:text-text-muted/50 placeholder:uppercase placeholder:text-xs placeholder:tracking-[0.2em] focus:outline-none focus:border-amber/40 transition-colors duration-500"
-          />
-          <div className="absolute bottom-0 left-0 h-px w-0 bg-amber/50 transition-all duration-500 group-focus-within:w-full" />
-        </div>
-      ))}
-      <div className="group relative">
-        <textarea
-          name="problem"
-          placeholder="What problem are you solving?"
-          required
-          rows={2}
-          className="w-full bg-transparent border-0 border-b border-text-faint/60 pb-3 pt-1 text-text-primary font-body text-sm tracking-wider resize-none placeholder:text-text-muted/50 placeholder:uppercase placeholder:text-xs placeholder:tracking-[0.2em] focus:outline-none focus:border-amber/40 transition-colors duration-500"
-        />
-        <div className="absolute bottom-0 left-0 h-px w-0 bg-amber/50 transition-all duration-500 group-focus-within:w-full" />
+    <motion.div
+      style={{ opacity, y, scale }}
+      className={`fixed inset-0 flex items-center justify-center pointer-events-none z-20 ${className ?? ""}`}
+    >
+      <div className="pointer-events-auto max-w-2xl px-6 sm:px-8 w-full">
+        {children}
       </div>
-      <div className="pt-6">
-        <button
-          type="submit"
-          disabled={status === "sending"}
-          className="group relative uppercase text-[11px] tracking-[0.3em] text-text-muted font-body font-light transition-colors duration-300 hover:text-amber disabled:opacity-40"
-        >
-          {status === "sending" ? "Sending\u2026" : "Request a conversation"}
-          <span className="absolute -bottom-1 left-0 h-px w-0 bg-amber/40 transition-all duration-500 group-hover:w-full" />
-        </button>
-      </div>
-      {status === "error" && (
-        <p className="text-burnt text-xs tracking-wider">Something went wrong. Try again.</p>
-      )}
-    </form>
+    </motion.div>
   );
 }
 
@@ -129,158 +97,199 @@ function highlightWord(text: string, word: string) {
   );
 }
 
-/* ── Page ── */
+/*
+  Scroll map (0 → 1 over the full scroll height):
+
+  0.00 - 0.02  monogram fades in (initial load)
+  0.02 - 0.12  monogram visible
+  0.12 - 0.17  monogram fades out / quote fades in
+  0.17 - 0.27  quote visible
+  0.27 - 0.32  quote fades out / H1 fades in
+  0.32 - 0.42  H1 visible
+  0.42 - 0.47  H1 fades out / truth 1 fades in
+  0.47 - 0.55  truth 1 visible
+  0.55 - 0.60  truth 1 fades out / truth 2 fades in
+  0.60 - 0.68  truth 2 visible
+  0.68 - 0.73  truth 2 fades out / truth 3 fades in
+  0.73 - 0.81  truth 3 visible
+  0.81 - 0.86  truth 3 fades out / inquiry fades in
+  0.86 - 1.00  inquiry visible (stays)
+*/
+
 export default function Home() {
-  const { scrollYProgress } = useScroll();
-  const lineOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: containerRef });
+
+  // Ambient glow
+  const glowOpacity = useTransform(scrollYProgress, [0, 0.12, 0.17], [0.5, 0.5, 0]);
+
+  // Vertical accent line
+  const lineOpacity = useTransform(scrollYProgress, [0.12, 0.2], [0, 1]);
+
+  // Progress indicator
+  const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <main className="relative">
+    <>
+      {/* Scroll runway — this creates the scroll distance, content is fixed */}
+      <div ref={containerRef} className="relative h-[800vh]">
 
-      {/* ── Vertical accent line (left gutter) ── */}
-      <motion.div
-        style={{ opacity: lineOpacity }}
-        className="fixed left-[clamp(1.5rem,4vw,4rem)] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-amber/15 to-transparent z-10 pointer-events-none"
-      />
+        {/* ── Fixed canvas ── */}
+        <div className="fixed inset-0 bg-canvas overflow-hidden">
 
-      {/* ══════════════════════════════════════════
-          HERO — Monogram + ambient glow
-      ══════════════════════════════════════════ */}
-      <section className="relative flex h-dvh items-center justify-center overflow-hidden">
-        {/* Ambient glow behind monogram */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div
-            className="w-[500px] h-[500px] rounded-full animate-breathe"
-            style={{
-              background: "radial-gradient(circle, rgba(201,150,63,0.07) 0%, rgba(201,150,63,0.02) 40%, transparent 70%)",
-            }}
-          />
-        </div>
-
-        {/* Monogram */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative z-10 text-amber"
-        >
-          <Monogram className="h-28 w-auto sm:h-36 md:h-44" />
-        </motion.div>
-
-        {/* Bottom fade */}
-        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-canvas to-transparent pointer-events-none" />
-      </section>
-
-      {/* ══════════════════════════════════════════
-          CONTENT — One continuous flow
-      ══════════════════════════════════════════ */}
-      <div className="relative z-10 mx-auto max-w-2xl px-6 sm:px-8">
-
-        {/* ── Thin gold rule ── */}
-        <div className="flex justify-center pb-24">
+          {/* Ambient glow */}
           <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="h-px w-16 bg-amber/30 origin-center"
+            style={{ opacity: glowOpacity }}
+            className="absolute inset-0 flex items-center justify-center pointer-events-none"
+          >
+            <div
+              className="w-[600px] h-[600px] rounded-full animate-breathe"
+              style={{
+                background: "radial-gradient(circle, rgba(201,150,63,0.08) 0%, rgba(201,150,63,0.02) 40%, transparent 70%)",
+              }}
+            />
+          </motion.div>
+
+          {/* Vertical accent line */}
+          <motion.div
+            style={{ opacity: lineOpacity }}
+            className="absolute left-[clamp(1.5rem,4vw,4rem)] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-amber/12 to-transparent z-10 pointer-events-none"
           />
-        </div>
 
-        {/* ── Drucker Quote ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <blockquote className="text-center">
-            <p className="font-display text-[clamp(1.5rem,3.5vw,2.8rem)] leading-[1.3] font-light italic text-text-primary/90 tracking-wide">
-              &ldquo;There is surely nothing quite so useless as doing with great
-              efficiency what should not be done at all.&rdquo;
-            </p>
-            <footer className="mt-8">
-              <cite className="not-italic font-body text-[11px] uppercase tracking-[0.25em] text-text-muted">
-                Peter Drucker <span className="text-amber/40">/</span> 1963
-              </cite>
-            </footer>
-          </blockquote>
-        </motion.div>
+          {/* Progress bar at top */}
+          <motion.div
+            style={{ width: progressWidth }}
+            className="absolute top-0 left-0 h-px bg-amber/20 z-50"
+          />
 
-        {/* ── H1 Transition ── */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 1.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="py-32 sm:py-40 text-center"
-        >
-          <h1 className="font-display text-[clamp(1.3rem,3vw,2.4rem)] font-light tracking-wide text-text-primary">
-            The problem isn&rsquo;t scale<span className="text-amber">,</span>
-            <br className="hidden sm:block" />
-            {" "}it&rsquo;s architecture<span className="text-amber">.</span>
-          </h1>
-        </motion.div>
+          {/* ═══ LAYER 0: Monogram ═══ */}
+          <Layer
+            scrollProgress={scrollYProgress}
+            enterStart={0}
+            enterEnd={0.02}
+            exitStart={0.10}
+            exitEnd={0.16}
+          >
+            <div className="flex justify-center">
+              <div className="text-amber">
+                <Monogram className="h-28 w-auto sm:h-36 md:h-44" />
+              </div>
+            </div>
+          </Layer>
 
-        {/* ── Truths ── */}
-        <div className="space-y-20 sm:space-y-28">
-          {truths.map((truth, i) => (
-            <motion.div
-              key={truth.accent}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="relative"
-            >
-              {/* Subtle number */}
-              <span className="absolute -left-2 sm:-left-10 -top-2 font-display text-6xl sm:text-7xl font-light text-text-faint/30 select-none pointer-events-none">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <p className="font-display text-[clamp(1.2rem,2.5vw,2rem)] leading-[1.4] font-light tracking-wide text-text-primary/85">
-                {highlightWord(truth.statement, truth.accent)}
+          {/* ═══ LAYER 1: Drucker Quote ═══ */}
+          <Layer
+            scrollProgress={scrollYProgress}
+            enterStart={0.12}
+            enterEnd={0.18}
+            exitStart={0.26}
+            exitEnd={0.32}
+          >
+            <blockquote className="text-center">
+              <p className="font-display text-[clamp(1.5rem,3.5vw,2.8rem)] leading-[1.3] font-light italic text-text-primary/90 tracking-wide">
+                &ldquo;There is surely nothing quite so useless as doing with great
+                efficiency what should not be done at all.&rdquo;
               </p>
-              <p className="mt-5 font-body text-[13px] leading-relaxed text-text-secondary/70 max-w-lg">
-                {truth.metric}
+              <footer className="mt-8">
+                <cite className="not-italic font-body text-[11px] uppercase tracking-[0.25em] text-text-muted">
+                  Peter Drucker <span className="text-amber/40">/</span> 1963
+                </cite>
+              </footer>
+            </blockquote>
+          </Layer>
+
+          {/* ═══ LAYER 2: H1 Transition ═══ */}
+          <Layer
+            scrollProgress={scrollYProgress}
+            enterStart={0.28}
+            enterEnd={0.34}
+            exitStart={0.40}
+            exitEnd={0.46}
+          >
+            <div className="text-center">
+              <h1 className="font-display text-[clamp(1.4rem,3.5vw,2.8rem)] font-light tracking-wide text-text-primary">
+                The problem isn&rsquo;t scale<span className="text-amber">,</span>
+                <br />
+                it&rsquo;s architecture<span className="text-amber">.</span>
+              </h1>
+            </div>
+          </Layer>
+
+          {/* ═══ LAYER 3: Truth 1 ═══ */}
+          <Layer
+            scrollProgress={scrollYProgress}
+            enterStart={0.42}
+            enterEnd={0.48}
+            exitStart={0.53}
+            exitEnd={0.58}
+          >
+            <div className="text-center">
+              <p className="font-display text-[clamp(1.3rem,3vw,2.2rem)] leading-[1.35] font-light tracking-wide text-text-primary/85">
+                {highlightWord(truths[0].statement, truths[0].accent)}
               </p>
-              {/* Divider */}
-              {i < truths.length - 1 && (
-                <div className="mt-20 sm:mt-28 flex items-center gap-4">
-                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border-hover to-transparent" />
-                </div>
-              )}
-            </motion.div>
-          ))}
-        </div>
+              <p className="mt-8 font-body text-[13px] leading-relaxed text-text-secondary/60 max-w-lg mx-auto">
+                {truths[0].metric}
+              </p>
+            </div>
+          </Layer>
 
-        {/* ── Inquiry ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="pt-40 sm:pt-52 pb-32"
-        >
-          <div className="flex justify-center mb-20">
-            <div className="h-px w-16 bg-amber/20" />
-          </div>
+          {/* ═══ LAYER 4: Truth 2 ═══ */}
+          <Layer
+            scrollProgress={scrollYProgress}
+            enterStart={0.55}
+            enterEnd={0.61}
+            exitStart={0.66}
+            exitEnd={0.71}
+          >
+            <div className="text-center">
+              <p className="font-display text-[clamp(1.3rem,3vw,2.2rem)] leading-[1.35] font-light tracking-wide text-text-primary/85">
+                {highlightWord(truths[1].statement, truths[1].accent)}
+              </p>
+              <p className="mt-8 font-body text-[13px] leading-relaxed text-text-secondary/60 max-w-lg mx-auto">
+                {truths[1].metric}
+              </p>
+            </div>
+          </Layer>
 
-          <p className="font-display text-[clamp(1.3rem,2.5vw,2rem)] font-light italic text-center text-text-primary/80 tracking-wide mb-16">
-            If this resonates<span className="text-amber">,</span> we should talk<span className="text-amber">.</span>
-          </p>
+          {/* ═══ LAYER 5: Truth 3 ═══ */}
+          <Layer
+            scrollProgress={scrollYProgress}
+            enterStart={0.68}
+            enterEnd={0.74}
+            exitStart={0.79}
+            exitEnd={0.84}
+          >
+            <div className="text-center">
+              <p className="font-display text-[clamp(1.3rem,3vw,2.2rem)] leading-[1.35] font-light tracking-wide text-text-primary/85">
+                {highlightWord(truths[2].statement, truths[2].accent)}
+              </p>
+              <p className="mt-8 font-body text-[13px] leading-relaxed text-text-secondary/60 max-w-lg mx-auto">
+                {truths[2].metric}
+              </p>
+            </div>
+          </Layer>
 
-          <div className="flex justify-center">
-            <InquiryForm />
-          </div>
-        </motion.div>
+          {/* ═══ LAYER 6: Request a conversation ═══ */}
+          <Layer
+            scrollProgress={scrollYProgress}
+            enterStart={0.82}
+            enterEnd={0.88}
+            exitStart={1}
+            exitEnd={1}
+          >
+            <div className="text-center">
+              <a
+                href="mailto:inquiry@gonextconsulting.dev"
+                className="group relative inline-block font-body uppercase text-[12px] tracking-[0.3em] text-text-muted transition-colors duration-300 hover:text-amber"
+              >
+                Request a conversation
+                <span className="absolute -bottom-2 left-0 h-px w-0 bg-amber/40 transition-all duration-500 group-hover:w-full" />
+              </a>
+            </div>
+          </Layer>
 
-        {/* ── Footer whisper ── */}
-        <div className="border-t border-text-faint/10 py-12 text-center">
-          <p className="font-body text-[10px] uppercase tracking-[0.3em] text-text-muted/40">
-            Next Consulting
-          </p>
         </div>
       </div>
-    </main>
+    </>
   );
 }
