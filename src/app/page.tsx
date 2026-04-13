@@ -120,9 +120,11 @@ export default function Home() {
 
           {/* ═══ 1: Opening Drucker Quote ═══ */}
           <div className="layer absolute inset-0 flex items-center justify-center opacity-0 will-change-transform z-20">
-            <div className="layer-inner will-change-transform max-w-4xl px-6 text-center">
+            <div className="layer-inner will-change-transform max-w-4xl px-6 text-center relative">
+              <span className="absolute -top-16 left-0 sm:-left-4 font-display text-[8rem] sm:text-[12rem] leading-none text-amber/15 select-none pointer-events-none">&ldquo;</span>
+              <span className="absolute -bottom-20 right-0 sm:-right-4 font-display text-[8rem] sm:text-[12rem] leading-none text-amber/15 select-none pointer-events-none">&rdquo;</span>
               <p className="font-display text-[clamp(1.8rem,4.5vw,3.5rem)] leading-[1.25] font-light italic text-text-primary/90 tracking-wide">
-                &ldquo;There is surely nothing quite so useless as doing with great efficiency what should not be done at all.&rdquo;
+                There is surely nothing quite so useless as doing with great efficiency what should not be done at all.
               </p>
               <p className="mt-6 font-body text-[11px] uppercase tracking-[0.25em] text-text-muted/60">
                 &mdash; Peter Drucker, 1963
@@ -143,10 +145,12 @@ export default function Home() {
 
           {/* ═══ 3: I — Deming Quote ═══ */}
           <div className="layer absolute inset-0 flex items-center justify-center opacity-0 will-change-transform z-20">
-            <div className="layer-inner will-change-transform max-w-4xl px-6 text-center">
+            <div className="layer-inner will-change-transform max-w-4xl px-6 text-center relative">
+              <span className="absolute -top-16 left-0 sm:-left-4 font-display text-[8rem] sm:text-[12rem] leading-none text-amber/15 select-none pointer-events-none">&ldquo;</span>
+              <span className="absolute -bottom-20 right-0 sm:-right-4 font-display text-[8rem] sm:text-[12rem] leading-none text-amber/15 select-none pointer-events-none">&rdquo;</span>
               <p className="font-body text-[11px] uppercase tracking-[0.3em] text-amber/50 mb-6">I</p>
               <p className="font-display text-[clamp(1.6rem,4vw,3rem)] leading-[1.3] font-light italic text-text-primary/85 tracking-wide">
-                &ldquo;A system is perfectly designed to get the results it gets.&rdquo;
+                A system is perfectly designed to get the results it gets.
               </p>
               <p className="mt-5 font-body text-[11px] uppercase tracking-[0.2em] text-text-muted/50">
                 &mdash; W. Edwards Deming
@@ -171,10 +175,12 @@ export default function Home() {
 
           {/* ═══ 5: II — Roosevelt Quote ═══ */}
           <div className="layer absolute inset-0 flex items-center justify-center opacity-0 will-change-transform z-20">
-            <div className="layer-inner will-change-transform max-w-4xl px-6 text-center">
+            <div className="layer-inner will-change-transform max-w-4xl px-6 text-center relative">
+              <span className="absolute -top-16 left-0 sm:-left-4 font-display text-[8rem] sm:text-[12rem] leading-none text-amber/15 select-none pointer-events-none">&ldquo;</span>
+              <span className="absolute -bottom-20 right-0 sm:-right-4 font-display text-[8rem] sm:text-[12rem] leading-none text-amber/15 select-none pointer-events-none">&rdquo;</span>
               <p className="font-body text-[11px] uppercase tracking-[0.3em] text-amber/50 mb-6">II</p>
               <p className="font-display text-[clamp(1.4rem,3.5vw,2.6rem)] leading-[1.3] font-light italic text-text-primary/85 tracking-wide">
-                &ldquo;The best executive is one who has sense enough to pick good men to do what he wants done, and self-restraint enough to keep from meddling with them while they do it.&rdquo;
+                The best executive is one who has sense enough to pick good men to do what he wants done, and self-restraint enough to keep from meddling with them while they do it.
               </p>
               <p className="mt-5 font-body text-[11px] uppercase tracking-[0.2em] text-text-muted/50">
                 &mdash; Theodore Roosevelt
@@ -199,10 +205,12 @@ export default function Home() {
 
           {/* ═══ 7: III — Drucker Quote ═══ */}
           <div className="layer absolute inset-0 flex items-center justify-center opacity-0 will-change-transform z-20">
-            <div className="layer-inner will-change-transform max-w-4xl px-6 text-center">
+            <div className="layer-inner will-change-transform max-w-4xl px-6 text-center relative">
+              <span className="absolute -top-16 left-0 sm:-left-4 font-display text-[8rem] sm:text-[12rem] leading-none text-amber/15 select-none pointer-events-none">&ldquo;</span>
+              <span className="absolute -bottom-20 right-0 sm:-right-4 font-display text-[8rem] sm:text-[12rem] leading-none text-amber/15 select-none pointer-events-none">&rdquo;</span>
               <p className="font-body text-[11px] uppercase tracking-[0.3em] text-amber/50 mb-6">III</p>
               <p className="font-display text-[clamp(1.5rem,3.5vw,2.8rem)] leading-[1.3] font-light italic text-text-primary/85 tracking-wide">
-                &ldquo;The most serious mistakes are not being made as a result of wrong answers. The truly dangerous thing is asking the wrong question.&rdquo;
+                The most serious mistakes are not being made as a result of wrong answers. The truly dangerous thing is asking the wrong question.
               </p>
               <p className="mt-5 font-body text-[11px] uppercase tracking-[0.2em] text-text-muted/50">
                 &mdash; Peter Drucker
@@ -224,10 +232,12 @@ export default function Home() {
 
           {/* ═══ 9: IV — Collins Quote ═══ */}
           <div className="layer absolute inset-0 flex items-center justify-center opacity-0 will-change-transform z-20">
-            <div className="layer-inner will-change-transform max-w-4xl px-6 text-center">
+            <div className="layer-inner will-change-transform max-w-4xl px-6 text-center relative">
+              <span className="absolute -top-16 left-0 sm:-left-4 font-display text-[8rem] sm:text-[12rem] leading-none text-amber/15 select-none pointer-events-none">&ldquo;</span>
+              <span className="absolute -bottom-20 right-0 sm:-right-4 font-display text-[8rem] sm:text-[12rem] leading-none text-amber/15 select-none pointer-events-none">&rdquo;</span>
               <p className="font-body text-[11px] uppercase tracking-[0.3em] text-amber/50 mb-6">IV</p>
               <p className="font-display text-[clamp(1.4rem,3.5vw,2.6rem)] leading-[1.3] font-light italic text-text-primary/85 tracking-wide">
-                &ldquo;You must maintain unwavering faith that you can and will prevail &mdash; and at the same time confront the most brutal facts of your current reality.&rdquo;
+                You must maintain unwavering faith that you can and will prevail &mdash; and at the same time confront the most brutal facts of your current reality.
               </p>
               <p className="mt-5 font-body text-[11px] uppercase tracking-[0.2em] text-text-muted/50">
                 &mdash; Jim Collins
