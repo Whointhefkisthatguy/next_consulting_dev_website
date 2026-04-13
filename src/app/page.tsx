@@ -170,7 +170,7 @@ export default function Home() {
       <section className="content-block h-[50vh] flex items-center justify-center relative z-10 px-6">
         <div className="block-inner text-center">
           <p className={`${txt} uppercase text-[clamp(0.7rem,1.4vw,0.9rem)] tracking-[0.3em] text-text-muted/60`}>
-            You built the machine. It should be working by now.
+            You built the machine. Is it what you imagined it would be?
           </p>
         </div>
       </section>
