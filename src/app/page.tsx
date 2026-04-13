@@ -25,6 +25,38 @@ function Monogram({ className }: { className?: string }) {
   );
 }
 
+/* ── Architectural geometric shapes for depth ── */
+function GeoShapes({ id }: { id: string }) {
+  return (
+    <div className={`geo-shapes geo-shapes-${id} absolute inset-0 pointer-events-none overflow-hidden opacity-0`}>
+      {/* Thin diagonal lines */}
+      <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+        <line x1="0" y1="100%" x2="35%" y2="0" stroke="rgba(201,150,63,0.04)" strokeWidth="1" />
+        <line x1="100%" y1="100%" x2="65%" y2="0" stroke="rgba(201,150,63,0.04)" strokeWidth="1" />
+      </svg>
+      {/* Corner bracket top-left */}
+      <div className="absolute top-[12%] left-[8%] w-16 h-16 sm:w-24 sm:h-24 border-l border-t border-text-faint/[0.06]" />
+      {/* Corner bracket bottom-right */}
+      <div className="absolute bottom-[12%] right-[8%] w-16 h-16 sm:w-24 sm:h-24 border-r border-b border-text-faint/[0.06]" />
+      {/* Horizontal rule accent */}
+      <div className="absolute top-1/2 left-[5%] w-[12%] h-px bg-gradient-to-r from-amber/[0.06] to-transparent" />
+      <div className="absolute top-1/2 right-[5%] w-[12%] h-px bg-gradient-to-l from-amber/[0.06] to-transparent" />
+      {/* Circle arc */}
+      <svg className="absolute top-[20%] right-[12%] w-32 h-32 sm:w-48 sm:h-48 opacity-50" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(201,150,63,0.03)" strokeWidth="0.5" strokeDasharray="8 12" />
+      </svg>
+      {/* Grid dots */}
+      <svg className="absolute bottom-[18%] left-[10%] w-24 h-24 sm:w-32 sm:h-32 opacity-50" viewBox="0 0 60 60">
+        {[0, 15, 30, 45].map((x) =>
+          [0, 15, 30, 45].map((dy) => (
+            <circle key={`${x}-${dy}`} cx={x + 7.5} cy={dy + 7.5} r="0.8" fill="rgba(201,150,63,0.05)" />
+          ))
+        )}
+      </svg>
+    </div>
+  );
+}
+
 /* ── Truths Data ── */
 const truths = [
   {
@@ -94,31 +126,56 @@ export default function Home() {
       },
     });
 
-    // Each layer: fade in, hold, fade out
-    // Layer 0 (monogram) starts visible
     layers.forEach((layer, i) => {
+      // Get geo shapes for this layer
+      const geoShapes = pinnedRef.current?.querySelector(`.geo-shapes-${i}`);
+
       if (i === 0) {
-        // Monogram is already visible, just fade it out
-        tl.to(layer, {
+        // ── Monogram: visible on load, architectural exit ──
+        // Hold for a beat
+        tl.to({}, { duration: 0.4 });
+        // Split exit: N and > separate, fade, scale
+        tl.to(layer.querySelector(".mono-n"), {
+          x: -30,
           opacity: 0,
-          scale: 0.95,
-          duration: 0.8,
-          ease: "power2.inOut",
+          duration: 1,
+          ease: "power3.inOut",
         });
+        tl.to(layer.querySelector(".mono-arrow"), {
+          x: 30,
+          opacity: 0,
+          duration: 1,
+          ease: "power3.inOut",
+        }, "<");
+        // Also fade the glow
+        tl.to(layer.querySelector(".mono-glow"), {
+          opacity: 0,
+          scale: 1.3,
+          duration: 1,
+          ease: "power2.out",
+        }, "<0.1");
+
       } else if (i === layers.length - 1) {
-        // Last layer (CTA) fades in and stays
+        // ── Last layer: fade in and stay ──
+        if (geoShapes) {
+          tl.to(geoShapes, { opacity: 1, duration: 0.8, ease: "power2.out" }, "<");
+        }
         tl.fromTo(
           layer,
           { opacity: 0, y: 40, scale: 0.97 },
           { opacity: 1, y: 0, scale: 1, duration: 1, ease: "power3.out" }
         );
+
       } else {
-        // Middle layers: fade in, hold, fade out
+        // ── Middle layers: fade in with geo shapes, hold, fade out ──
         tl.fromTo(
           layer,
           { opacity: 0, y: 40, scale: 0.97 },
           { opacity: 1, y: 0, scale: 1, duration: 1, ease: "power3.out" }
         );
+        if (geoShapes) {
+          tl.to(geoShapes, { opacity: 1, duration: 0.6, ease: "power2.out" }, "<0.3");
+        }
         tl.to({}, { duration: 0.6 }); // Hold
         tl.to(layer, {
           opacity: 0,
@@ -127,34 +184,57 @@ export default function Home() {
           duration: 0.8,
           ease: "power2.inOut",
         });
+        if (geoShapes) {
+          tl.to(geoShapes, { opacity: 0, duration: 0.5, ease: "power2.in" }, "<");
+        }
       }
     });
   }, { scope: containerRef });
 
   return (
     <>
-      {/* ── Scroll runway ── */}
       <div ref={containerRef} className="relative" style={{ height: "700vh" }}>
-
-        {/* ── Pinned viewport ── */}
         <div
           ref={pinnedRef}
           className="h-dvh w-full overflow-hidden relative"
         >
-          {/* Ambient glow */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+
+          {/* ── Geometric backgrounds (one per content layer) ── */}
+          <GeoShapes id="1" />
+          <GeoShapes id="2" />
+          <GeoShapes id="3" />
+          <GeoShapes id="4" />
+          <GeoShapes id="5" />
+          <GeoShapes id="6" />
+
+          {/* ═══ LAYER 0: Monogram (white, visible on load) ═══ */}
+          <div className="layer absolute inset-0 flex items-center justify-center will-change-transform">
+            {/* Subtle glow behind mark */}
             <div
-              className="w-[600px] h-[600px] rounded-full animate-breathe opacity-60"
+              className="mono-glow absolute w-[500px] h-[500px] rounded-full"
               style={{
-                background: "radial-gradient(circle, rgba(201,150,63,0.06) 0%, rgba(201,150,63,0.015) 45%, transparent 70%)",
+                background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%)",
               }}
             />
-          </div>
-
-          {/* ═══ LAYER 0: Monogram (visible on load) ═══ */}
-          <div className="layer absolute inset-0 flex items-center justify-center will-change-transform">
-            <div className="text-amber">
-              <Monogram className="h-28 w-auto sm:h-36 md:h-44" />
+            <div className="relative flex items-center text-white">
+              {/* N letterform */}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 121.4 94.2"
+                fill="currentColor"
+                className="mono-n h-28 w-auto sm:h-36 md:h-44 will-change-transform"
+              >
+                <polygon points="94.5,0 94.5,63.4 112.2,84.1 94.5,67.2 27.2,0 27,0.2 27,0 0,0 0,94.2 27,94.2 27,43 12.5,23 27,38 83.3,94.2 104.1,94.2 121.4,94.2 121.4,0" />
+              </svg>
+              {/* > chevron arrow */}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="128 0 87.1 94.2"
+                fill="currentColor"
+                className="mono-arrow h-28 w-auto sm:h-36 md:h-44 -ml-1 will-change-transform"
+              >
+                <polyline points="193.1,23.3 169.8,0 131.6,0 176.9,45.3 128,94.2 145.3,94.2 166.2,94.2 187.8,72.6 204.5,55.7 204.1,56.3 215.1,45.3 196,26.2 196,26.2" />
+              </svg>
             </div>
           </div>
 
@@ -235,7 +315,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Scroll progress bar */}
+          {/* Progress bar */}
           <div className="absolute top-0 left-0 right-0 h-px bg-text-faint/10">
             <div className="progress-bar h-full bg-amber/20 origin-left" style={{ transform: "scaleX(0)" }} />
           </div>
