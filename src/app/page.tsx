@@ -146,8 +146,10 @@ export default function Home() {
       });
     };
 
-    if (document.fonts.status === "loaded") { build(); }
-    else { document.fonts.ready.then(() => { build(); ScrollTrigger.refresh(); }); }
+    // Build immediately — font guard was preventing initialization entirely
+    build();
+    // Refresh after fonts load for accurate SplitText line measurements
+    document.fonts.ready.then(() => ScrollTrigger.refresh());
   }, { scope: containerRef });
 
   const disp = "font-display font-semibold";
