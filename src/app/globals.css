@@ -5,7 +5,7 @@
   --color-canvas-light: #111114;
   --color-canvas-elevated: #18181C;
   --color-surface: #1E1E24;
-  --color-text-primary: #D4D4D8;
+  --color-text-primary: #E8E8EC;
   --color-text-secondary: #8E8E96;
   --color-text-muted: #52525A;
   --color-text-faint: #2C2C32;
@@ -52,36 +52,12 @@ body {
   color: #fff;
 }
 
-/* Ambient glow keyframes */
 @keyframes breathe {
   0%, 100% { opacity: 0.4; transform: scale(1); }
   50% { opacity: 0.6; transform: scale(1.05); }
 }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes lineGrow {
-  from { transform: scaleY(0); }
-  to { transform: scaleY(1); }
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
 .animate-breathe { animation: breathe 6s ease-in-out infinite; }
-.animate-fade-up { animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) both; }
-.animate-fade-in { animation: fadeIn 1.5s ease both; }
-.animate-line-grow { animation: lineGrow 1.5s cubic-bezier(0.16, 1, 0.3, 1) both; transform-origin: top; }
 
 /* Vignette */
 .vignette {
@@ -92,20 +68,21 @@ body {
   background: radial-gradient(ellipse 70% 60% at 50% 50%, transparent 40%, rgba(4,4,6,0.6) 100%);
 }
 
-/* Frosted glass panel */
+/* Frosted glass panel — near-transparent, relies on ambient orbs for material to blur */
 .glass-panel {
-  background: rgba(14, 14, 18, 0.45);
-  backdrop-filter: blur(20px) saturate(1.2);
-  -webkit-backdrop-filter: blur(20px) saturate(1.2);
-  border: 1px solid rgba(201, 150, 63, 0.04);
-  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px) saturate(200%);
+  -webkit-backdrop-filter: blur(16px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  padding: 2.5rem 2rem;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
-/* Word reveal spans */
-.word-reveal {
-  display: inline-block;
-  overflow: hidden;
-}
-.word-reveal > span {
-  display: inline-block;
+@supports not (backdrop-filter: blur(1px)) {
+  .glass-panel {
+    background: rgba(20, 20, 30, 0.8);
+  }
 }
