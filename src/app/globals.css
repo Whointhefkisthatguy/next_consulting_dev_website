@@ -82,3 +82,30 @@ body {
 .animate-fade-up { animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) both; }
 .animate-fade-in { animation: fadeIn 1.5s ease both; }
 .animate-line-grow { animation: lineGrow 1.5s cubic-bezier(0.16, 1, 0.3, 1) both; transform-origin: top; }
+
+/* Vignette */
+.vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, transparent 40%, rgba(4,4,6,0.6) 100%);
+}
+
+/* Frosted glass panel */
+.glass-panel {
+  background: rgba(14, 14, 18, 0.45);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  border: 1px solid rgba(201, 150, 63, 0.04);
+  border-radius: 2px;
+}
+
+/* Word reveal spans */
+.word-reveal {
+  display: inline-block;
+  overflow: hidden;
+}
+.word-reveal > span {
+  display: inline-block;
+}
