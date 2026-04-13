@@ -92,7 +92,7 @@ export default function Home() {
 
         } else if (i === layers.length - 1) {
           // ── CTA (last layer) ──
-          gsap.set(layer, { opacity: 0.15 });
+          gsap.set(layer, { opacity: 0 });
           if (inner) gsap.set(inner, { y: 60, scale: 0.88, filter: "blur(3px)" });
 
           tl.to(layer, { opacity: 1, duration: 0.5, ease: "none" });
@@ -100,7 +100,7 @@ export default function Home() {
 
         } else if (isQuote) {
           // ── QUOTE LAYERS (line-by-line reveal) ──
-          gsap.set(layer, { opacity: 0.15 });
+          gsap.set(layer, { opacity: 0 });
 
           const quoteP = layer.querySelector("[data-quote]") as HTMLElement;
           let split: SplitText | null = null;
@@ -129,11 +129,11 @@ export default function Home() {
             tl.to(split.lines, { yPercent: -105, opacity: 0, duration: 0.5, stagger: 0.05, ease: "none" });
           }
           if (inner) tl.to(inner, { scale: 0.92, filter: "blur(2px)", duration: 0.6, ease: "none" }, "<0.1");
-          tl.to(layer, { opacity: 0.15, duration: 0.4, ease: "none" }, "<0.1");
+          tl.to(layer, { opacity: 0, duration: 0.4, ease: "none" }, "<0.1");
 
         } else {
           // ── CONTENT LAYERS (scale+blur + bloom + glass + closing emphasis) ──
-          gsap.set(layer, { opacity: 0.15 });
+          gsap.set(layer, { opacity: 0 });
           if (inner) gsap.set(inner, { y: 60, scale: 0.88, filter: "blur(3px)" });
           if (bloom) gsap.set(bloom, { opacity: 0, scale: 0.75 });
           if (closingQ) gsap.set(closingQ, { scale: 0.95, transformOrigin: "center center" });
@@ -202,7 +202,7 @@ export default function Home() {
           </div>
 
           {/* ═══ 1: Opening Drucker Quote ═══ */}
-          <div className="layer absolute inset-0 flex items-center justify-center opacity-[0.15] will-change-transform z-20">
+          <div className="layer absolute inset-0 flex items-center justify-center opacity-0 will-change-transform z-20">
             <div className="layer-inner will-change-transform max-w-4xl px-6 text-center relative">
               <span className={`${bigQuoteMark} -top-6 -left-2 sm:-left-6`}>&ldquo;</span>
               <span className={`${bigQuoteMark} -bottom-2 right-0 sm:-right-6`}>&rdquo;</span>
@@ -214,7 +214,7 @@ export default function Home() {
           </div>
 
           {/* ═══ 2: H1 Transition ═══ */}
-          <div className="layer absolute inset-0 flex items-center justify-center opacity-[0.15] will-change-transform z-20">
+          <div className="layer absolute inset-0 flex items-center justify-center opacity-0 will-change-transform z-20">
             <div className="layer-inner will-change-transform text-center px-6">
               <h1 className={h1Style}>
                 The problem isn&rsquo;t scale<span className="text-amber">,</span>
@@ -225,7 +225,7 @@ export default function Home() {
           </div>
 
           {/* ═══ 3: I — Deming Quote ═══ */}
-          <div className="layer absolute inset-0 flex items-center justify-center opacity-[0.15] will-change-transform z-20">
+          <div className="layer absolute inset-0 flex items-center justify-center opacity-0 will-change-transform z-20">
             <div className="layer-inner will-change-transform max-w-4xl px-6 text-center relative">
               <span className={`${bigQuoteMark} -top-6 -left-2 sm:-left-6`}>&ldquo;</span>
               <span className={`${bigQuoteMark} -bottom-2 right-0 sm:-right-6`}>&rdquo;</span>
@@ -236,7 +236,7 @@ export default function Home() {
           </div>
 
           {/* ═══ 4: I — Content ═══ */}
-          <div className="layer absolute inset-0 flex items-center justify-center opacity-[0.15] will-change-transform z-20">
+          <div className="layer absolute inset-0 flex items-center justify-center opacity-0 will-change-transform z-20">
             <div className="layer-inner will-change-transform max-w-2xl px-6 text-center relative">
               {/* Gradient bloom */}
               <div className="bloom absolute -inset-16 -z-10 pointer-events-none rounded-full"
@@ -254,7 +254,7 @@ export default function Home() {
           </div>
 
           {/* ═══ 5: II — Roosevelt Quote ═══ */}
-          <div className="layer absolute inset-0 flex items-center justify-center opacity-[0.15] will-change-transform z-20">
+          <div className="layer absolute inset-0 flex items-center justify-center opacity-0 will-change-transform z-20">
             <div className="layer-inner will-change-transform max-w-4xl px-6 text-center relative">
               <span className={`${bigQuoteMark} -top-6 -left-2 sm:-left-6`}>&ldquo;</span>
               <span className={`${bigQuoteMark} -bottom-2 right-0 sm:-right-6`}>&rdquo;</span>
@@ -265,7 +265,7 @@ export default function Home() {
           </div>
 
           {/* ═══ 6: II — Content ═══ */}
-          <div className="layer absolute inset-0 flex items-center justify-center opacity-[0.15] will-change-transform z-20">
+          <div className="layer absolute inset-0 flex items-center justify-center opacity-0 will-change-transform z-20">
             <div className="layer-inner will-change-transform max-w-2xl px-6 text-center relative">
               <div className="bloom absolute -inset-16 -z-10 pointer-events-none rounded-full"
                 style={{ background: "radial-gradient(ellipse 80% 60% at 50% 45%, rgba(201,150,63,0.10) 0%, transparent 70%)" }} />
@@ -282,7 +282,7 @@ export default function Home() {
           </div>
 
           {/* ═══ 7: III — Drucker Quote ═══ */}
-          <div className="layer absolute inset-0 flex items-center justify-center opacity-[0.15] will-change-transform z-20">
+          <div className="layer absolute inset-0 flex items-center justify-center opacity-0 will-change-transform z-20">
             <div className="layer-inner will-change-transform max-w-4xl px-6 text-center relative">
               <span className={`${bigQuoteMark} -top-6 -left-2 sm:-left-6`}>&ldquo;</span>
               <span className={`${bigQuoteMark} -bottom-2 right-0 sm:-right-6`}>&rdquo;</span>
@@ -293,7 +293,7 @@ export default function Home() {
           </div>
 
           {/* ═══ 8: III — Content ═══ */}
-          <div className="layer absolute inset-0 flex items-center justify-center opacity-[0.15] will-change-transform z-20">
+          <div className="layer absolute inset-0 flex items-center justify-center opacity-0 will-change-transform z-20">
             <div className="layer-inner will-change-transform max-w-2xl px-6 text-center relative">
               <div className="bloom absolute -inset-16 -z-10 pointer-events-none rounded-full"
                 style={{ background: "radial-gradient(ellipse 80% 60% at 50% 45%, rgba(201,150,63,0.10) 0%, transparent 70%)" }} />
@@ -307,7 +307,7 @@ export default function Home() {
           </div>
 
           {/* ═══ 9: IV — Collins Quote ═══ */}
-          <div className="layer absolute inset-0 flex items-center justify-center opacity-[0.15] will-change-transform z-20">
+          <div className="layer absolute inset-0 flex items-center justify-center opacity-0 will-change-transform z-20">
             <div className="layer-inner will-change-transform max-w-4xl px-6 text-center relative">
               <span className={`${bigQuoteMark} -top-6 -left-2 sm:-left-6`}>&ldquo;</span>
               <span className={`${bigQuoteMark} -bottom-2 right-0 sm:-right-6`}>&rdquo;</span>
@@ -318,7 +318,7 @@ export default function Home() {
           </div>
 
           {/* ═══ 10: IV — Content ═══ */}
-          <div className="layer absolute inset-0 flex items-center justify-center opacity-[0.15] will-change-transform z-20">
+          <div className="layer absolute inset-0 flex items-center justify-center opacity-0 will-change-transform z-20">
             <div className="layer-inner will-change-transform max-w-2xl px-6 text-center relative">
               <div className="bloom absolute -inset-16 -z-10 pointer-events-none rounded-full"
                 style={{ background: "radial-gradient(ellipse 80% 60% at 50% 45%, rgba(201,150,63,0.10) 0%, transparent 70%)" }} />
@@ -335,7 +335,7 @@ export default function Home() {
           </div>
 
           {/* ═══ 11: CTA ═══ */}
-          <div className="layer absolute inset-0 flex items-center justify-center opacity-[0.15] will-change-transform z-20">
+          <div className="layer absolute inset-0 flex items-center justify-center opacity-0 will-change-transform z-20">
             <div className="layer-inner will-change-transform text-center max-w-xl px-6">
               <a
                 href="mailto:inquiry@gonextconsulting.dev"
