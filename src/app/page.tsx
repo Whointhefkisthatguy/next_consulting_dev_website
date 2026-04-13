@@ -7,11 +7,47 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
+/* ── Geometric depth lines — barely visible architectural elements ── */
+function GeoDepth() {
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+      {/* Diagonal construction lines */}
+      <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+        <line x1="0" y1="100%" x2="25%" y2="0" stroke="rgba(201,150,63,0.03)" strokeWidth="0.5" />
+        <line x1="100%" y1="100%" x2="75%" y2="0" stroke="rgba(201,150,63,0.03)" strokeWidth="0.5" />
+      </svg>
+      {/* Corner brackets */}
+      <div className="absolute top-[8%] left-[5%] w-16 h-16 sm:w-24 sm:h-24 border-l border-t border-white/[0.025]" />
+      <div className="absolute bottom-[8%] right-[5%] w-16 h-16 sm:w-24 sm:h-24 border-r border-b border-white/[0.025]" />
+      {/* Horizontal accent */}
+      <div className="absolute top-1/2 left-[3%] w-[10%] h-px bg-gradient-to-r from-amber/[0.04] to-transparent" />
+      <div className="absolute top-1/2 right-[3%] w-[10%] h-px bg-gradient-to-l from-amber/[0.04] to-transparent" />
+      {/* Arc */}
+      <svg className="absolute top-[15%] right-[8%] w-32 h-32 sm:w-48 sm:h-48" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(201,150,63,0.025)" strokeWidth="0.4" strokeDasharray="5 16" />
+      </svg>
+      {/* Dot grid */}
+      <svg className="absolute bottom-[12%] left-[7%] w-24 h-24 sm:w-36 sm:h-36" viewBox="0 0 80 80">
+        {[0, 16, 32, 48, 64].map((x) =>
+          [0, 16, 32, 48, 64].map((y) => (
+            <circle key={`${x}-${y}`} cx={x + 8} cy={y + 8} r="0.5" fill="rgba(201,150,63,0.03)" />
+          ))
+        )}
+      </svg>
+      {/* Crosshair */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6">
+        <div className="absolute top-1/2 left-0 w-full h-px bg-white/[0.015]" />
+        <div className="absolute top-0 left-1/2 w-px h-full bg-white/[0.015]" />
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   const mainRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    // Monogram split exit on scroll
+    // ── Monogram: pin + scrub split exit ──
     const monoTl = gsap.timeline({
       scrollTrigger: {
         trigger: ".section-mono",
@@ -25,43 +61,53 @@ export default function Home() {
     monoTl.to(".mono-arrow", { x: 60, opacity: 0, filter: "blur(8px)", duration: 1, ease: "none" }, "<");
     monoTl.to(".mono-glow", { opacity: 0, scale: 1.5, duration: 1, ease: "none" }, "<");
 
-    // All content sections: enter with scale+blur+y, closing questions zoom
+    // ── Content sections: pin each, animate inner on enter/exit ──
     gsap.utils.toArray<HTMLElement>(".content-block").forEach((block) => {
       const inner = block.querySelector(".block-inner") as HTMLElement;
-      const bloom = block.querySelector(".bloom") as HTMLElement;
       const closingQ = block.querySelector("[data-closing]") as HTMLElement;
+      const geo = block.querySelector(".geo-depth") as HTMLElement;
 
+      // Pin each section for a full viewport of scroll
+      ScrollTrigger.create({
+        trigger: block,
+        start: "top top",
+        end: "+=100%",
+        pin: true,
+      });
+
+      // Inner content: scale+blur entrance
       if (inner) {
         gsap.fromTo(inner,
-          { y: 60, scale: 0.88, filter: "blur(4px)", opacity: 0 },
+          { y: 50, scale: 0.88, filter: "blur(4px)", opacity: 0 },
           {
             y: 0, scale: 1, filter: "blur(0px)", opacity: 1,
             duration: 1, ease: "power3.out",
             scrollTrigger: {
               trigger: block,
-              start: "top 80%",
-              end: "top 30%",
+              start: "top 60%",
               toggleActions: "play none none reverse",
             },
           }
         );
       }
 
-      if (bloom) {
-        gsap.fromTo(bloom,
-          { opacity: 0, scale: 0.75 },
+      // Geo depth: fade in slightly after content
+      if (geo) {
+        gsap.fromTo(geo,
+          { opacity: 0 },
           {
-            opacity: 1, scale: 1,
-            duration: 1.2, ease: "power2.out",
+            opacity: 1,
+            duration: 1.5, ease: "power2.out",
             scrollTrigger: {
               trigger: block,
-              start: "top 85%",
+              start: "top 70%",
               toggleActions: "play none none reverse",
             },
           }
         );
       }
 
+      // Closing questions: zoom emphasis
       if (closingQ) {
         gsap.fromTo(closingQ,
           { scale: 0.9, opacity: 0 },
@@ -70,7 +116,7 @@ export default function Home() {
             duration: 0.8, ease: "power2.out",
             scrollTrigger: {
               trigger: closingQ,
-              start: "top 80%",
+              start: "top 75%",
               toggleActions: "play none none reverse",
             },
           }
@@ -85,7 +131,7 @@ export default function Home() {
   return (
     <main ref={mainRef} className="bg-canvas relative">
 
-      {/* Ambient orbs — fixed behind everything */}
+      {/* Ambient orbs */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute -top-[20%] -right-[15%] w-[1200px] h-[800px] rounded-full"
           style={{ background: "radial-gradient(ellipse at center, rgba(201,150,63,0.10) 0%, rgba(201,150,63,0.02) 40%, transparent 70%)" }} />
@@ -95,7 +141,6 @@ export default function Home() {
           style={{ background: "radial-gradient(circle, rgba(201,150,63,0.06) 0%, rgba(201,150,63,0.015) 40%, transparent 65%)" }} />
       </div>
 
-      {/* Vignette */}
       <div className="vignette fixed" />
 
       {/* ═══ MONOGRAM ═══ */}
@@ -116,7 +161,8 @@ export default function Home() {
       </section>
 
       {/* ═══ DRUCKER QUOTE ═══ */}
-      <section className="content-block min-h-dvh flex items-center justify-center relative z-10 px-6">
+      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
+        <GeoDepth />
         <div className="block-inner max-w-4xl text-center relative">
           <span className="absolute -top-6 -left-2 sm:-left-6 text-[14rem] sm:text-[20rem] leading-[0.5] text-amber/[0.07] select-none pointer-events-none font-display">&ldquo;</span>
           <span className="absolute -bottom-2 right-0 sm:-right-6 text-[14rem] sm:text-[20rem] leading-[0.5] text-amber/[0.07] select-none pointer-events-none font-display">&rdquo;</span>
@@ -128,7 +174,7 @@ export default function Home() {
       </section>
 
       {/* ═══ H1 ═══ */}
-      <section className="content-block min-h-[70vh] flex items-center justify-center relative z-10 px-6">
+      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
         <div className="block-inner text-center">
           <h1 className={`${disp} uppercase text-[clamp(1.8rem,5vw,4rem)] tracking-[0.25em] text-text-primary leading-[1.3]`}>
             The problem isn&rsquo;t scale,
@@ -138,8 +184,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ SECTION I ═══ */}
-      <section className="content-block min-h-dvh flex items-center justify-center relative z-10 px-6">
+      {/* ═══ I: QUOTE ═══ */}
+      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
+        <GeoDepth />
         <div className="block-inner max-w-4xl text-center relative">
           <span className="absolute -top-6 -left-2 sm:-left-6 text-[14rem] sm:text-[20rem] leading-[0.5] text-amber/[0.07] select-none pointer-events-none font-display">&ldquo;</span>
           <span className="absolute -bottom-2 right-0 sm:-right-6 text-[14rem] sm:text-[20rem] leading-[0.5] text-amber/[0.07] select-none pointer-events-none font-display">&rdquo;</span>
@@ -151,22 +198,20 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="content-block min-h-[80vh] flex items-center justify-center relative z-10 px-6">
-        <div className="block-inner max-w-2xl text-center relative">
-          <div className="bloom absolute -inset-20 -z-10 pointer-events-none rounded-full"
-            style={{ background: "radial-gradient(ellipse 80% 60% at 50% 45%, rgba(201,150,63,0.10) 0%, transparent 70%)" }} />
-          <div className="glass-panel">
-            <p className={`${txt} text-[clamp(0.85rem,1.8vw,1.1rem)] leading-[1.9] tracking-[0.08em] text-text-primary/80`}>
-              Where is your feedback loop &mdash; and what did it tell you last month? Without one, failure is invisible. And invisible failure is the only kind that kills companies.
-            </p>
-            <p className={`mt-8 ${txt} text-[clamp(0.75rem,1.4vw,0.9rem)] leading-[1.8] tracking-[0.06em] text-text-secondary/55`}>
-              78% of companies that found product-market fit still fail to scale. Not because of the market. Because they tried to grow a system they never examined.
-            </p>
-          </div>
+      {/* I: CONTENT */}
+      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
+        <div className="block-inner max-w-2xl text-center">
+          <p className={`${txt} text-[clamp(0.9rem,1.8vw,1.15rem)] leading-[1.9] tracking-[0.08em] text-text-primary/80`}>
+            Where is your feedback loop &mdash; and what did it tell you last month? Without one, failure is invisible. And invisible failure is the only kind that kills companies.
+          </p>
+          <p className={`mt-10 ${txt} text-[clamp(0.8rem,1.4vw,0.95rem)] leading-[1.8] tracking-[0.06em] text-text-secondary/55`}>
+            78% of companies that found product-market fit still fail to scale. Not because of the market. Because they tried to grow a system they never examined.
+          </p>
         </div>
       </section>
 
-      <section className="content-block min-h-[60vh] flex items-center justify-center relative z-10 px-6">
+      {/* I: CLOSING */}
+      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
         <div className="block-inner text-center max-w-3xl">
           <p data-closing className={`${disp} uppercase text-[clamp(1.2rem,3vw,2.2rem)] tracking-[0.25em] text-amber/80`}>
             Still calling it a performance problem?
@@ -174,8 +219,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ SECTION II ═══ */}
-      <section className="content-block min-h-dvh flex items-center justify-center relative z-10 px-6">
+      {/* ═══ II: QUOTE ═══ */}
+      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
+        <GeoDepth />
         <div className="block-inner max-w-4xl text-center relative">
           <span className="absolute -top-6 -left-2 sm:-left-6 text-[14rem] sm:text-[20rem] leading-[0.5] text-amber/[0.07] select-none pointer-events-none font-display">&ldquo;</span>
           <span className="absolute -bottom-2 right-0 sm:-right-6 text-[14rem] sm:text-[20rem] leading-[0.5] text-amber/[0.07] select-none pointer-events-none font-display">&rdquo;</span>
@@ -187,22 +233,20 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="content-block min-h-[80vh] flex items-center justify-center relative z-10 px-6">
-        <div className="block-inner max-w-2xl text-center relative">
-          <div className="bloom absolute -inset-20 -z-10 pointer-events-none rounded-full"
-            style={{ background: "radial-gradient(ellipse 80% 60% at 50% 45%, rgba(201,150,63,0.10) 0%, transparent 70%)" }} />
-          <div className="glass-panel">
-            <p className={`${txt} text-[clamp(0.85rem,1.8vw,1.1rem)] leading-[1.9] tracking-[0.08em] text-text-primary/80`}>
-              The creative intelligence of your workforce is free, available, and completely ignored. That&rsquo;s not a resource problem. That&rsquo;s a leadership one.
-            </p>
-            <p className={`mt-8 ${txt} text-[clamp(0.75rem,1.4vw,0.9rem)] leading-[1.8] tracking-[0.06em] text-text-secondary/55`}>
-              85% of frontline employees share concerns only through manager meetings &mdash; a hierarchical, slow, incomplete loop where field intelligence routinely never reaches the people making decisions.
-            </p>
-          </div>
+      {/* II: CONTENT */}
+      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
+        <div className="block-inner max-w-2xl text-center">
+          <p className={`${txt} text-[clamp(0.9rem,1.8vw,1.15rem)] leading-[1.9] tracking-[0.08em] text-text-primary/80`}>
+            The creative intelligence of your workforce is free, available, and completely ignored. That&rsquo;s not a resource problem. That&rsquo;s a leadership one.
+          </p>
+          <p className={`mt-10 ${txt} text-[clamp(0.8rem,1.4vw,0.95rem)] leading-[1.8] tracking-[0.06em] text-text-secondary/55`}>
+            85% of frontline employees share concerns only through manager meetings &mdash; a hierarchical, slow, incomplete loop where field intelligence routinely never reaches the people making decisions.
+          </p>
         </div>
       </section>
 
-      <section className="content-block min-h-[60vh] flex items-center justify-center relative z-10 px-6">
+      {/* II: CLOSING */}
+      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
         <div className="block-inner text-center max-w-3xl">
           <p data-closing className={`${disp} uppercase text-[clamp(1.2rem,3vw,2.2rem)] tracking-[0.25em] text-amber/80`}>
             Still building strategy in rooms the people doing the work aren&rsquo;t allowed into?
@@ -210,8 +254,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ SECTION III ═══ */}
-      <section className="content-block min-h-dvh flex items-center justify-center relative z-10 px-6">
+      {/* ═══ III: QUOTE ═══ */}
+      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
+        <GeoDepth />
         <div className="block-inner max-w-4xl text-center relative">
           <span className="absolute -top-6 -left-2 sm:-left-6 text-[14rem] sm:text-[20rem] leading-[0.5] text-amber/[0.07] select-none pointer-events-none font-display">&ldquo;</span>
           <span className="absolute -bottom-2 right-0 sm:-right-6 text-[14rem] sm:text-[20rem] leading-[0.5] text-amber/[0.07] select-none pointer-events-none font-display">&rdquo;</span>
@@ -223,19 +268,17 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="content-block min-h-[80vh] flex items-center justify-center relative z-10 px-6">
-        <div className="block-inner max-w-2xl text-center relative">
-          <div className="bloom absolute -inset-20 -z-10 pointer-events-none rounded-full"
-            style={{ background: "radial-gradient(ellipse 80% 60% at 50% 45%, rgba(201,150,63,0.10) 0%, transparent 70%)" }} />
-          <div className="glass-panel">
-            <p className={`${txt} text-[clamp(0.85rem,1.8vw,1.1rem)] leading-[1.9] tracking-[0.08em] text-text-primary/80`}>
-              You don&rsquo;t have a feedback loop. You have an NPS score. Those are not the same thing. One measures sentiment. The other drives decisions. You&rsquo;ve been doing one and calling it both.
-            </p>
-          </div>
+      {/* III: CONTENT */}
+      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
+        <div className="block-inner max-w-2xl text-center">
+          <p className={`${txt} text-[clamp(0.9rem,1.8vw,1.15rem)] leading-[1.9] tracking-[0.08em] text-text-primary/80`}>
+            You don&rsquo;t have a feedback loop. You have an NPS score. Those are not the same thing. One measures sentiment. The other drives decisions. You&rsquo;ve been doing one and calling it both.
+          </p>
         </div>
       </section>
 
-      <section className="content-block min-h-[60vh] flex items-center justify-center relative z-10 px-6">
+      {/* III: CLOSING */}
+      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
         <div className="block-inner text-center max-w-3xl">
           <p data-closing className={`${disp} uppercase text-[clamp(1.2rem,3vw,2.2rem)] tracking-[0.25em] text-amber/80`}>
             Still measuring how people feel about a problem you haven&rsquo;t diagnosed?
@@ -243,8 +286,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ SECTION IV ═══ */}
-      <section className="content-block min-h-dvh flex items-center justify-center relative z-10 px-6">
+      {/* ═══ IV: QUOTE ═══ */}
+      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
+        <GeoDepth />
         <div className="block-inner max-w-4xl text-center relative">
           <span className="absolute -top-6 -left-2 sm:-left-6 text-[14rem] sm:text-[20rem] leading-[0.5] text-amber/[0.07] select-none pointer-events-none font-display">&ldquo;</span>
           <span className="absolute -bottom-2 right-0 sm:-right-6 text-[14rem] sm:text-[20rem] leading-[0.5] text-amber/[0.07] select-none pointer-events-none font-display">&rdquo;</span>
@@ -256,22 +300,20 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="content-block min-h-[80vh] flex items-center justify-center relative z-10 px-6">
-        <div className="block-inner max-w-2xl text-center relative">
-          <div className="bloom absolute -inset-20 -z-10 pointer-events-none rounded-full"
-            style={{ background: "radial-gradient(ellipse 80% 60% at 50% 45%, rgba(201,150,63,0.10) 0%, transparent 70%)" }} />
-          <div className="glass-panel">
-            <p className={`${txt} text-[clamp(0.85rem,1.8vw,1.1rem)] leading-[1.9] tracking-[0.08em] text-text-primary/80`}>
-              Growth does not fix a broken system. It funds it.
-            </p>
-            <p className={`mt-8 ${txt} text-[clamp(0.75rem,1.4vw,0.9rem)] leading-[1.8] tracking-[0.06em] text-text-secondary/55`}>
-              Across 6,103 firms studied over four decades, researchers found no evidence that scaling reduces costs or improves margins. More revenue through a broken process doesn&rsquo;t compound your gains. It compounds your losses.
-            </p>
-          </div>
+      {/* IV: CONTENT */}
+      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
+        <div className="block-inner max-w-2xl text-center">
+          <p className={`${txt} text-[clamp(0.9rem,1.8vw,1.15rem)] leading-[1.9] tracking-[0.08em] text-text-primary/80`}>
+            Growth does not fix a broken system. It funds it.
+          </p>
+          <p className={`mt-10 ${txt} text-[clamp(0.8rem,1.4vw,0.95rem)] leading-[1.8] tracking-[0.06em] text-text-secondary/55`}>
+            Across 6,103 firms studied over four decades, researchers found no evidence that scaling reduces costs or improves margins. More revenue through a broken process doesn&rsquo;t compound your gains. It compounds your losses.
+          </p>
         </div>
       </section>
 
-      <section className="content-block min-h-[60vh] flex items-center justify-center relative z-10 px-6">
+      {/* IV: CLOSING */}
+      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
         <div className="block-inner text-center max-w-3xl">
           <p data-closing className={`${disp} uppercase text-[clamp(1.2rem,3vw,2.2rem)] tracking-[0.25em] text-amber/80`}>
             Still going to let next quarter look exactly like the last one and call it momentum?
@@ -280,7 +322,7 @@ export default function Home() {
       </section>
 
       {/* ═══ CTA ═══ */}
-      <section className="content-block min-h-[70vh] flex items-center justify-center relative z-10 px-6">
+      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
         <div className="block-inner text-center max-w-xl">
           <a
             href="mailto:inquiry@gonextconsulting.dev"
