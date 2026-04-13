@@ -41,7 +41,7 @@ export default function Home() {
           trigger: containerRef.current,
           start: "top top",
           end: "bottom bottom",
-          scrub: 0.8,
+          scrub: 0.3,
           pin: pinnedRef.current,
           pinSpacing: false,
         },
@@ -160,7 +160,7 @@ export default function Home() {
 
   return (
     <>
-      <div ref={containerRef} className="relative" style={{ height: "2200vh" }}>
+      <div ref={containerRef} className="relative" style={{ height: "1200vh" }}>
         <div ref={pinnedRef} className="h-dvh w-full overflow-hidden relative bg-canvas">
 
           {/* Orbs */}
