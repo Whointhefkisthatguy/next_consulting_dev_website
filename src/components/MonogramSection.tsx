@@ -16,6 +16,8 @@ export function MonogramSection() {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 202.2 35.7"
           fill="currentColor"
+          role="img"
+          aria-label="Next Consulting"
           className="h-16 w-auto sm:h-20 md:h-24"
         >
           {/* N */}
