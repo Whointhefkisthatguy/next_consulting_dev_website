@@ -166,6 +166,15 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ═══ CHARACTER ═══ */}
+      <section className="content-block h-[50vh] flex items-center justify-center relative z-10 px-6">
+        <div className="block-inner text-center">
+          <p className={`${txt} uppercase text-[clamp(0.7rem,1.4vw,0.9rem)] tracking-[0.3em] text-text-muted/60`}>
+            You built the machine. It should be working by now.
+          </p>
+        </div>
+      </section>
+
       {/* ═══ DRUCKER QUOTE ═══ */}
       <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
         <GeoDepth />
@@ -330,6 +339,10 @@ export default function Home() {
       {/* ═══ CTA ═══ */}
       <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
         <div className="block-inner text-center max-w-xl">
+          {/* Guide identity */}
+          <p className={`${txt} uppercase text-[11px] tracking-[0.3em] text-text-muted/40 mb-12`}>
+            Next Consulting <span className="text-amber/30">&middot;</span> Revenue Architecture
+          </p>
           <a
             href="mailto:inquiry@gonextconsulting.dev"
             className={`group inline-block border-2 border-amber/60 px-12 py-6 sm:px-16 sm:py-8 transition-all duration-300 hover:border-amber hover:bg-amber/[0.06]`}
@@ -338,6 +351,10 @@ export default function Home() {
               Request a Conversation
             </span>
           </a>
+          {/* Plan micro-copy */}
+          <p className={`mt-6 ${txt} text-[clamp(0.6rem,1vw,0.75rem)] tracking-[0.15em] text-text-muted/40`}>
+            45 minutes. No pitch. A diagnostic or your time back.
+          </p>
           <p className={`mt-14 ${txt} text-[clamp(0.7rem,1.2vw,0.85rem)] leading-[2] tracking-[0.08em] text-text-secondary/60`}>
             The question was never whether something needs to change.
             <br />
