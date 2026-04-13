@@ -75,19 +75,7 @@ function GeoShapes({ id }: { id: string }) {
   );
 }
 
-/* ── Word split utility ── */
-function SplitWords({ text, className }: { text: string; className?: string }) {
-  return (
-    <span className={className}>
-      {text.split(" ").map((word, i) => (
-        <span key={i} className="word-reveal">
-          <span className="split-word inline-block">{word}</span>
-          {i < text.split(" ").length - 1 ? "\u00A0" : ""}
-        </span>
-      ))}
-    </span>
-  );
-}
+/* Word split removed — natural text flow with GSAP line animation instead */
 
 /* ── Truths Data ── */
 const truths = [
@@ -165,7 +153,8 @@ export default function Home() {
       const geoSlow = geoShapes?.querySelectorAll(".geo-slow");
       const geoMid = geoShapes?.querySelectorAll(".geo-mid");
       const geoFast = geoShapes?.querySelectorAll(".geo-fast");
-      const splitWords = layer.querySelectorAll(".split-word");
+      // Content text elements for stagger
+      const contentText = layer.querySelectorAll(".glass-panel > blockquote, .glass-panel > p, .glass-panel > h1");
 
       if (i === 0) {
         // ── Monogram: visible on load, architectural split exit ──
@@ -245,13 +234,13 @@ export default function Home() {
           "<0.15"
         );
 
-        // Word stagger entrance
-        if (splitWords.length > 0) {
+        // Stagger content elements (headline then metric)
+        if (contentText.length > 0) {
           tl.fromTo(
-            splitWords,
-            { y: 25, opacity: 0 },
-            { y: 0, opacity: 1, stagger: 0.04, duration: 0.6, ease: "power3.out" },
-            "<0.1"
+            contentText,
+            { y: 20, opacity: 0 },
+            { y: 0, opacity: 1, stagger: 0.15, duration: 0.7, ease: "power3.out" },
+            "<0.15"
           );
         }
 
@@ -374,7 +363,7 @@ export default function Home() {
             <div className="glass-panel max-w-2xl px-10 py-12 sm:px-14 sm:py-16 text-center">
               <blockquote>
                 <p className="font-display text-[clamp(1.5rem,3.5vw,2.8rem)] leading-[1.3] font-light italic text-text-primary/90 tracking-wide">
-                  <SplitWords text={"\u201CThere is surely nothing quite so useless as doing with great efficiency what should not be done at all.\u201D"} />
+                  &ldquo;There is surely nothing quite so useless as doing with great efficiency what should not be done at all.&rdquo;
                 </p>
                 <footer className="mt-8">
                   <cite className="not-italic font-body text-[11px] uppercase tracking-[0.25em] text-text-muted">
@@ -389,9 +378,9 @@ export default function Home() {
           <div className="layer absolute inset-0 flex items-center justify-center opacity-0 will-change-transform z-20">
             <div className="glass-panel max-w-2xl px-10 py-12 sm:px-14 sm:py-16 text-center">
               <h1 className="font-display text-[clamp(1.4rem,3.5vw,2.8rem)] font-light tracking-wide text-text-primary">
-                <SplitWords text="The problem isn\u2019t scale," />
+                The problem isn&rsquo;t scale<span className="text-amber">,</span>
                 <br />
-                <SplitWords text="it\u2019s architecture." />
+                it&rsquo;s architecture<span className="text-amber">.</span>
               </h1>
             </div>
           </div>
@@ -400,7 +389,7 @@ export default function Home() {
           <div className="layer absolute inset-0 flex items-center justify-center opacity-0 will-change-transform z-20">
             <div className="glass-panel max-w-2xl px-10 py-12 sm:px-14 sm:py-16 text-center">
               <p className="font-display text-[clamp(1.3rem,3vw,2.2rem)] leading-[1.35] font-light tracking-wide text-text-primary/85">
-                <SplitWords text="Best in class is just the" /> <span className="text-amber split-word inline-block">tallest</span> <SplitWords text="person in a short room." />
+                Best in class is just the <span className="text-amber">tallest</span> person in a short room.
               </p>
               <p className="mt-8 font-body text-[13px] leading-relaxed text-text-secondary/60 max-w-lg mx-auto">
                 {truths[0].metric}
@@ -412,7 +401,7 @@ export default function Home() {
           <div className="layer absolute inset-0 flex items-center justify-center opacity-0 will-change-transform z-20">
             <div className="glass-panel max-w-2xl px-10 py-12 sm:px-14 sm:py-16 text-center">
               <p className="font-display text-[clamp(1.3rem,3vw,2.2rem)] leading-[1.35] font-light tracking-wide text-text-primary/85">
-                <SplitWords text="Your funnel isn\u2019t leaking. It was" /> <span className="text-amber split-word inline-block">never</span> <SplitWords text="built to hold." />
+                Your funnel isn&rsquo;t leaking. It was <span className="text-amber">never</span> built to hold.
               </p>
               <p className="mt-8 font-body text-[13px] leading-relaxed text-text-secondary/60 max-w-lg mx-auto">
                 {truths[1].metric}
@@ -424,7 +413,7 @@ export default function Home() {
           <div className="layer absolute inset-0 flex items-center justify-center opacity-0 will-change-transform z-20">
             <div className="glass-panel max-w-2xl px-10 py-12 sm:px-14 sm:py-16 text-center">
               <p className="font-display text-[clamp(1.3rem,3vw,2.2rem)] leading-[1.35] font-light tracking-wide text-text-primary/85">
-                <SplitWords text="The revenue you report isn\u2019t the revenue you\u2019re" /> <span className="text-amber split-word inline-block">missing</span><SplitWords text="." />
+                The revenue you report isn&rsquo;t the revenue you&rsquo;re <span className="text-amber">missing</span>.
               </p>
               <p className="mt-8 font-body text-[13px] leading-relaxed text-text-secondary/60 max-w-lg mx-auto">
                 {truths[2].metric}
