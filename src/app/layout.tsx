@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
-import { Barlow_Semi_Condensed, Barlow } from "next/font/google";
+import { Cormorant_Garamond, Outfit } from "next/font/google";
 import "./globals.css";
 
-const barlowDisplay = Barlow_Semi_Condensed({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-display",
+  weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-serif",
   display: "swap",
 });
 
-const barlow = Barlow({
+const outfit = Outfit({
   subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-body",
+  weight: ["200", "300", "400", "500"],
+  variable: "--font-sans",
   display: "swap",
 });
 
@@ -28,10 +29,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${barlowDisplay.variable} ${barlow.variable}`}>
-      <body className="grain">
-        {children}
-      </body>
+    <html lang="en" className={`${cormorant.variable} ${outfit.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }

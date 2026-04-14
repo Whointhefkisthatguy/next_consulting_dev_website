@@ -1,63 +1,77 @@
 @import "tailwindcss";
 
-@theme {
-  --color-canvas: #1a1714;
-  --color-canvas-light: #221f1b;
-  --color-canvas-elevated: #2a2722;
-  --color-surface: #302d28;
-  --color-text-primary: #ffffff;
-  --color-text-secondary: rgba(255, 255, 255, 0.68);
-  --color-text-muted: rgba(255, 255, 255, 0.45);
-  --color-text-faint: rgba(255, 255, 255, 0.15);
-  --color-amber: #c8a96e;
-  --color-amber-glow: #d4b87a;
-  --color-amber-dim: #8b7a50;
-  --color-burnt: #B85C2B;
-  --color-ink: #1A2F4A;
-  --color-border: rgba(201, 150, 63, 0.08);
-  --color-border-hover: rgba(201, 150, 63, 0.2);
-  --font-display: "Barlow Semi Condensed", system-ui, sans-serif;
-  --font-body: "Barlow", system-ui, sans-serif;
+:root {
+  --charcoal: #1a1714;
+  --warm-black: #0f0d0b;
+  --sand: #c4a882;
+  --sand-light: #d4be9f;
+  --sand-pale: #e8ddd0;
+  --cream: #f5f0ea;
+  --gold: #b8956a;
+  --gold-dim: rgba(184, 149, 106, 0.15);
+  --text-muted: #8a7e72;
+  --divider: rgba(196, 168, 130, 0.12);
 }
 
 html {
+  font-size: 16px;
   scroll-behavior: smooth;
-  background-color: var(--color-canvas);
+  background: var(--warm-black);
 }
 
 body {
-  background-color: var(--color-canvas);
-  color: var(--color-text-primary);
-  font-family: var(--font-body);
+  font-family: var(--font-sans), 'Outfit', sans-serif;
+  font-weight: 300;
+  color: var(--cream);
+  background: var(--warm-black);
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
 }
 
-/* Grain overlay */
-.grain::after {
-  content: "";
+/* Grain */
+body::after {
+  content: '';
   position: fixed;
   inset: 0;
-  z-index: 9999;
   pointer-events: none;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 512px 512px;
-  mix-blend-mode: overlay;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 128px;
 }
 
 ::selection {
-  background-color: rgba(201, 150, 63, 0.25);
-  color: #fff;
+  background-color: rgba(196, 168, 130, 0.25);
+  color: var(--cream);
 }
 
-@keyframes breathe {
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.05); }
+/* Animations */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.animate-breathe { animation: breathe 6s ease-in-out infinite; }
+@keyframes scroll-pulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.6); transform-origin: top; }
+  50% { opacity: 1; transform: scaleY(1); }
+}
 
-/* Removed: vignette, glass panel — restraint is the design */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
+              transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children */
+.reveal-stagger > .reveal:nth-child(1) { transition-delay: 0s; }
+.reveal-stagger > .reveal:nth-child(2) { transition-delay: 0.1s; }
+.reveal-stagger > .reveal:nth-child(3) { transition-delay: 0.2s; }
+.reveal-stagger > .reveal:nth-child(4) { transition-delay: 0.3s; }
+.reveal-stagger > .reveal:nth-child(5) { transition-delay: 0.4s; }
