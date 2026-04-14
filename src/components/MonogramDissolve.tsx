@@ -3,11 +3,8 @@
 import { useRef, useEffect, useCallback, useState } from "react";
 
 /*
-  The monogram dissolves into binary:
-  1. Sample the monogram shape to get particle positions
-  2. At progress 0: particles are in formation (looks like the monogram)
-  3. As progress increases: particles scatter, fall, and fade
-  4. The white SVG monogram is hidden — the particles ARE the monogram
+  The monogram IS binary. No SVG. Just 1s and 0s forming the N> shape.
+  On scroll, they scatter and fall.
 */
 
 interface Particle {
@@ -17,11 +14,11 @@ interface Particle {
   speed: number;
   driftX: number;
   size: number;
-  delay: number; // staggered dissolution
+  delay: number;
 }
 
 interface Props {
-  progress: number; // 0 = in formation, 1 = fully scattered
+  progress: number;
   width: number;
   height: number;
 }
@@ -34,6 +31,7 @@ export function MonogramDissolve({ progress, width, height }: Props) {
   const initParticles = useCallback(() => {
     if (!width || !height) return;
 
+    // Draw monogram to offscreen canvas for pixel sampling
     const offscreen = document.createElement("canvas");
     offscreen.width = width;
     offscreen.height = height;
@@ -41,8 +39,6 @@ export function MonogramDissolve({ progress, width, height }: Props) {
     if (!octx) return;
 
     octx.fillStyle = "white";
-
-    // Scale and center the monogram (viewBox 0 0 215.1 94.2)
     const scale = Math.min(width / 215.1, height / 94.2) * 0.35;
     const offsetX = (width - 215.1 * scale) / 2;
     const offsetY = (height - 94.2 * scale) / 2;
@@ -73,11 +69,11 @@ export function MonogramDissolve({ progress, width, height }: Props) {
 
     octx.restore();
 
-    // Sample — sparse, not dense
+    // Sample ONLY pixels inside the shape — tight grid
     const imageData = octx.getImageData(0, 0, width, height);
     const pixels = imageData.data;
     const particles: Particle[] = [];
-    const step = 10; // much sparser sampling
+    const step = 7; // tight enough to read as the shape
 
     for (let y = 0; y < height; y += step) {
       for (let x = 0; x < width; x += step) {
@@ -87,10 +83,10 @@ export function MonogramDissolve({ progress, width, height }: Props) {
             originX: x,
             originY: y,
             char: Math.random() > 0.5 ? "1" : "0",
-            speed: 0.5 + Math.random() * 2,
-            driftX: (Math.random() - 0.5) * 3,
-            size: 9 + Math.random() * 5,
-            delay: Math.random() * 0.4, // stagger: some particles hold longer
+            speed: 0.8 + Math.random() * 2.5,
+            driftX: (Math.random() - 0.5) * 4,
+            size: 7 + Math.random() * 4,
+            delay: Math.random() * 0.3,
           });
         }
       }
@@ -115,29 +111,28 @@ export function MonogramDissolve({ progress, width, height }: Props) {
     ctx.clearRect(0, 0, width, height);
 
     particlesRef.current.forEach((p) => {
-      // Each particle's individual progress (with stagger delay)
       const localProgress = Math.max(0, Math.min(1, (progress - p.delay) / (1 - p.delay)));
 
-      // Position: at 0 they're in formation, at 1 they've fallen away
-      const fallDistance = localProgress * p.speed * 120;
-      const px = p.originX + p.driftX * localProgress * 40;
+      // Position
+      const fallDistance = localProgress * p.speed * 150;
+      const px = p.originX + p.driftX * localProgress * 50;
       const py = p.originY + fallDistance;
 
-      // Alpha: bright in formation, fade as they scatter
-      // In formation (localProgress ~0): full brightness like the white monogram
-      // Scattered: fade out
-      const formationAlpha = localProgress < 0.1 ? 1.0 : Math.max(0, 1.0 - localProgress * 1.2);
+      // Fade: solid white when in formation, fade as they scatter
+      const alpha = localProgress < 0.05
+        ? 0.85 + Math.random() * 0.15 // in formation: bright white
+        : Math.max(0, 0.9 - localProgress * 1.3);
 
-      if (formationAlpha < 0.01 || py > height + 20) return;
+      if (alpha < 0.01 || py > height + 20) return;
 
-      // Color: white in formation, transitions to amber as it dissolves
-      const amberMix = Math.min(localProgress * 3, 1);
+      // White in formation, shift to amber as they dissolve
+      const amberMix = Math.min(localProgress * 2.5, 1);
       const r = Math.round(255 + (201 - 255) * amberMix);
       const g = Math.round(255 + (150 - 255) * amberMix);
       const b = Math.round(255 + (63 - 255) * amberMix);
 
-      ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${formationAlpha})`;
-      ctx.font = `bold ${p.size}px monospace`;
+      ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
+      ctx.font = `${p.size}px monospace`;
       ctx.fillText(p.char, px, py);
     });
   }, [progress, width, height, ready]);
@@ -149,7 +144,7 @@ export function MonogramDissolve({ progress, width, height }: Props) {
       ref={canvasRef}
       width={width}
       height={height}
-      className="absolute inset-0 pointer-events-none z-30"
+      className="absolute inset-0 pointer-events-none z-40"
     />
   );
 }

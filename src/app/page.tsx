@@ -69,15 +69,10 @@ export default function Home() {
         },
       },
     });
-    // Scroll indicator fades first
     monoTl.to(".scroll-hint", { opacity: 0, duration: 0.1, ease: "none" });
-    // Hold
-    monoTl.to({}, { duration: 0.15 });
-    // Hide SVG monogram quickly — particles take over
-    monoTl.to(".mono-svg-group", { opacity: 0, duration: 0.15, ease: "none" });
-    monoTl.to(".mono-glow", { opacity: 0, scale: 2, duration: 0.6, ease: "none" }, "<");
-    // Rest of timeline is just scroll room for particles to scatter
-    monoTl.to({}, { duration: 0.6 });
+    monoTl.to({}, { duration: 0.15 }); // hold
+    monoTl.to(".mono-glow", { opacity: 0, scale: 2, duration: 0.8, ease: "none" });
+    monoTl.to({}, { duration: 0.5 }); // scroll room for particles to scatter
 
     // ── Content sections ──
     gsap.utils.toArray<HTMLElement>(".content-block").forEach((block) => {
@@ -152,16 +147,7 @@ export default function Home() {
         <div className="mono-glow absolute w-[600px] h-[600px] rounded-full" style={{
           background: "radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 60%)",
         }} />
-        <div className="mono-svg-group relative z-40 flex items-center text-white">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 121.4 94.2" fill="currentColor"
-            className="h-28 w-auto sm:h-36 md:h-44">
-            <polygon points="94.5,0 94.5,63.4 112.2,84.1 94.5,67.2 27.2,0 27,0.2 27,0 0,0 0,94.2 27,94.2 27,43 12.5,23 27,38 83.3,94.2 104.1,94.2 121.4,94.2 121.4,0" />
-          </svg>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="128 0 87.1 94.2" fill="currentColor"
-            className="h-28 w-auto sm:h-36 md:h-44 -ml-1">
-            <polyline points="193.1,23.3 169.8,0 131.6,0 176.9,45.3 128,94.2 145.3,94.2 166.2,94.2 187.8,72.6 204.5,55.7 204.1,56.3 215.1,45.3 196,26.2 196,26.2" />
-          </svg>
-        </div>
+        {/* SVG hidden — the canvas binary IS the monogram */}
         <div className="scroll-hint absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
           <div className="w-5 h-9 rounded-full border border-white/15 flex items-start justify-center pt-2">
             <div className="w-0.5 h-2.5 bg-amber/40 rounded-full animate-bounce" />
