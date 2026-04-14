@@ -8,41 +8,6 @@ import { MonogramDissolve } from "@/components/MonogramDissolve";
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* ── Geometric depth — stronger opacities ── */
-function GeoDepth() {
-  return (
-    <div className="geo-depth absolute inset-0 pointer-events-none overflow-hidden opacity-0" aria-hidden="true">
-      <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
-        <line x1="0" y1="100%" x2="25%" y2="0" stroke="rgba(201,150,63,0.05)" strokeWidth="0.5" />
-        <line x1="100%" y1="100%" x2="75%" y2="0" stroke="rgba(201,150,63,0.05)" strokeWidth="0.5" />
-      </svg>
-      <div className="absolute top-[8%] left-[5%] w-20 h-20 sm:w-28 sm:h-28 border-l border-t border-white/[0.04]" />
-      <div className="absolute bottom-[8%] right-[5%] w-20 h-20 sm:w-28 sm:h-28 border-r border-b border-white/[0.04]" />
-      <div className="absolute top-1/2 left-[3%] w-[12%] h-px bg-gradient-to-r from-amber/[0.06] to-transparent" />
-      <div className="absolute top-1/2 right-[3%] w-[12%] h-px bg-gradient-to-l from-amber/[0.06] to-transparent" />
-      <svg className="absolute top-[15%] right-[8%] w-36 h-36 sm:w-52 sm:h-52" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(201,150,63,0.04)" strokeWidth="0.4" strokeDasharray="5 16" />
-      </svg>
-      <svg className="absolute bottom-[12%] left-[7%] w-28 h-28 sm:w-40 sm:h-40" viewBox="0 0 80 80">
-        {[0, 16, 32, 48, 64].map((x) =>
-          [0, 16, 32, 48, 64].map((y) => (
-            <circle key={`${x}-${y}`} cx={x + 8} cy={y + 8} r="0.6" fill="rgba(201,150,63,0.045)" />
-          ))
-        )}
-      </svg>
-    </div>
-  );
-}
-
-/* ── Section divider ── */
-function Divider() {
-  return (
-    <div className="flex justify-center py-4">
-      <div className="w-12 h-px bg-amber/10" />
-    </div>
-  );
-}
-
 export default function Home() {
   const mainRef = useRef<HTMLDivElement>(null);
   const [dissolveProgress, setDissolveProgress] = useState(0);
@@ -50,105 +15,65 @@ export default function Home() {
 
   useEffect(() => {
     setViewSize({ w: window.innerWidth, h: window.innerHeight });
-    const handleResize = () => setViewSize({ w: window.innerWidth, h: window.innerHeight });
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const onResize = () => setViewSize({ w: window.innerWidth, h: window.innerHeight });
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
   useGSAP(() => {
-    // ── Monogram: pin + binary dissolve ──
+    // Monogram pin + dissolve
     const monoTl = gsap.timeline({
       scrollTrigger: {
         trigger: ".section-mono",
         start: "top top",
-        end: "+=150%",
+        end: "+=100%",
         scrub: true,
         pin: true,
-        onUpdate: (self) => {
-          setDissolveProgress(self.progress);
-        },
+        onUpdate: (self) => setDissolveProgress(self.progress),
       },
     });
     monoTl.to(".scroll-hint", { opacity: 0, duration: 0.1, ease: "none" });
-    monoTl.to({}, { duration: 0.15 }); // hold
     monoTl.to(".mono-glow", { opacity: 0, scale: 2, duration: 0.8, ease: "none" });
-    monoTl.to({}, { duration: 0.5 }); // scroll room for particles to scatter
 
-    // ── Content sections ──
-    gsap.utils.toArray<HTMLElement>(".content-block").forEach((block) => {
-      const inner = block.querySelector(".block-inner") as HTMLElement;
-      const closingQ = block.querySelector("[data-closing]") as HTMLElement;
-      const geo = block.querySelector(".geo-depth") as HTMLElement;
-
-      ScrollTrigger.create({
-        trigger: block,
-        start: "top top",
-        end: "+=100%",
-        pin: true,
-      });
-
-      if (inner) {
-        gsap.fromTo(inner,
-          { y: 50, scale: 0.88, filter: "blur(4px)", opacity: 0 },
-          {
-            y: 0, scale: 1, filter: "blur(0px)", opacity: 1,
-            duration: 1, ease: "power3.out",
-            scrollTrigger: { trigger: block, start: "top 60%", toggleActions: "play none none reverse" },
-          }
-        );
-      }
-
-      if (geo) {
-        gsap.fromTo(geo,
-          { opacity: 0 },
-          {
-            opacity: 1, duration: 1.5, ease: "power2.out",
-            scrollTrigger: { trigger: block, start: "top 70%", toggleActions: "play none none reverse" },
-          }
-        );
-      }
-
-      if (closingQ) {
-        gsap.fromTo(closingQ,
-          { scale: 0.9, opacity: 0 },
-          {
-            scale: 1.15, opacity: 1, duration: 0.8, ease: "power2.out",
-            scrollTrigger: { trigger: closingQ, start: "top 75%", toggleActions: "play none none reverse" },
-          }
-        );
-      }
+    // Content sections — simple fade + 24px lift. That's it. No scale. No blur.
+    gsap.utils.toArray<HTMLElement>(".reveal").forEach((el) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1, y: 0,
+          duration: 0.7,
+          ease: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 82%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
     });
   }, { scope: mainRef });
 
-  const disp = "font-display font-semibold";
-  const txt = "font-body font-normal";
-  const quoteMarks = "absolute text-[14rem] sm:text-[20rem] leading-[0.5] text-amber/[0.07] select-none pointer-events-none font-display";
+  // Typography scale
+  const h = "font-display font-semibold text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.05] text-text-primary"; // hero headlines
+  const q = "font-display font-semibold text-[clamp(1.8rem,4.5vw,3.5rem)] leading-[1.15] text-text-primary"; // section quotes
+  const sub = "font-body text-[11px] uppercase tracking-[0.3em] text-text-muted"; // labels/attributions
+  const body = "font-body text-[16px] leading-[1.8] text-text-secondary max-w-[620px] mx-auto"; // body copy
+  const stat = "font-body text-[14px] leading-[1.75] text-text-muted max-w-[620px] mx-auto"; // stat text
+  const closing = "font-display font-semibold text-[clamp(1.3rem,3vw,2rem)] leading-[1.2] text-amber"; // closing questions
+  const pad = "py-[clamp(6rem,15vh,12rem)]"; // section padding
 
   return (
-    <main ref={mainRef} className="bg-canvas relative">
-
-      {/* Ambient orbs */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute -top-[20%] -right-[15%] w-[1200px] h-[800px] rounded-full"
-          style={{ background: "radial-gradient(ellipse at center, rgba(201,150,63,0.10) 0%, rgba(201,150,63,0.02) 40%, transparent 70%)" }} />
-        <div className="absolute -bottom-[25%] -left-[20%] w-[1000px] h-[1000px] rounded-full"
-          style={{ background: "radial-gradient(ellipse at center, rgba(26,47,74,0.15) 0%, rgba(26,47,74,0.04) 40%, transparent 65%)" }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[1100px] rounded-full animate-breathe"
-          style={{ background: "radial-gradient(circle, rgba(201,150,63,0.06) 0%, rgba(201,150,63,0.015) 40%, transparent 65%)" }} />
-      </div>
-
-      <div className="vignette fixed" />
+    <main ref={mainRef} className="bg-canvas text-text-primary">
 
       {/* ═══ MONOGRAM ═══ */}
-      <section className="section-mono h-dvh flex items-center justify-center relative z-10">
+      <section className="section-mono h-dvh flex items-center justify-center relative">
         {viewSize.w > 0 && (
           <MonogramDissolve progress={dissolveProgress} width={viewSize.w} height={viewSize.h} />
         )}
-        <div className="mono-glow absolute w-[600px] h-[600px] rounded-full" style={{
-          background: "radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 60%)",
+        <div className="mono-glow absolute w-[500px] h-[500px] rounded-full" style={{
+          background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%)",
         }} />
-        {/* SVG hidden — the canvas binary IS the monogram */}
-        <div className="scroll-hint absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+        <div className="scroll-hint absolute bottom-10 left-1/2 -translate-x-1/2">
           <div className="w-5 h-9 rounded-full border border-white/15 flex items-start justify-center pt-2">
             <div className="w-0.5 h-2.5 bg-amber/40 rounded-full animate-bounce" />
           </div>
@@ -156,208 +81,168 @@ export default function Home() {
       </section>
 
       {/* ═══ CHARACTER ═══ */}
-      <section className="content-block h-[70vh] flex items-center justify-center relative z-10 px-6">
-        <div className="block-inner text-center">
-          <p className={`${disp} uppercase text-[clamp(1rem,2.5vw,1.6rem)] tracking-[0.25em] text-text-primary/50`}>
-            You built the machine.
-            <br />
-            Is it what you imagined it would be?
-          </p>
-        </div>
+      <section className={`${pad} text-center px-6`}>
+        <p className="reveal font-body text-[clamp(0.85rem,1.8vw,1.1rem)] tracking-[0.15em] uppercase text-text-muted">
+          You built the machine. Is it what you imagined it would be?
+        </p>
       </section>
 
-      <Divider />
+      {/* ── Divider ── */}
+      <div className="flex justify-center"><div className="w-12 h-px bg-amber/20" /></div>
 
       {/* ═══ DRUCKER QUOTE ═══ */}
-      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
-        <GeoDepth />
-        <div className="block-inner max-w-4xl text-center relative">
-          <span className={`${quoteMarks} -top-6 -left-2 sm:-left-6`}>&ldquo;</span>
-          <span className={`${quoteMarks} -bottom-2 right-0 sm:-right-6`}>&rdquo;</span>
-          <p className={`${disp} uppercase text-[clamp(1.6rem,4.5vw,3.2rem)] leading-[1.35] tracking-[0.25em] text-text-primary/90`}>
-            There is surely nothing quite so useless as doing with great efficiency what should not be done at all.
+      <section className={`${pad} text-center px-6 max-w-[1100px] mx-auto`}>
+        <div className="reveal">
+          <p className={q}>
+            &ldquo;There is surely nothing quite so useless as doing with great efficiency what should not be done at all.&rdquo;
           </p>
-          <p className={`mt-6 ${txt} uppercase text-[11px] tracking-[0.3em] text-text-muted/50`}>&mdash; Peter Drucker, 1963</p>
+          <p className={`mt-8 ${sub}`}>&mdash; Peter Drucker, 1963</p>
         </div>
       </section>
-
-      <Divider />
 
       {/* ═══ H1 ═══ */}
-      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
-        <div className="block-inner text-center">
-          <h1 className={`${disp} uppercase text-[clamp(1.8rem,5vw,4rem)] tracking-[0.25em] text-text-primary leading-[1.3]`}>
-            The problem isn&rsquo;t scale,
-            <br />
-            it&rsquo;s architecture.
-          </h1>
-        </div>
+      <section className={`${pad} text-center px-6`}>
+        <h1 className={`reveal ${h}`}>
+          The problem isn&rsquo;t scale,<br />it&rsquo;s architecture.
+        </h1>
       </section>
 
-      <Divider />
+      <div className="flex justify-center"><div className="w-12 h-px bg-amber/20" /></div>
 
-      {/* ═══ I ═══ */}
-      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
-        <GeoDepth />
-        <div className="block-inner max-w-4xl text-center relative">
-          <span className={`${quoteMarks} -top-6 -left-2 sm:-left-6`}>&ldquo;</span>
-          <span className={`${quoteMarks} -bottom-2 right-0 sm:-right-6`}>&rdquo;</span>
-          <p className={`${txt} uppercase text-[11px] tracking-[0.3em] text-amber/50 mb-6`}>I</p>
-          <p className={`${disp} uppercase text-[clamp(1.4rem,3.5vw,2.6rem)] leading-[1.4] tracking-[0.25em] text-text-primary/90`}>
-            A system is perfectly designed to get the results it gets.
+      {/* ═══ SECTION I ═══ */}
+      <section className={`${pad} text-center px-6 max-w-[1100px] mx-auto`}>
+        <p className={`reveal ${sub} text-amber/50 mb-8`}>I</p>
+        <div className="reveal">
+          <p className={q}>
+            &ldquo;A system is perfectly designed to get the results it gets.&rdquo;
           </p>
-          <p className={`mt-5 ${txt} uppercase text-[11px] tracking-[0.3em] text-text-muted/50`}>&mdash; W. Edwards Deming</p>
+          <p className={`mt-6 ${sub}`}>&mdash; W. Edwards Deming</p>
         </div>
       </section>
 
-      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
-        <div className="block-inner max-w-3xl text-center">
-          <p className={`${txt} text-[clamp(1rem,2vw,1.3rem)] leading-[1.9] tracking-[0.08em] text-text-primary/75`}>
+      <section className={`${pad} text-center px-6`}>
+        <div className="reveal">
+          <p className={body}>
             Where is your feedback loop &mdash; and what did it tell you last month? Without one, failure is invisible. And invisible failure is the only kind that kills companies.
           </p>
-          <p className={`mt-12 ${txt} text-[clamp(0.85rem,1.5vw,1.05rem)] leading-[1.8] tracking-[0.06em] text-text-secondary/50`}>
+          <p className={`mt-10 ${stat}`}>
             78% of companies that found product-market fit still fail to scale. Not because of the market. Because they tried to grow a system they never examined.
           </p>
         </div>
       </section>
 
-      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
-        <div className="block-inner text-center max-w-3xl">
-          <p data-closing className={`${disp} uppercase text-[clamp(1.3rem,3.5vw,2.4rem)] tracking-[0.25em] text-amber/80`}>
-            Still calling it a performance problem?
+      <section className={`${pad} text-center px-6`}>
+        <p className={`reveal ${closing}`}>Still calling it a performance problem?</p>
+      </section>
+
+      <div className="flex justify-center"><div className="w-12 h-px bg-amber/20" /></div>
+
+      {/* ═══ SECTION II ═══ */}
+      <section className={`${pad} text-center px-6 max-w-[1100px] mx-auto`}>
+        <p className={`reveal ${sub} text-amber/50 mb-8`}>II</p>
+        <div className="reveal">
+          <p className={q}>
+            &ldquo;The best executive is one who has sense enough to pick good men to do what he wants done, and self-restraint enough to keep from meddling with them while they do it.&rdquo;
           </p>
+          <p className={`mt-6 ${sub}`}>&mdash; Theodore Roosevelt</p>
         </div>
       </section>
 
-      <Divider />
-
-      {/* ═══ II ═══ */}
-      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
-        <GeoDepth />
-        <div className="block-inner max-w-4xl text-center relative">
-          <span className={`${quoteMarks} -top-6 -left-2 sm:-left-6`}>&ldquo;</span>
-          <span className={`${quoteMarks} -bottom-2 right-0 sm:-right-6`}>&rdquo;</span>
-          <p className={`${txt} uppercase text-[11px] tracking-[0.3em] text-amber/50 mb-6`}>II</p>
-          <p className={`${disp} uppercase text-[clamp(1.2rem,3vw,2.2rem)] leading-[1.4] tracking-[0.25em] text-text-primary/90`}>
-            The best executive is one who has sense enough to pick good men to do what he wants done, and self-restraint enough to keep from meddling with them while they do it.
-          </p>
-          <p className={`mt-5 ${txt} uppercase text-[11px] tracking-[0.3em] text-text-muted/50`}>&mdash; Theodore Roosevelt</p>
-        </div>
-      </section>
-
-      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
-        <div className="block-inner max-w-3xl text-center">
-          <p className={`${txt} text-[clamp(1rem,2vw,1.3rem)] leading-[1.9] tracking-[0.08em] text-text-primary/75`}>
+      <section className={`${pad} text-center px-6`}>
+        <div className="reveal">
+          <p className={body}>
             The creative intelligence of your workforce is free, available, and completely ignored. That&rsquo;s not a resource problem. That&rsquo;s a leadership one.
           </p>
-          <p className={`mt-12 ${txt} text-[clamp(0.85rem,1.5vw,1.05rem)] leading-[1.8] tracking-[0.06em] text-text-secondary/50`}>
+          <p className={`mt-10 ${stat}`}>
             85% of frontline employees share concerns only through manager meetings &mdash; a hierarchical, slow, incomplete loop where field intelligence routinely never reaches the people making decisions.
           </p>
         </div>
       </section>
 
-      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
-        <div className="block-inner text-center max-w-3xl">
-          <p data-closing className={`${disp} uppercase text-[clamp(1.3rem,3.5vw,2.4rem)] tracking-[0.25em] text-amber/80`}>
-            Still building strategy in rooms the people doing the work aren&rsquo;t allowed into?
+      <section className={`${pad} text-center px-6`}>
+        <p className={`reveal ${closing}`}>Still building strategy in rooms the people doing the work aren&rsquo;t allowed into?</p>
+      </section>
+
+      <div className="flex justify-center"><div className="w-12 h-px bg-amber/20" /></div>
+
+      {/* ═══ SECTION III ═══ */}
+      <section className={`${pad} text-center px-6 max-w-[1100px] mx-auto`}>
+        <p className={`reveal ${sub} text-amber/50 mb-8`}>III</p>
+        <div className="reveal">
+          <p className={q}>
+            &ldquo;The most serious mistakes are not being made as a result of wrong answers. The truly dangerous thing is asking the wrong question.&rdquo;
           </p>
+          <p className={`mt-6 ${sub}`}>&mdash; Peter Drucker</p>
         </div>
       </section>
 
-      <Divider />
-
-      {/* ═══ III ═══ */}
-      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
-        <GeoDepth />
-        <div className="block-inner max-w-4xl text-center relative">
-          <span className={`${quoteMarks} -top-6 -left-2 sm:-left-6`}>&ldquo;</span>
-          <span className={`${quoteMarks} -bottom-2 right-0 sm:-right-6`}>&rdquo;</span>
-          <p className={`${txt} uppercase text-[11px] tracking-[0.3em] text-amber/50 mb-6`}>III</p>
-          <p className={`${disp} uppercase text-[clamp(1.3rem,3.5vw,2.4rem)] leading-[1.4] tracking-[0.25em] text-text-primary/90`}>
-            The most serious mistakes are not being made as a result of wrong answers. The truly dangerous thing is asking the wrong question.
-          </p>
-          <p className={`mt-5 ${txt} uppercase text-[11px] tracking-[0.3em] text-text-muted/50`}>&mdash; Peter Drucker</p>
-        </div>
-      </section>
-
-      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
-        <div className="block-inner max-w-3xl text-center">
-          <p className={`${txt} text-[clamp(1rem,2vw,1.3rem)] leading-[1.9] tracking-[0.08em] text-text-primary/75`}>
+      <section className={`${pad} text-center px-6`}>
+        <div className="reveal">
+          <p className={body}>
             You don&rsquo;t have a feedback loop. You have an NPS score. Those are not the same thing. One measures sentiment. The other drives decisions. You&rsquo;ve been doing one and calling it both.
           </p>
         </div>
       </section>
 
-      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
-        <div className="block-inner text-center max-w-3xl">
-          <p data-closing className={`${disp} uppercase text-[clamp(1.3rem,3.5vw,2.4rem)] tracking-[0.25em] text-amber/80`}>
-            Still measuring how people feel about a problem you haven&rsquo;t diagnosed?
+      <section className={`${pad} text-center px-6`}>
+        <p className={`reveal ${closing}`}>Still measuring how people feel about a problem you haven&rsquo;t diagnosed?</p>
+      </section>
+
+      <div className="flex justify-center"><div className="w-12 h-px bg-amber/20" /></div>
+
+      {/* ═══ SECTION IV ═══ */}
+      <section className={`${pad} text-center px-6 max-w-[1100px] mx-auto`}>
+        <p className={`reveal ${sub} text-amber/50 mb-8`}>IV</p>
+        <div className="reveal">
+          <p className={q}>
+            &ldquo;You must maintain unwavering faith that you can and will prevail &mdash; and at the same time confront the most brutal facts of your current reality.&rdquo;
           </p>
+          <p className={`mt-6 ${sub}`}>&mdash; Jim Collins</p>
         </div>
       </section>
 
-      <Divider />
-
-      {/* ═══ IV ═══ */}
-      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
-        <GeoDepth />
-        <div className="block-inner max-w-4xl text-center relative">
-          <span className={`${quoteMarks} -top-6 -left-2 sm:-left-6`}>&ldquo;</span>
-          <span className={`${quoteMarks} -bottom-2 right-0 sm:-right-6`}>&rdquo;</span>
-          <p className={`${txt} uppercase text-[11px] tracking-[0.3em] text-amber/50 mb-6`}>IV</p>
-          <p className={`${disp} uppercase text-[clamp(1.2rem,3vw,2.2rem)] leading-[1.4] tracking-[0.25em] text-text-primary/90`}>
-            You must maintain unwavering faith that you can and will prevail &mdash; and at the same time confront the most brutal facts of your current reality.
-          </p>
-          <p className={`mt-5 ${txt} uppercase text-[11px] tracking-[0.3em] text-text-muted/50`}>&mdash; Jim Collins</p>
-        </div>
-      </section>
-
-      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
-        <div className="block-inner max-w-3xl text-center">
-          <p className={`${txt} text-[clamp(1rem,2vw,1.3rem)] leading-[1.9] tracking-[0.08em] text-text-primary/75`}>
+      <section className={`${pad} text-center px-6`}>
+        <div className="reveal">
+          <p className={body}>
             Growth does not fix a broken system. It funds it.
           </p>
-          <p className={`mt-12 ${txt} text-[clamp(0.85rem,1.5vw,1.05rem)] leading-[1.8] tracking-[0.06em] text-text-secondary/50`}>
+          <p className={`mt-10 ${stat}`}>
             Across 6,103 firms studied over four decades, researchers found no evidence that scaling reduces costs or improves margins. More revenue through a broken process doesn&rsquo;t compound your gains. It compounds your losses.
           </p>
         </div>
       </section>
 
-      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
-        <div className="block-inner text-center max-w-3xl">
-          <p data-closing className={`${disp} uppercase text-[clamp(1.3rem,3.5vw,2.4rem)] tracking-[0.25em] text-amber/80`}>
-            Still going to let next quarter look exactly like the last one and call it momentum?
-          </p>
-        </div>
+      <section className={`${pad} text-center px-6`}>
+        <p className={`reveal ${closing}`}>Still going to let next quarter look exactly like the last one and call it momentum?</p>
       </section>
 
-      <Divider />
+      <div className="flex justify-center"><div className="w-12 h-px bg-amber/20" /></div>
 
       {/* ═══ CTA ═══ */}
-      <section className="content-block h-dvh flex items-center justify-center relative z-10 px-6">
-        <div className="block-inner text-center max-w-xl">
-          <p className={`${txt} uppercase text-[11px] tracking-[0.3em] text-text-muted/40 mb-12`}>
+      <section className={`${pad} text-center px-6`}>
+        <div className="reveal">
+          <p className={`${sub} mb-12`}>
             Next Consulting <span className="text-amber/30">&middot;</span> Revenue Architecture
           </p>
           <a
             href="mailto:inquiry@gonextconsulting.dev"
-            className="group inline-block border-2 border-amber/60 px-12 py-6 sm:px-16 sm:py-8 transition-all duration-300 hover:border-amber hover:bg-amber/[0.06]"
+            className="group inline-block border border-amber/40 px-14 py-7 transition-all duration-300 hover:border-amber/70 hover:bg-amber/[0.04]"
           >
-            <span className={`${disp} uppercase text-[clamp(1rem,2.5vw,1.5rem)] tracking-[0.3em] text-amber/90 group-hover:text-amber transition-colors duration-300`}>
+            <span className="font-display font-semibold uppercase text-[clamp(0.9rem,2vw,1.3rem)] tracking-[0.3em] text-amber/80 group-hover:text-amber transition-colors duration-300">
               Request a Conversation
             </span>
           </a>
-          <p className={`mt-6 ${txt} text-[clamp(0.6rem,1vw,0.75rem)] tracking-[0.15em] text-text-muted/40`}>
+          <p className="mt-5 font-body text-[12px] tracking-[0.15em] text-text-muted">
             45 minutes. No pitch. A diagnostic or your time back.
           </p>
-          <p className={`mt-14 ${txt} text-[clamp(0.75rem,1.3vw,0.9rem)] leading-[2] tracking-[0.08em] text-text-secondary/55`}>
+          <p className={`mt-16 font-body text-[14px] leading-[1.9] text-text-secondary max-w-[480px] mx-auto`}>
             The question was never whether something needs to change.
-            <br />
             It&rsquo;s whether you&rsquo;ll be the one who changes it.
           </p>
         </div>
       </section>
 
+      <div className="h-24" />
     </main>
   );
 }

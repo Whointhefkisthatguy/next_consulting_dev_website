@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-canvas: #08080A;
-  --color-canvas-light: #111114;
-  --color-canvas-elevated: #18181C;
-  --color-surface: #1E1E24;
-  --color-text-primary: #E8E8EC;
-  --color-text-secondary: #8E8E96;
-  --color-text-muted: #52525A;
-  --color-text-faint: #2C2C32;
-  --color-amber: #C9963F;
-  --color-amber-glow: #D4A54E;
-  --color-amber-dim: #8B6A2F;
+  --color-canvas: #1a1714;
+  --color-canvas-light: #221f1b;
+  --color-canvas-elevated: #2a2722;
+  --color-surface: #302d28;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.68);
+  --color-text-muted: rgba(255, 255, 255, 0.45);
+  --color-text-faint: rgba(255, 255, 255, 0.15);
+  --color-amber: #c8a96e;
+  --color-amber-glow: #d4b87a;
+  --color-amber-dim: #8b7a50;
   --color-burnt: #B85C2B;
   --color-ink: #1A2F4A;
   --color-border: rgba(201, 150, 63, 0.08);
@@ -59,13 +59,4 @@ body {
 
 .animate-breathe { animation: breathe 6s ease-in-out infinite; }
 
-/* Vignette */
-.vignette {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 5;
-  background: radial-gradient(ellipse 70% 60% at 50% 50%, transparent 40%, rgba(4,4,6,0.6) 100%);
-}
-
-/* Glass panel removed — text stands on its own */
+/* Removed: vignette, glass panel — restraint is the design */
