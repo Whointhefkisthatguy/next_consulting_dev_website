@@ -54,12 +54,12 @@ export default function Home() {
   }, { scope: mainRef });
 
   // Typography scale
-  const h = "font-display font-semibold text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.05] text-text-primary"; // hero headlines
-  const q = "font-display font-semibold text-[clamp(1.8rem,4.5vw,3.5rem)] leading-[1.15] text-text-primary"; // section quotes
-  const sub = "font-body text-[11px] uppercase tracking-[0.3em] text-text-muted"; // labels/attributions
-  const body = "font-body text-[16px] leading-[1.8] text-text-secondary max-w-[620px] mx-auto"; // body copy
-  const stat = "font-body text-[14px] leading-[1.75] text-text-muted max-w-[620px] mx-auto"; // stat text
-  const closing = "font-display font-semibold text-[clamp(1.3rem,3vw,2rem)] leading-[1.2] text-amber"; // closing questions
+  const h = "font-display font-semibold text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.05] tracking-[-0.03em] text-text-primary"; // hero
+  const q = "font-display font-semibold text-[clamp(1.8rem,4.5vw,3.5rem)] leading-[1.15] tracking-[-0.02em] text-text-primary"; // quotes
+  const sub = "font-body text-[11px] uppercase tracking-[0.18em] text-text-muted"; // labels
+  const body = "font-body text-[17px] leading-[1.8] tracking-[0.01em] text-text-secondary max-w-[620px] mx-auto"; // body
+  const stat = "font-body text-[15px] leading-[1.75] tracking-[0.01em] text-text-muted max-w-[620px] mx-auto"; // stats
+  const closing = "font-display font-semibold text-[clamp(1.3rem,3vw,2rem)] leading-[1.2] tracking-[-0.02em] text-amber"; // closing Qs
   const pad = "py-[clamp(6rem,15vh,12rem)]"; // section padding
 
   return (
@@ -82,7 +82,7 @@ export default function Home() {
 
       {/* ═══ CHARACTER ═══ */}
       <section className={`${pad} text-center px-6`}>
-        <p className="reveal font-body text-[clamp(0.85rem,1.8vw,1.1rem)] tracking-[0.15em] uppercase text-text-muted">
+        <p className="reveal font-body text-[17px] tracking-[0.01em] text-text-secondary">
           You built the machine. Is it what you imagined it would be?
         </p>
       </section>
