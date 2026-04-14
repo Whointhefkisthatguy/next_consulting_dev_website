@@ -1,62 +1,12 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { MonogramDissolve } from "@/components/MonogramDissolve";
 
 gsap.registerPlugin(ScrollTrigger);
-
-/* ── Matrix rain canvas — amber characters falling ── */
-function MatrixRain({ active }: { active: boolean }) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const chars = "0011001101010011100101100110".split("");
-    const fontSize = 14;
-    const columns = Math.floor(canvas.width / fontSize);
-    const drops: number[] = Array(columns).fill(0).map(() => Math.random() * -50);
-
-    let animId: number;
-    const draw = () => {
-      ctx.fillStyle = "rgba(8, 8, 10, 0.08)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      drops.forEach((y, i) => {
-        const char = chars[Math.floor(Math.random() * chars.length)];
-        const alpha = 0.3 + Math.random() * 0.45;
-        ctx.fillStyle = `rgba(201, 150, 63, ${alpha})`;
-        ctx.font = `${fontSize}px monospace`;
-        ctx.fillText(char, i * fontSize, y * fontSize);
-
-        if (y * fontSize > canvas.height && Math.random() > 0.97) {
-          drops[i] = 0;
-        }
-        drops[i] += 0.3 + Math.random() * 0.5;
-      });
-
-      animId = requestAnimationFrame(draw);
-    };
-
-    if (active) draw();
-    return () => cancelAnimationFrame(animId);
-  }, [active]);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className={`absolute inset-0 z-30 pointer-events-none transition-opacity duration-1000 ${active ? "opacity-100" : "opacity-0"}`}
-    />
-  );
-}
 
 /* ── Geometric depth — stronger opacities ── */
 function GeoDepth() {
@@ -95,10 +45,18 @@ function Divider() {
 
 export default function Home() {
   const mainRef = useRef<HTMLDivElement>(null);
-  const [rainActive, setRainActive] = useState(false);
+  const [dissolveProgress, setDissolveProgress] = useState(0);
+  const [viewSize, setViewSize] = useState({ w: 0, h: 0 });
+
+  useEffect(() => {
+    setViewSize({ w: window.innerWidth, h: window.innerHeight });
+    const handleResize = () => setViewSize({ w: window.innerWidth, h: window.innerHeight });
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useGSAP(() => {
-    // ── Monogram: pin + matrix rain dissolve ──
+    // ── Monogram: pin + binary dissolve ──
     const monoTl = gsap.timeline({
       scrollTrigger: {
         trigger: ".section-mono",
@@ -107,19 +65,18 @@ export default function Home() {
         scrub: true,
         pin: true,
         onUpdate: (self) => {
-          // Activate rain when monogram starts fading
-          setRainActive(self.progress > 0.2 && self.progress < 0.95);
+          setDissolveProgress(self.progress);
         },
       },
     });
-    // Hold
-    monoTl.to({}, { duration: 0.3 });
-    // Monogram fragments dissolve
-    monoTl.to(".mono-n", { opacity: 0, scale: 0.8, filter: "blur(12px)", duration: 0.7, ease: "none" });
-    monoTl.to(".mono-arrow", { opacity: 0, scale: 0.8, filter: "blur(12px)", duration: 0.7, ease: "none" }, "<0.1");
-    monoTl.to(".mono-glow", { opacity: 0, scale: 2, duration: 0.7, ease: "none" }, "<");
     // Scroll indicator fades first
-    monoTl.to(".scroll-hint", { opacity: 0, duration: 0.2, ease: "none" }, 0);
+    monoTl.to(".scroll-hint", { opacity: 0, duration: 0.15, ease: "none" });
+    // Hold
+    monoTl.to({}, { duration: 0.2 });
+    // Monogram fades as binary particles take over
+    monoTl.to(".mono-n", { opacity: 0, duration: 0.6, ease: "none" });
+    monoTl.to(".mono-arrow", { opacity: 0, duration: 0.6, ease: "none" }, "<0.05");
+    monoTl.to(".mono-glow", { opacity: 0, scale: 2, duration: 0.6, ease: "none" }, "<");
 
     // ── Content sections ──
     gsap.utils.toArray<HTMLElement>(".content-block").forEach((block) => {
@@ -188,7 +145,9 @@ export default function Home() {
 
       {/* ═══ MONOGRAM ═══ */}
       <section className="section-mono h-dvh flex items-center justify-center relative z-10">
-        <MatrixRain active={rainActive} />
+        {viewSize.w > 0 && (
+          <MonogramDissolve progress={dissolveProgress} width={viewSize.w} height={viewSize.h} />
+        )}
         <div className="mono-glow absolute w-[600px] h-[600px] rounded-full" style={{
           background: "radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 60%)",
         }} />
