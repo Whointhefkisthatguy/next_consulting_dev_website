@@ -1,58 +1,49 @@
 "use client";
 
-import { useRef, useEffect, useCallback } from "react";
+import { useRef, useEffect, useCallback, useState } from "react";
 
 /*
-  Monogram dissolve: the N> mark fragments into falling binary 1s and 0s.
-  The particles originate from where the monogram pixels are, not the whole screen.
-
-  How it works:
-  1. The monogram SVG is drawn to an offscreen canvas
-  2. We sample pixel positions where the mark exists (non-transparent pixels)
-  3. Each sampled pixel becomes a "1" or "0" particle
-  4. On trigger, particles drift downward with gravity + slight horizontal scatter
+  The monogram dissolves into binary:
+  1. Sample the monogram shape to get particle positions
+  2. At progress 0: particles are in formation (looks like the monogram)
+  3. As progress increases: particles scatter, fall, and fade
+  4. The white SVG monogram is hidden — the particles ARE the monogram
 */
 
-interface Props {
-  progress: number; // 0 = monogram solid, 1 = fully dissolved
-  width: number;
-  height: number;
-}
-
 interface Particle {
-  x: number;
-  y: number;
   originX: number;
   originY: number;
   char: string;
   speed: number;
-  drift: number;
-  alpha: number;
+  driftX: number;
   size: number;
+  delay: number; // staggered dissolution
+}
+
+interface Props {
+  progress: number; // 0 = in formation, 1 = fully scattered
+  width: number;
+  height: number;
 }
 
 export function MonogramDissolve({ progress, width, height }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
-  const initedRef = useRef(false);
+  const [ready, setReady] = useState(false);
 
   const initParticles = useCallback(() => {
-    if (initedRef.current || !width || !height) return;
-    initedRef.current = true;
+    if (!width || !height) return;
 
-    // Draw the monogram to an offscreen canvas to sample pixels
     const offscreen = document.createElement("canvas");
     offscreen.width = width;
     offscreen.height = height;
     const octx = offscreen.getContext("2d");
     if (!octx) return;
 
-    // Draw the N and > shapes
     octx.fillStyle = "white";
 
-    // Scale factor: the monogram viewBox is 215.1 x 94.2
-    // Center it in the canvas
-    const scale = Math.min(width / 215.1, height / 94.2) * 0.4;
+    // Scale and center the monogram (viewBox 0 0 215.1 94.2)
+    const scale = Math.min(width / 215.1, height / 94.2) * 0.35;
     const offsetX = (width - 215.1 * scale) / 2;
     const offsetY = (height - 94.2 * scale) / 2;
 
@@ -61,52 +52,52 @@ export function MonogramDissolve({ progress, width, height }: Props) {
     octx.scale(scale, scale);
 
     // N
-    const nPath = new Path2D();
-    nPath.moveTo(94.5, 0); nPath.lineTo(94.5, 63.4); nPath.lineTo(112.2, 84.1);
-    nPath.lineTo(94.5, 67.2); nPath.lineTo(27.2, 0); nPath.lineTo(27, 0.2);
-    nPath.lineTo(27, 0); nPath.lineTo(0, 0); nPath.lineTo(0, 94.2);
-    nPath.lineTo(27, 94.2); nPath.lineTo(27, 43); nPath.lineTo(12.5, 23);
-    nPath.lineTo(27, 38); nPath.lineTo(83.3, 94.2); nPath.lineTo(104.1, 94.2);
-    nPath.lineTo(121.4, 94.2); nPath.lineTo(121.4, 0); nPath.closePath();
-    octx.fill(nPath);
+    octx.beginPath();
+    octx.moveTo(94.5, 0); octx.lineTo(94.5, 63.4); octx.lineTo(112.2, 84.1);
+    octx.lineTo(94.5, 67.2); octx.lineTo(27.2, 0); octx.lineTo(27, 0.2);
+    octx.lineTo(27, 0); octx.lineTo(0, 0); octx.lineTo(0, 94.2);
+    octx.lineTo(27, 94.2); octx.lineTo(27, 43); octx.lineTo(12.5, 23);
+    octx.lineTo(27, 38); octx.lineTo(83.3, 94.2); octx.lineTo(104.1, 94.2);
+    octx.lineTo(121.4, 94.2); octx.lineTo(121.4, 0);
+    octx.closePath();
+    octx.fill();
 
-    // > arrow
-    const aPath = new Path2D();
-    aPath.moveTo(193.1, 23.3); aPath.lineTo(169.8, 0); aPath.lineTo(131.6, 0);
-    aPath.lineTo(176.9, 45.3); aPath.lineTo(128, 94.2); aPath.lineTo(145.3, 94.2);
-    aPath.lineTo(166.2, 94.2); aPath.lineTo(187.8, 72.6); aPath.lineTo(204.5, 55.7);
-    aPath.lineTo(204.1, 56.3); aPath.lineTo(215.1, 45.3); aPath.lineTo(196, 26.2);
-    aPath.closePath();
-    octx.fill(aPath);
+    // >
+    octx.beginPath();
+    octx.moveTo(193.1, 23.3); octx.lineTo(169.8, 0); octx.lineTo(131.6, 0);
+    octx.lineTo(176.9, 45.3); octx.lineTo(128, 94.2); octx.lineTo(145.3, 94.2);
+    octx.lineTo(166.2, 94.2); octx.lineTo(187.8, 72.6); octx.lineTo(204.5, 55.7);
+    octx.lineTo(204.1, 56.3); octx.lineTo(215.1, 45.3); octx.lineTo(196, 26.2);
+    octx.closePath();
+    octx.fill();
 
     octx.restore();
 
-    // Sample pixels where the monogram exists
+    // Sample — sparse, not dense
     const imageData = octx.getImageData(0, 0, width, height);
     const pixels = imageData.data;
     const particles: Particle[] = [];
-    const step = 4; // sample every 4th pixel for performance
+    const step = 10; // much sparser sampling
 
     for (let y = 0; y < height; y += step) {
       for (let x = 0; x < width; x += step) {
         const i = (y * width + x) * 4;
-        if (pixels[i + 3] > 128) { // non-transparent
+        if (pixels[i + 3] > 128) {
           particles.push({
-            x,
-            y,
             originX: x,
             originY: y,
             char: Math.random() > 0.5 ? "1" : "0",
-            speed: 1 + Math.random() * 3,
-            drift: (Math.random() - 0.5) * 2,
-            alpha: 0.5 + Math.random() * 0.5,
-            size: 8 + Math.random() * 6,
+            speed: 0.5 + Math.random() * 2,
+            driftX: (Math.random() - 0.5) * 3,
+            size: 9 + Math.random() * 5,
+            delay: Math.random() * 0.4, // stagger: some particles hold longer
           });
         }
       }
     }
 
     particlesRef.current = particles;
+    setReady(true);
   }, [width, height]);
 
   useEffect(() => {
@@ -115,7 +106,7 @@ export function MonogramDissolve({ progress, width, height }: Props) {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas || !particlesRef.current.length) return;
+    if (!canvas || !ready) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
@@ -123,27 +114,35 @@ export function MonogramDissolve({ progress, width, height }: Props) {
     canvas.height = height;
     ctx.clearRect(0, 0, width, height);
 
-    if (progress <= 0.05) return; // monogram still solid, don't render particles
+    particlesRef.current.forEach((p) => {
+      // Each particle's individual progress (with stagger delay)
+      const localProgress = Math.max(0, Math.min(1, (progress - p.delay) / (1 - p.delay)));
 
-    const p = Math.min(progress * 1.5, 1); // accelerate dissolution
+      // Position: at 0 they're in formation, at 1 they've fallen away
+      const fallDistance = localProgress * p.speed * 120;
+      const px = p.originX + p.driftX * localProgress * 40;
+      const py = p.originY + fallDistance;
 
-    particlesRef.current.forEach((particle) => {
-      // How far this particle has moved from origin
-      const displacement = p * particle.speed * 80;
-      const px = particle.originX + particle.drift * displacement * 0.3;
-      const py = particle.originY + displacement;
+      // Alpha: bright in formation, fade as they scatter
+      // In formation (localProgress ~0): full brightness like the white monogram
+      // Scattered: fade out
+      const formationAlpha = localProgress < 0.1 ? 1.0 : Math.max(0, 1.0 - localProgress * 1.2);
 
-      // Fade out as particles fall further
-      const fadeOut = Math.max(0, 1 - (displacement / (height * 0.8)));
-      const alpha = particle.alpha * fadeOut * Math.min(p * 4, 1);
+      if (formationAlpha < 0.01 || py > height + 20) return;
 
-      if (alpha < 0.01) return;
+      // Color: white in formation, transitions to amber as it dissolves
+      const amberMix = Math.min(localProgress * 3, 1);
+      const r = Math.round(255 + (201 - 255) * amberMix);
+      const g = Math.round(255 + (150 - 255) * amberMix);
+      const b = Math.round(255 + (63 - 255) * amberMix);
 
-      ctx.fillStyle = `rgba(201, 150, 63, ${alpha})`;
-      ctx.font = `${particle.size}px monospace`;
-      ctx.fillText(particle.char, px, py);
+      ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${formationAlpha})`;
+      ctx.font = `bold ${p.size}px monospace`;
+      ctx.fillText(p.char, px, py);
     });
-  }, [progress, width, height]);
+  }, [progress, width, height, ready]);
+
+  if (!ready) return null;
 
   return (
     <canvas
@@ -151,7 +150,6 @@ export function MonogramDissolve({ progress, width, height }: Props) {
       width={width}
       height={height}
       className="absolute inset-0 pointer-events-none z-30"
-      style={{ opacity: progress > 0.05 ? 1 : 0 }}
     />
   );
 }

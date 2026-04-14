@@ -70,13 +70,14 @@ export default function Home() {
       },
     });
     // Scroll indicator fades first
-    monoTl.to(".scroll-hint", { opacity: 0, duration: 0.15, ease: "none" });
+    monoTl.to(".scroll-hint", { opacity: 0, duration: 0.1, ease: "none" });
     // Hold
-    monoTl.to({}, { duration: 0.2 });
-    // Monogram fades as binary particles take over
-    monoTl.to(".mono-n", { opacity: 0, duration: 0.6, ease: "none" });
-    monoTl.to(".mono-arrow", { opacity: 0, duration: 0.6, ease: "none" }, "<0.05");
+    monoTl.to({}, { duration: 0.15 });
+    // Hide SVG monogram quickly — particles take over
+    monoTl.to(".mono-svg-group", { opacity: 0, duration: 0.15, ease: "none" });
     monoTl.to(".mono-glow", { opacity: 0, scale: 2, duration: 0.6, ease: "none" }, "<");
+    // Rest of timeline is just scroll room for particles to scatter
+    monoTl.to({}, { duration: 0.6 });
 
     // ── Content sections ──
     gsap.utils.toArray<HTMLElement>(".content-block").forEach((block) => {
@@ -151,13 +152,13 @@ export default function Home() {
         <div className="mono-glow absolute w-[600px] h-[600px] rounded-full" style={{
           background: "radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 60%)",
         }} />
-        <div className="relative z-40 flex items-center text-white">
+        <div className="mono-svg-group relative z-40 flex items-center text-white">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 121.4 94.2" fill="currentColor"
-            className="mono-n h-28 w-auto sm:h-36 md:h-44 will-change-transform">
+            className="h-28 w-auto sm:h-36 md:h-44">
             <polygon points="94.5,0 94.5,63.4 112.2,84.1 94.5,67.2 27.2,0 27,0.2 27,0 0,0 0,94.2 27,94.2 27,43 12.5,23 27,38 83.3,94.2 104.1,94.2 121.4,94.2 121.4,0" />
           </svg>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="128 0 87.1 94.2" fill="currentColor"
-            className="mono-arrow h-28 w-auto sm:h-36 md:h-44 -ml-1 will-change-transform">
+            className="h-28 w-auto sm:h-36 md:h-44 -ml-1">
             <polyline points="193.1,23.3 169.8,0 131.6,0 176.9,45.3 128,94.2 145.3,94.2 166.2,94.2 187.8,72.6 204.5,55.7 204.1,56.3 215.1,45.3 196,26.2 196,26.2" />
           </svg>
         </div>
