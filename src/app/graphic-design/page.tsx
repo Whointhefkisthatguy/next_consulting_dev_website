@@ -6,6 +6,7 @@ export default function GraphicDesignPage() {
   return (
     <ServicePageLayout
       title="Graphic Design"
+      serviceName="Graphic Design"
       quote="Design is not just what it looks like and feels like. Design is how it works."
       quoteAuthor="Steve Jobs"
       heroImage="/images/bg-paper.jpg"

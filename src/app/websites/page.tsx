@@ -6,6 +6,7 @@ export default function WebsitesPage() {
   return (
     <ServicePageLayout
       title="Websites"
+      serviceName="Websites"
       quote="The details are not the details. They make the design."
       quoteAuthor="Charles Eames"
       heroImage="/images/bg-code.jpg"

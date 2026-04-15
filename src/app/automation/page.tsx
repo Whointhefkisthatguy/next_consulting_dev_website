@@ -6,6 +6,7 @@ export default function AutomationPage() {
   return (
     <ServicePageLayout
       title="Automation"
+      serviceName="Automation"
       quote="The first rule of any technology used in a business is that automation applied to an efficient operation will magnify the efficiency."
       quoteAuthor="Bill Gates"
       heroImage="/images/bg-circuit.jpg"

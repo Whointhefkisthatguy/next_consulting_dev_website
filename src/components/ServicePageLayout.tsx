@@ -2,6 +2,7 @@
 
 import ScrollReveal from "./ScrollReveal";
 import CTABlock from "./CTABlock";
+import ServiceCards from "./ServiceCards";
 
 type Deliverable = {
   name: string;
@@ -15,6 +16,7 @@ type ProcessStep = {
 
 type ServicePageProps = {
   title: string;
+  serviceName: string;
   quote: string;
   quoteAuthor: string;
   heroImage: string;
@@ -26,6 +28,7 @@ type ServicePageProps = {
 
 export default function ServicePageLayout({
   title,
+  serviceName,
   quote,
   quoteAuthor,
   heroImage,
@@ -158,6 +161,9 @@ export default function ServicePageLayout({
           </div>
         </section>
       )}
+
+      {/* ═══ SERVICE CARDS ═══ */}
+      <ServiceCards current={serviceName} />
 
       {/* ═══ CTA ═══ */}
       <CTABlock />
