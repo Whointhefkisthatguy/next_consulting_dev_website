@@ -144,7 +144,7 @@ export default function Home() {
       <section className="py-24 px-6 sm:px-14" style={{ borderTop: "1px solid rgba(240,235,227,0.08)" }}>
         <div className="max-w-[800px] mx-auto text-center">
           <blockquote className="font-[var(--font-body)] italic text-xl sm:text-2xl leading-relaxed" style={{ color: "#f0ebe3", opacity: 0.6 }}>
-            &ldquo;There is surely nothing quite so useless as doing with great efficiency what should not be done at all.&rdquo;
+            &ldquo;The purpose of business is to create a customer, the business enterprise thus has two&mdash;and only two basic functions: marketing and innovation. Marketing and innovation produce results, all the rest are costs.&rdquo;
           </blockquote>
           <cite className="block mt-6 font-[var(--font-display)] not-italic text-xs font-500 tracking-[0.2em] uppercase" style={{ color: "#6b6560" }}>
             &mdash; Peter Drucker
