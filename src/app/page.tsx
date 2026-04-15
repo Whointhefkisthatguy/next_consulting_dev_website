@@ -51,24 +51,24 @@ export default function Home() {
             loop
             playsInline
             className="w-full h-full object-cover"
-            style={{ filter: "brightness(0.35) saturate(0.5)" }}
+            style={{ filter: "brightness(0.55) saturate(0.6)" }}
           >
             <source src="/videos/hero-earth.mp4" type="video/mp4" />
           </video>
-          {/* Dark mask overlay */}
+          {/* Dark mask overlay — lighter so video shows on mobile */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to bottom, rgba(7,7,8,0.55) 0%, rgba(7,7,8,0.3) 30%, rgba(7,7,8,0.5) 70%, rgba(7,7,8,0.92) 100%)",
+                "linear-gradient(to bottom, rgba(7,7,8,0.35) 0%, rgba(7,7,8,0.1) 30%, rgba(7,7,8,0.25) 70%, rgba(7,7,8,0.85) 100%)",
             }}
           />
-          {/* Left-side darken for text legibility */}
+          {/* Left-side darken for text legibility — lighter on mobile */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to right, rgba(7,7,8,0.6) 0%, rgba(7,7,8,0.2) 50%, transparent 70%)",
+                "linear-gradient(to right, rgba(7,7,8,0.45) 0%, rgba(7,7,8,0.1) 50%, transparent 70%)",
             }}
           />
         </div>
