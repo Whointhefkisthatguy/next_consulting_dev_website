@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+@theme {
+  --color-void: #070708;
+  --color-surface: #0f0f11;
+  --color-cream: #f0ebe3;
+  --color-muted: #6b6560;
+  --color-copper: #c4835a;
+  --color-copper-hover: #d4935a;
+}
+
 /* ═══ DESIGN TOKENS ═══ */
 :root {
   --void: #070708;

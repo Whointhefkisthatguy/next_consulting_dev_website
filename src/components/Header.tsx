@@ -141,7 +141,7 @@ export default function Header() {
         {/* Desktop CTA */}
         <a
           href="#book"
-          className="hidden lg:inline-flex items-center gap-2 px-6 py-2.5 bg-[var(--copper)] text-[var(--void)] font-[var(--font-display)] text-[11px] font-600 tracking-[0.15em] uppercase transition-colors duration-300 hover:bg-[var(--copper-hover)]"
+          className="hidden lg:inline-flex items-center gap-2 px-6 py-2.5 bg-copper text-void font-[var(--font-display)] text-[11px] font-600 tracking-[0.15em] uppercase transition-colors duration-300 hover:bg-copper-hover"
         >
           Book a Call
         </a>

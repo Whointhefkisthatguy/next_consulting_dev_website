@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
 import ParallaxImage from "@/components/ParallaxImage";
 import CTABlock from "@/components/CTABlock";
@@ -34,6 +35,13 @@ const PROOF_POINTS = [
 ];
 
 export default function Home() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setMounted(true), 100);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
     <>
       {/* ═══ HERO ═══ */}
@@ -43,7 +51,7 @@ export default function Home() {
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 60% 50% at 50% 45%, rgba(196,131,90,0.04) 0%, transparent 70%)",
+              "radial-gradient(ellipse 60% 50% at 50% 45%, rgba(196,131,90,0.06) 0%, transparent 70%)",
           }}
         />
 
@@ -52,16 +60,15 @@ export default function Home() {
           src="/images/bg-leather.jpg"
           aspect="ultrawide"
           className="bottom-[10%] right-[-5%]"
-          opacity={0.18}
+          opacity={0.12}
         />
 
         {/* Content */}
         <div
-          className="relative z-10 text-center"
+          className="relative z-10 text-center px-6 transition-all duration-[1500ms] ease-out"
           style={{
-            opacity: 0,
-            animation:
-              "scale-in 1.5s 0.3s cubic-bezier(0.25,0.1,0.25,1) forwards",
+            opacity: mounted ? 1 : 0,
+            transform: mounted ? "scale(1)" : "scale(0.95)",
           }}
         >
           <Monogram className="h-24 sm:h-32 md:h-36 w-auto text-[var(--cream)] mx-auto" />
@@ -79,11 +86,12 @@ export default function Home() {
 
         {/* Scroll indicator */}
         <div
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 transition-all duration-1000 delay-1000"
           style={{
-            opacity: 0,
-            animation:
-              "fade-up 1.2s 1.2s cubic-bezier(0.25,0.1,0.25,1) forwards",
+            opacity: mounted ? 1 : 0,
+            transform: mounted
+              ? "translateX(-50%) translateY(0)"
+              : "translateX(-50%) translateY(16px)",
           }}
         >
           <span
@@ -92,10 +100,7 @@ export default function Home() {
           >
             Scroll
           </span>
-          <div
-            className="w-px h-10 bg-gradient-to-b from-[var(--copper)] to-transparent"
-            style={{ animation: "scroll-pulse 2s ease-in-out infinite" }}
-          />
+          <div className="w-px h-10 bg-gradient-to-b from-[var(--copper)] to-transparent animate-pulse" />
         </div>
       </section>
 
@@ -105,7 +110,7 @@ export default function Home() {
           src="/images/bg-glass.jpg"
           aspect="tall"
           className="top-[10%] right-[15%] hidden md:block"
-          opacity={0.15}
+          opacity={0.1}
         />
 
         <div className="max-w-[1200px] mx-auto">
