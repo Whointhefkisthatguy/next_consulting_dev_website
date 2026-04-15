@@ -1,7 +1,6 @@
 "use client";
 
 import ScrollReveal from "./ScrollReveal";
-import ParallaxImage from "./ParallaxImage";
 import CTABlock from "./CTABlock";
 
 type Deliverable = {
@@ -37,23 +36,32 @@ export default function ServicePageLayout({
 }: ServicePageProps) {
   return (
     <>
-      {/* ═══ HERO ═══ */}
-      <section className="relative pt-40 pb-24 px-6 sm:px-14 overflow-hidden">
-        <ParallaxImage
-          src={heroImage}
-          aspect="ultrawide"
-          className="top-[15%] right-[-10%]"
-          opacity={0.2}
-        />
+      {/* ═══ HERO — full-bleed image ═══ */}
+      <section className="relative min-h-[60vh] flex items-end overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src={heroImage}
+            alt=""
+            className="w-full h-full object-cover"
+            style={{ filter: "brightness(0.25) saturate(0.4)" }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to bottom, rgba(7,7,8,0.3) 0%, rgba(7,7,8,0.6) 60%, rgba(7,7,8,0.95) 100%)",
+            }}
+          />
+        </div>
 
-        <div className="relative z-10 max-w-[900px]">
+        <div className="relative z-10 max-w-[1400px] mx-auto w-full px-6 sm:px-14 pb-16 pt-40">
           <ScrollReveal>
-            <h1 className="reveal font-[var(--font-display)] font-800 text-[clamp(3rem,6vw,4rem)] leading-[1.05] tracking-[-0.02em] text-[var(--cream)]">
+            <h1 className="reveal font-[var(--font-display)] font-800 text-[clamp(3rem,6vw,4.5rem)] leading-[1.05] tracking-[-0.02em] text-cream">
               {title}
             </h1>
           </ScrollReveal>
           <ScrollReveal>
-            <p className="reveal mt-6 font-[var(--font-body)] italic text-base text-[var(--muted)] max-w-lg">
+            <p className="reveal mt-6 font-[var(--font-body)] italic text-base text-cream/50 max-w-lg">
               &ldquo;{quote}&rdquo;
               <span className="block mt-2 not-italic text-xs tracking-[0.15em] uppercase">
                 &mdash; {quoteAuthor}
@@ -65,17 +73,20 @@ export default function ServicePageLayout({
 
       {/* ═══ WHAT WE DO ═══ */}
       <section className="relative py-24 px-6 sm:px-14 border-t border-[var(--divider)]">
-        <ParallaxImage
-          src={bodyImage}
-          aspect="tall"
-          className="top-[5%] right-[8%] hidden md:block"
-          opacity={0.12}
-        />
+        {/* Subtle BG image */}
+        <div className="absolute inset-0 overflow-hidden">
+          <img
+            src={bodyImage}
+            alt=""
+            className="w-full h-full object-cover"
+            style={{ filter: "brightness(0.08) saturate(0.2)", opacity: 0.5 }}
+          />
+        </div>
 
-        <div className="max-w-[680px]">
+        <div className="relative z-10 max-w-[680px]">
           {intro.map((paragraph, i) => (
             <ScrollReveal key={i}>
-              <p className="reveal font-[var(--font-body)] text-[15px] text-[var(--cream)] opacity-80 leading-[1.8] mb-8">
+              <p className="reveal font-[var(--font-body)] text-[15px] text-cream/80 leading-[1.8] mb-8">
                 {paragraph}
               </p>
             </ScrollReveal>
@@ -87,7 +98,7 @@ export default function ServicePageLayout({
       <section className="py-24 px-6 sm:px-14 border-t border-[var(--divider)]">
         <div className="max-w-[700px]">
           <ScrollReveal>
-            <h2 className="reveal font-[var(--font-display)] font-700 text-2xl text-[var(--cream)] mb-16">
+            <h2 className="reveal font-[var(--font-display)] font-700 text-2xl text-cream mb-16">
               Deliverables
             </h2>
           </ScrollReveal>
@@ -96,14 +107,14 @@ export default function ServicePageLayout({
             {deliverables.map((d, i) => (
               <ScrollReveal key={i}>
                 <div className="reveal flex items-start gap-6">
-                  <span className="shrink-0 font-[var(--font-display)] text-sm font-700 text-[var(--copper)] mt-0.5">
+                  <span className="shrink-0 font-[var(--font-display)] text-sm font-700 text-copper mt-0.5">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div>
-                    <h3 className="font-[var(--font-display)] text-lg font-600 text-[var(--cream)]">
+                    <h3 className="font-[var(--font-display)] text-lg font-600 text-cream">
                       {d.name}
                     </h3>
-                    <p className="mt-2 font-[var(--font-body)] text-sm text-[var(--muted)] leading-relaxed">
+                    <p className="mt-2 font-[var(--font-body)] text-sm text-muted leading-relaxed">
                       {d.description}
                     </p>
                   </div>
@@ -119,7 +130,7 @@ export default function ServicePageLayout({
         <section className="py-24 px-6 sm:px-14 border-t border-[var(--divider)]">
           <div className="max-w-[1000px] mx-auto">
             <ScrollReveal>
-              <h2 className="reveal font-[var(--font-display)] font-700 text-2xl text-[var(--cream)] mb-16">
+              <h2 className="reveal font-[var(--font-display)] font-700 text-2xl text-cream mb-16">
                 Process
               </h2>
             </ScrollReveal>
@@ -128,13 +139,13 @@ export default function ServicePageLayout({
               {process.map((step, i) => (
                 <ScrollReveal key={i}>
                   <div className="reveal relative">
-                    <span className="font-[var(--font-display)] text-sm font-700 text-[var(--copper)]">
+                    <span className="font-[var(--font-display)] text-sm font-700 text-copper">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <h3 className="mt-3 font-[var(--font-display)] text-base font-600 text-[var(--cream)]">
+                    <h3 className="mt-3 font-[var(--font-display)] text-base font-600 text-cream">
                       {step.title}
                     </h3>
-                    <p className="mt-2 font-[var(--font-body)] text-sm text-[var(--muted)] leading-relaxed">
+                    <p className="mt-2 font-[var(--font-body)] text-sm text-muted leading-relaxed">
                       {step.description}
                     </p>
                     {i < process.length - 1 && (
