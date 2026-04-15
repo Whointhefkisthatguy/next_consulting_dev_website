@@ -80,9 +80,13 @@ export default function Home() {
               transform: mounted ? "translateY(0)" : "translateY(30px)",
             }}
           >
-            <span className="block font-[var(--font-display)] font-800 text-[clamp(3rem,8vw,6rem)] tracking-[0.08em] uppercase text-cream leading-none mb-10">
-              NEXT
-            </span>
+            <div className="overflow-hidden mb-10" style={{ height: "clamp(50px, 8vw, 90px)" }}>
+              <img
+                src="/brand/logo-white-full.png"
+                alt="Next Consulting"
+                className="h-[clamp(80px, 13vw, 150px)] w-auto object-cover object-top"
+              />
+            </div>
 
             <h1 className="font-[var(--font-display)] font-800 text-[clamp(2.8rem,5.5vw,4.5rem)] leading-[1.05] tracking-[-0.02em] text-cream">
               We build the systems

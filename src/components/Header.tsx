@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Monogram from "./Monogram";
+// Using actual brand monogram file from /public/brand/
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -60,7 +60,7 @@ export default function Header() {
       <div className="max-w-[1400px] mx-auto px-6 sm:px-10 h-[72px] flex items-center justify-between">
         {/* Monogram */}
         <Link href="/" aria-label="Home">
-          <Monogram className="h-7 w-auto text-[var(--cream)] transition-colors duration-300 hover:text-[var(--copper)]" />
+          <img src="/brand/monogram.svg" alt="Next Consulting" className="h-7 w-auto brightness-0 invert opacity-90 transition-opacity duration-300 hover:opacity-100" />
         </Link>
 
         {/* Desktop Nav */}
