@@ -80,11 +80,12 @@ export default function Home() {
               transform: mounted ? "translateY(0)" : "translateY(30px)",
             }}
           >
-            <div className="overflow-hidden mb-10 max-w-[400px]" style={{ aspectRatio: "1455 / 580" }}>
+            <div className="overflow-hidden mb-8" style={{ height: "clamp(40px, 6vw, 70px)" }}>
               <img
                 src="/brand/logo-white-transparent.png"
                 alt="Next"
-                className="w-full"
+                className="w-auto object-left-top"
+                style={{ height: "clamp(75px, 11vw, 130px)", marginLeft: "-2%" }}
               />
             </div>
 
