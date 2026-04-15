@@ -81,13 +81,6 @@ export default function Home() {
               transform: mounted ? "translateY(0)" : "translateY(30px)",
             }}
           >
-            <img
-              src="/brand/logo-white-transparent.png"
-              alt="Next Consulting"
-              className="mb-8 w-auto"
-              style={{ height: "clamp(150px, 25vw, 280px)" }}
-            />
-
             <h1 className="font-[var(--font-display)] font-800 text-[clamp(2.8rem,5.5vw,4.5rem)] leading-[1.05] tracking-[-0.02em]" style={{ color: "#f0ebe3" }}>
               We build the systems
               <br />
