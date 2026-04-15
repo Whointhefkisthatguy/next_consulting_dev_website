@@ -45,24 +45,30 @@ export default function Home() {
       {/* ═══ HERO ═══ */}
       <section className="relative h-dvh min-h-[800px] flex flex-col justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img
-            src="/images/bg-leather.jpg"
-            alt=""
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
             className="w-full h-full object-cover"
-            style={{ filter: "brightness(0.3) saturate(0.4)" }}
-          />
+            style={{ filter: "brightness(0.35) saturate(0.5)" }}
+          >
+            <source src="/videos/hero-earth.mp4" type="video/mp4" />
+          </video>
+          {/* Dark mask overlay */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to bottom, rgba(7,7,8,0.5) 0%, rgba(7,7,8,0.3) 40%, rgba(7,7,8,0.7) 80%, rgba(7,7,8,0.95) 100%)",
+                "linear-gradient(to bottom, rgba(7,7,8,0.55) 0%, rgba(7,7,8,0.3) 30%, rgba(7,7,8,0.5) 70%, rgba(7,7,8,0.92) 100%)",
             }}
           />
+          {/* Left-side darken for text legibility */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse 50% 40% at 30% 60%, rgba(196,131,90,0.08) 0%, transparent 70%)",
+                "linear-gradient(to right, rgba(7,7,8,0.6) 0%, rgba(7,7,8,0.2) 50%, transparent 70%)",
             }}
           />
         </div>
@@ -75,14 +81,12 @@ export default function Home() {
               transform: mounted ? "translateY(0)" : "translateY(30px)",
             }}
           >
-            <div className="overflow-hidden mb-8" style={{ height: "clamp(40px, 6vw, 70px)" }}>
-              <img
-                src="/brand/logo-white-transparent.png"
-                alt="Next"
-                className="w-auto object-left-top"
-                style={{ height: "clamp(75px, 11vw, 130px)", marginLeft: "-2%" }}
-              />
-            </div>
+            <img
+              src="/brand/logo-white-transparent.png"
+              alt="Next Consulting"
+              className="mb-8 w-auto"
+              style={{ height: "clamp(60px, 9vw, 100px)" }}
+            />
 
             <h1 className="font-[var(--font-display)] font-800 text-[clamp(2.8rem,5.5vw,4.5rem)] leading-[1.05] tracking-[-0.02em]" style={{ color: "#f0ebe3" }}>
               We build the systems
