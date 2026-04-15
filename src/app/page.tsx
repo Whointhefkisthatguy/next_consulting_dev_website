@@ -21,6 +21,14 @@ export default function Home() {
 
   return (
     <>
+      {/* Ambient warm glow — gives glass cards material to blur */}
+      <div className="fixed inset-0 pointer-events-none z-0" aria-hidden="true">
+        <div className="absolute top-[20%] right-[10%] w-[800px] h-[600px] rounded-full"
+          style={{ background: "radial-gradient(ellipse at center, rgba(184,149,106,0.06) 0%, transparent 65%)" }} />
+        <div className="absolute bottom-[15%] left-[5%] w-[700px] h-[700px] rounded-full"
+          style={{ background: "radial-gradient(ellipse at center, rgba(184,149,106,0.04) 0%, transparent 60%)" }} />
+      </div>
+
       {/* ═══ HERO / MONOGRAM ═══ */}
       <section className="relative h-dvh min-h-[700px] flex flex-col justify-center items-center overflow-hidden">
         {/* Subtle warm gradient background */}
@@ -89,11 +97,11 @@ export default function Home() {
       </section>
 
       <section className="py-[8rem] px-[3.5rem] flex items-center justify-center text-center">
-        <div className="max-w-[620px] reveal-stagger">
-          <p className="reveal text-[0.95rem] font-extralight leading-[1.8] text-[var(--cream)] opacity-80">
+        <div className="reveal glass-card">
+          <p className="text-[0.95rem] font-extralight leading-[1.8] text-[var(--cream)] opacity-80">
             Where is your feedback loop &mdash; and what did it tell you last month? Without one, failure is invisible. And invisible failure is the only kind that kills companies.
           </p>
-          <p className="reveal mt-10 text-[0.8rem] font-extralight leading-[1.8] text-[var(--text-muted)]">
+          <p className="mt-10 text-[0.8rem] font-extralight leading-[1.8] text-[var(--text-muted)]">
             78% of companies that found product-market fit still fail to scale. Not because of the market. Because they tried to grow a system they never examined.
           </p>
         </div>
@@ -121,11 +129,11 @@ export default function Home() {
       </section>
 
       <section className="py-[8rem] px-[3.5rem] flex items-center justify-center text-center">
-        <div className="max-w-[620px] reveal-stagger">
-          <p className="reveal text-[0.95rem] font-extralight leading-[1.8] text-[var(--cream)] opacity-80">
+        <div className="reveal glass-card">
+          <p className="text-[0.95rem] font-extralight leading-[1.8] text-[var(--cream)] opacity-80">
             The creative intelligence of your workforce is free, available, and completely ignored. That&rsquo;s not a resource problem. That&rsquo;s a leadership one.
           </p>
-          <p className="reveal mt-10 text-[0.8rem] font-extralight leading-[1.8] text-[var(--text-muted)]">
+          <p className="mt-10 text-[0.8rem] font-extralight leading-[1.8] text-[var(--text-muted)]">
             85% of frontline employees share concerns only through manager meetings &mdash; a hierarchical, slow, incomplete loop where field intelligence routinely never reaches the people making decisions.
           </p>
         </div>
@@ -153,8 +161,8 @@ export default function Home() {
       </section>
 
       <section className="py-[8rem] px-[3.5rem] flex items-center justify-center text-center">
-        <div className="max-w-[620px]">
-          <p className="reveal text-[0.95rem] font-extralight leading-[1.8] text-[var(--cream)] opacity-80">
+        <div className="reveal glass-card">
+          <p className="text-[0.95rem] font-extralight leading-[1.8] text-[var(--cream)] opacity-80">
             You don&rsquo;t have a feedback loop. You have an NPS score. Those are not the same thing. One measures sentiment. The other drives decisions. You&rsquo;ve been doing one and calling it both.
           </p>
         </div>
@@ -182,11 +190,11 @@ export default function Home() {
       </section>
 
       <section className="py-[8rem] px-[3.5rem] flex items-center justify-center text-center">
-        <div className="max-w-[620px] reveal-stagger">
-          <p className="reveal text-[0.95rem] font-extralight leading-[1.8] text-[var(--cream)] opacity-80">
+        <div className="reveal glass-card">
+          <p className="text-[0.95rem] font-extralight leading-[1.8] text-[var(--cream)] opacity-80">
             Growth does not fix a broken system. It funds it.
           </p>
-          <p className="reveal mt-10 text-[0.8rem] font-extralight leading-[1.8] text-[var(--text-muted)]">
+          <p className="mt-10 text-[0.8rem] font-extralight leading-[1.8] text-[var(--text-muted)]">
             Across 6,103 firms studied over four decades, researchers found no evidence that scaling reduces costs or improves margins. More revenue through a broken process doesn&rsquo;t compound your gains. It compounds your losses.
           </p>
         </div>
