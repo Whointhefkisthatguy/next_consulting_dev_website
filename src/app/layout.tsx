@@ -1,25 +1,26 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Outfit } from "next/font/google";
+import { Syne, DM_Sans } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
-const cormorant = Cormorant_Garamond({
+const syne = Syne({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  style: ["normal", "italic"],
-  variable: "--font-serif",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-display",
   display: "swap",
 });
 
-const outfit = Outfit({
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500"],
-  variable: "--font-sans",
+  weight: ["400", "500"],
+  variable: "--font-body",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Next Consulting",
-  description: "Revenue architecture.",
+  description: "Revenue architecture & design.",
   robots: { index: false, follow: false },
 };
 
@@ -29,8 +30,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${outfit.variable}`}>
-      <body>{children}</body>
+    <html lang="en" className={`${syne.variable} ${dmSans.variable}`}>
+      <body className="font-[var(--font-body)]">
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }

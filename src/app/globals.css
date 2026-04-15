@@ -1,67 +1,54 @@
 @import "tailwindcss";
 
+/* ═══ DESIGN TOKENS ═══ */
 :root {
-  --charcoal: #1a1714;
-  --warm-black: #0f0d0b;
-  --sand: #c4a882;
-  --sand-light: #d4be9f;
-  --sand-pale: #e8ddd0;
-  --cream: #f5f0ea;
-  --gold: #b8956a;
-  --gold-dim: rgba(184, 149, 106, 0.15);
-  --text-muted: #8a7e72;
-  --divider: rgba(196, 168, 130, 0.12);
+  --void: #070708;
+  --surface: #0f0f11;
+  --cream: #f0ebe3;
+  --muted: #6b6560;
+  --copper: #c4835a;
+  --copper-hover: #d4935a;
+  --divider: rgba(240, 235, 227, 0.06);
 }
 
+/* ═══ BASE ═══ */
 html {
   font-size: 16px;
   scroll-behavior: smooth;
-  background: var(--warm-black);
+  background: var(--void);
 }
 
 body {
-  font-family: var(--font-sans), 'Outfit', sans-serif;
-  font-weight: 300;
   color: var(--cream);
-  background: var(--warm-black);
+  background: var(--void);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Grain */
+/* ═══ FILM GRAIN ═══ */
 body::after {
-  content: '';
+  content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.03;
+  opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-size: 128px;
 }
 
 ::selection {
-  background-color: rgba(196, 168, 130, 0.25);
+  background-color: rgba(196, 131, 90, 0.25);
   color: var(--cream);
 }
 
-/* Animations */
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes scroll-pulse {
-  0%, 100% { opacity: 0.3; transform: scaleY(0.6); transform-origin: top; }
-  50% { opacity: 1; transform: scaleY(1); }
-}
-
+/* ═══ SCROLL REVEAL ═══ */
 .reveal {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
-              transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .reveal.visible {
@@ -69,27 +56,30 @@ body::after {
   transform: translateY(0);
 }
 
-/* Glass card — warm glassmorphism on dark */
-.glass-card {
-  position: relative;
-  background: rgba(196, 168, 130, 0.04);
-  backdrop-filter: blur(24px) saturate(1.4);
-  -webkit-backdrop-filter: blur(24px) saturate(1.4);
-  border: 1px solid rgba(196, 168, 130, 0.08);
-  padding: 3rem 2.5rem;
-  max-width: 640px;
-  margin: 0 auto;
-}
-
-@supports not (backdrop-filter: blur(1px)) {
-  .glass-card {
-    background: rgba(26, 23, 20, 0.85);
-  }
-}
-
-/* Stagger children */
 .reveal-stagger > .reveal:nth-child(1) { transition-delay: 0s; }
 .reveal-stagger > .reveal:nth-child(2) { transition-delay: 0.1s; }
-.reveal-stagger > .reveal:nth-child(3) { transition-delay: 0.2s; }
-.reveal-stagger > .reveal:nth-child(4) { transition-delay: 0.3s; }
-.reveal-stagger > .reveal:nth-child(5) { transition-delay: 0.4s; }
+.reveal-stagger > .reveal:nth-child(3) { transition-delay: 0.15s; }
+.reveal-stagger > .reveal:nth-child(4) { transition-delay: 0.2s; }
+.reveal-stagger > .reveal:nth-child(5) { transition-delay: 0.25s; }
+.reveal-stagger > .reveal:nth-child(6) { transition-delay: 0.3s; }
+
+/* ═══ ANIMATIONS ═══ */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes scroll-pulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.6); transform-origin: top; }
+  50% { opacity: 1; transform: scaleY(1); }
+}
