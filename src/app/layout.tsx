@@ -20,8 +20,29 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: "Next Consulting",
-  description: "Revenue architecture & design.",
+  description: "We build the systems your revenue depends on. Websites, brands, and automation — every engagement starts with a diagnostic.",
   robots: { index: false, follow: false },
+  openGraph: {
+    title: "Next Consulting",
+    description: "We build the systems your revenue depends on. Websites, brands, and automation — every engagement starts with a diagnostic.",
+    url: "https://nextconsulting.dev",
+    siteName: "Next Consulting",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Next Consulting — Revenue Architecture & Design",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Next Consulting",
+    description: "We build the systems your revenue depends on.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({
