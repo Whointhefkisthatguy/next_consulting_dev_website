@@ -59,7 +59,7 @@ export default function ContactPage() {
                 name="name"
                 required
                 className="w-full bg-transparent py-3 font-[var(--font-body)] text-sm outline-none transition-colors duration-300"
-                style={{ color: "#f0ebe3", borderBottom: "1px solid rgba(240,235,227,0.1)" }}
+                style={{ color: "#f0ebe3", borderBottom: "1px solid rgba(240,235,227,0.2)", background: "rgba(240,235,227,0.03)", padding: "12px 8px" }}
                 onFocus={(e) => e.currentTarget.style.borderBottomColor = "#c4835a"}
                 onBlur={(e) => e.currentTarget.style.borderBottomColor = "rgba(240,235,227,0.1)"}
               />
@@ -73,7 +73,7 @@ export default function ContactPage() {
                 name="email"
                 required
                 className="w-full bg-transparent py-3 font-[var(--font-body)] text-sm outline-none transition-colors duration-300"
-                style={{ color: "#f0ebe3", borderBottom: "1px solid rgba(240,235,227,0.1)" }}
+                style={{ color: "#f0ebe3", borderBottom: "1px solid rgba(240,235,227,0.2)", background: "rgba(240,235,227,0.03)", padding: "12px 8px" }}
                 onFocus={(e) => e.currentTarget.style.borderBottomColor = "#c4835a"}
                 onBlur={(e) => e.currentTarget.style.borderBottomColor = "rgba(240,235,227,0.1)"}
               />
@@ -86,7 +86,7 @@ export default function ContactPage() {
                 type="text"
                 name="company"
                 className="w-full bg-transparent py-3 font-[var(--font-body)] text-sm outline-none transition-colors duration-300"
-                style={{ color: "#f0ebe3", borderBottom: "1px solid rgba(240,235,227,0.1)" }}
+                style={{ color: "#f0ebe3", borderBottom: "1px solid rgba(240,235,227,0.2)", background: "rgba(240,235,227,0.03)", padding: "12px 8px" }}
                 onFocus={(e) => e.currentTarget.style.borderBottomColor = "#c4835a"}
                 onBlur={(e) => e.currentTarget.style.borderBottomColor = "rgba(240,235,227,0.1)"}
               />
@@ -100,7 +100,7 @@ export default function ContactPage() {
                 rows={5}
                 required
                 className="w-full bg-transparent py-3 font-[var(--font-body)] text-sm outline-none transition-colors duration-300 resize-none"
-                style={{ color: "#f0ebe3", borderBottom: "1px solid rgba(240,235,227,0.1)" }}
+                style={{ color: "#f0ebe3", borderBottom: "1px solid rgba(240,235,227,0.2)", background: "rgba(240,235,227,0.03)", padding: "12px 8px" }}
                 onFocus={(e) => e.currentTarget.style.borderBottomColor = "#c4835a"}
                 onBlur={(e) => e.currentTarget.style.borderBottomColor = "rgba(240,235,227,0.1)"}
               />

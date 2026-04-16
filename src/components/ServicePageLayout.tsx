@@ -44,13 +44,13 @@ export default function ServicePageLayout({
             src={heroImage}
             alt=""
             className="w-full h-full object-cover"
-            style={{ filter: "brightness(0.4) saturate(0.5)" }}
+            style={{ filter: "brightness(0.5) saturate(0.6)" }}
           />
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to bottom, rgba(7,7,8,0.3) 0%, rgba(7,7,8,0.4) 50%, rgba(7,7,8,0.9) 100%)",
+                "linear-gradient(to bottom, rgba(7,7,8,0.2) 0%, rgba(7,7,8,0.3) 50%, rgba(7,7,8,0.85) 100%)",
             }}
           />
         </div>
@@ -90,7 +90,7 @@ export default function ServicePageLayout({
       </section>
 
       {/* ═══ DELIVERABLES ═══ */}
-      <section className="py-24 px-6 sm:px-14" style={{ borderTop: "1px solid rgba(240,235,227,0.08)" }}>
+      <section className="py-24 px-6 sm:px-14" style={{ borderTop: "1px solid rgba(240,235,227,0.08)", background: "#0c0c0e" }}>
         <div className="max-w-[700px]">
           <h2
             className="font-[var(--font-display)] font-700 text-2xl mb-16"
