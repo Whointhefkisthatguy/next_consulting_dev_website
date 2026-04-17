@@ -12,9 +12,9 @@ export const graphicDesignContent: SqueezePageContent = {
   },
   hero: {
     kicker: "Graphic Design",
-    headline: "A brand is a system. We design the whole system.",
-    subhead:
-      "Identity, guidelines, specimens, and the kit of parts that makes every future touchpoint feel inevitable.",
+    headline: "\u201CDesign is thinking made visible.\u201D",
+    attribution: "— Saul Bass",
+    subhead: "We do that, ya know.",
   },
   promise:
     "You walk away with a brand system that holds up across every medium — not a logo in a vacuum.",

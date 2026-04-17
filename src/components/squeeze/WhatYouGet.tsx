@@ -4,8 +4,8 @@ type Props = { deliverables: Deliverable[]; heading?: string };
 
 export default function WhatYouGet({ deliverables, heading = "What you get" }: Props) {
   return (
-    <div className="max-w-[900px]">
-      <div>
+    <section className="px-6 sm:px-14 py-28" style={{ borderTop: "1px solid var(--divider)" }}>
+      <div className="max-w-[900px] mx-auto">
         {heading && (
           <h2 className="font-[var(--font-display)] text-2xl md:text-3xl font-700 text-[#f0ebe3] mb-16">
             {heading}
@@ -27,6 +27,6 @@ export default function WhatYouGet({ deliverables, heading = "What you get" }: P
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
