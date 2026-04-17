@@ -1,5 +1,4 @@
 import type { SqueezePageContent } from "./types";
-import { CALENDLY } from "../calendly";
 
 export const graphicDesignContent: SqueezePageContent = {
   slug: "graphic-design",
@@ -138,15 +137,10 @@ export const graphicDesignContent: SqueezePageContent = {
         "Guidelines, templates, and specimens packaged so the system scales without your oversight.",
     },
   ],
-  offer: {
-    name: "Free Brand Consistency Check",
-    durationMinutes: 30,
-    calendlyUrl: CALENDLY.brandCheck,
-    buttonLabel: "Book the brand check — no pitch",
-    bullets: [
-      "A brand consistency diagnostic",
-      "Top 3 identity gaps across your touchpoints",
-      "A written recommendation with priorities",
-    ],
+  startProject: {
+    headline: "Let's build a brand that actually holds up.",
+    subhead:
+      "Tell us about your business and what you want the brand to do. We'll reach out by email or SMS within one business day.",
+    submitLabel: "Start the project",
   },
 };

@@ -7,7 +7,7 @@ import TrustStrip from "./TrustStrip";
 import Promise from "./Promise";
 import WhatYouGet from "./WhatYouGet";
 import Process from "./Process";
-import ServiceOfferCTA from "./ServiceOfferCTA";
+import StartProjectSection from "./StartProjectSection";
 import SecondaryCTA from "./SecondaryCTA";
 
 export default async function AutomationSqueeze() {
@@ -15,7 +15,7 @@ export default async function AutomationSqueeze() {
   return (
     <>
       <AutomationHero kicker={c.hero.kicker} headline={c.hero.headline} subhead={c.hero.subhead} />
-      <TrustStrip stats={c.trustStats} accent="mono" ctaLabel="Book a discovery call" ctaHref="#offer" />
+      <TrustStrip stats={c.trustStats} accent="mono" ctaLabel="Start your project" ctaHref="#offer" />
       <section className="px-6 sm:px-14 py-28" style={{ borderTop: "1px solid var(--divider)" }}>
         <div className="max-w-[900px]">
           <RomanSection numeral="I" label="The thesis" />
@@ -40,7 +40,7 @@ export default async function AutomationSqueeze() {
           <Process steps={c.process} heading="" />
         </div>
       </section>
-      <ServiceOfferCTA offer={c.offer} />
+      <StartProjectSection service={c.slug} block={c.startProject} />
       <SecondaryCTA />
     </>
   );

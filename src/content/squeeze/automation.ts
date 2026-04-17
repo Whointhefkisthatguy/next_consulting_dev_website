@@ -1,5 +1,4 @@
 import type { SqueezePageContent } from "./types";
-import { CALENDLY } from "../calendly";
 
 export const automationContent: SqueezePageContent = {
   slug: "automation",
@@ -93,15 +92,10 @@ export const automationContent: SqueezePageContent = {
         "We document everything, train your team, and hand off a system that runs without us in the room.",
     },
   ],
-  offer: {
-    name: "Process Discovery Call",
-    durationMinutes: 45,
-    calendlyUrl: CALENDLY.processDiscovery,
-    buttonLabel: "Book a discovery call — no pitch",
-    bullets: [
-      "A focused audit of your current lead and service workflows",
-      "The top 3 processes where automation actually compounds",
-      "A written 90-day automation priority list",
-    ],
+  startProject: {
+    headline: "Ready to put your manual work on autopilot?",
+    subhead:
+      "Tell us what's eating your team's time. We'll reach out by email or SMS within one business day to map the first automation that earns its keep.",
+    submitLabel: "Start the project",
   },
 };

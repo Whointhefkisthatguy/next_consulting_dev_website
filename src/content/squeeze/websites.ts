@@ -1,12 +1,12 @@
 import type { SqueezePageContent } from "./types";
-import { CALENDLY } from "../calendly";
 
 export const websitesContent: SqueezePageContent = {
   slug: "websites",
   route: "/websites",
   meta: {
     title: "Websites — Next Consulting",
-    description: "Custom websites engineered for conversion. Free Website Conversion Audit available.",
+    description:
+      "Custom websites engineered for conversion. Tell us about your project — we'll get back within one business day.",
     ogImage: "/og/websites.png",
   },
   hero: {
@@ -64,15 +64,10 @@ export const websitesContent: SqueezePageContent = {
     { title: "Build", description: "Design and development in parallel, with checkpoints at every milestone." },
     { title: "Launch & iterate", description: "Deployment, monitoring, and continuous improvement on real data." },
   ],
-  offer: {
-    name: "Free Website Conversion Audit",
-    durationMinutes: 30,
-    bullets: [
-      "A conversion-rate diagnostic of your current site",
-      "Top 3 friction points, prioritized by revenue impact",
-      "A written recommendation you can act on immediately",
-    ],
-    calendlyUrl: CALENDLY.websiteAudit,
-    buttonLabel: "Book the audit — no pitch",
+  startProject: {
+    headline: "Ready to build a site that actually converts?",
+    subhead:
+      "Tell us what you're working with and what you want it to do. We'll reach out by email or SMS within one business day with next steps — no audit theater, no pitch deck.",
+    submitLabel: "Start the project",
   },
 };

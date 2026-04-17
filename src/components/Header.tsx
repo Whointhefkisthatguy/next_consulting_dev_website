@@ -139,12 +139,12 @@ export default function Header() {
         </nav>
 
         {/* Desktop CTA */}
-        <a
-          href="#book"
+        <Link
+          href="/contact"
           className="hidden lg:inline-flex items-center gap-2 px-6 py-2.5 bg-copper text-void font-[var(--font-display)] text-[11px] font-600 tracking-[0.15em] uppercase transition-colors duration-300 hover:bg-copper-hover"
         >
-          Book a Call
-        </a>
+          Start a Project
+        </Link>
 
         {/* Mobile hamburger */}
         <button
@@ -212,12 +212,12 @@ export default function Header() {
               </Link>
             )
           )}
-          <a
-            href="#book"
+          <Link
+            href="/contact"
             className="mt-4 px-8 py-3.5 bg-[var(--copper)] text-[var(--void)] font-[var(--font-display)] text-xs font-600 tracking-[0.15em] uppercase"
           >
-            Book a Call
-          </a>
+            Start a Project
+          </Link>
         </nav>
       </div>
     </header>

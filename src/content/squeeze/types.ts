@@ -23,13 +23,13 @@ export type ProcessStep = {
   description: string;
 };
 
-export type ServiceOffer = {
-  name: string;
-  durationMinutes: number;
-  bullets: string[];
-  calendlyUrl: string;
-  buttonLabel: string;
+export type StartProjectBlock = {
+  headline: string;
+  subhead: string;
+  submitLabel: string;
 };
+
+export type ServiceSlug = "websites" | "graphic-design" | "automation" | "general";
 
 export type SqueezePageContent = {
   slug: "websites" | "graphic-design" | "automation";
@@ -50,7 +50,7 @@ export type SqueezePageContent = {
   deliverables: Deliverable[];
   workSamples?: WorkSample[];
   process: ProcessStep[];
-  offer: ServiceOffer;
+  startProject: StartProjectBlock;
 };
 
 export type CaseStudyFrontmatter = {

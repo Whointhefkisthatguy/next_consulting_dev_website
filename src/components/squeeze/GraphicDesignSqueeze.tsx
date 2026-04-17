@@ -6,20 +6,25 @@ import Promise from "./Promise";
 import WhatYouGet from "./WhatYouGet";
 import WorkGrid from "./WorkGrid";
 import Process from "./Process";
-import ServiceOfferCTA from "./ServiceOfferCTA";
+import StartProjectSection from "./StartProjectSection";
 import SecondaryCTA from "./SecondaryCTA";
 
 export default function GraphicDesignSqueeze() {
   return (
     <>
-      <GraphicDesignHero kicker={c.hero.kicker} headline={c.hero.headline} subhead={c.hero.subhead} />
-      <TrustStrip stats={c.trustStats} ctaLabel="Book the brand check" ctaHref="#offer" />
+      <GraphicDesignHero
+        kicker={c.hero.kicker}
+        headline={c.hero.headline}
+        subhead={c.hero.subhead}
+        attribution={c.hero.attribution}
+      />
+      <TrustStrip stats={c.trustStats} ctaLabel="Start your project" ctaHref="#offer" />
       <SpecimenRow word="next" />
       <Promise text={c.promise} />
       <WhatYouGet deliverables={c.deliverables} />
       {c.workSamples && <WorkGrid samples={c.workSamples} heading="Selected brand work" />}
       <Process steps={c.process} />
-      <ServiceOfferCTA offer={c.offer} />
+      <StartProjectSection service={c.slug} block={c.startProject} />
       <SecondaryCTA />
     </>
   );

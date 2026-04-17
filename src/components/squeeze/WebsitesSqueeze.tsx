@@ -5,19 +5,19 @@ import Promise from "./Promise";
 import WhatYouGet from "./WhatYouGet";
 import WorkGrid from "./WorkGrid";
 import Process from "./Process";
-import ServiceOfferCTA from "./ServiceOfferCTA";
+import StartProjectSection from "./StartProjectSection";
 import SecondaryCTA from "./SecondaryCTA";
 
 export default function WebsitesSqueeze() {
   return (
     <>
       <WebsitesHero kicker={c.hero.kicker} headline={c.hero.headline} subhead={c.hero.subhead} />
-      <TrustStrip stats={c.trustStats} ctaLabel="Book the conversion audit" ctaHref="#offer" />
+      <TrustStrip stats={c.trustStats} ctaLabel="Start your project" ctaHref="#offer" />
       <Promise text={c.promise} kicker="§ 03 · Promise" />
       <WhatYouGet deliverables={c.deliverables} heading="§ 04 · What you get" />
       {c.workSamples && <WorkGrid samples={c.workSamples} heading="§ 05 · Recent work" />}
       <Process steps={c.process} heading="§ 06 · Process" />
-      <ServiceOfferCTA offer={c.offer} />
+      <StartProjectSection service={c.slug} block={c.startProject} />
       <SecondaryCTA />
     </>
   );

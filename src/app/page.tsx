@@ -90,16 +90,16 @@ export default function Home() {
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <a
-                href="#book"
+              <Link
+                href="/contact"
                 className="inline-flex items-center gap-2 px-8 py-3.5 font-[var(--font-display)] text-xs font-600 tracking-[0.15em] uppercase transition-colors duration-300 hover:brightness-110"
                 style={{ backgroundColor: "#c4835a", color: "#070708" }}
               >
-                Book a Diagnostic
+                Start a Project
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
-              </a>
+              </Link>
               <Link
                 href="/case-studies"
                 className="inline-flex items-center gap-2 font-[var(--font-body)] text-sm transition-opacity duration-300 hover:opacity-80"
@@ -247,20 +247,20 @@ export default function Home() {
           transform: mounted ? "translateY(0)" : "translateY(100%)",
         }}
       >
-        <a
-          href="#book"
+        <Link
+          href="/contact"
           className="flex-1 flex items-center justify-center gap-2 py-3 font-[var(--font-display)] text-xs font-600 tracking-[0.1em] uppercase"
           style={{ backgroundColor: "#c4835a", color: "#070708" }}
         >
-          Book a Diagnostic
-        </a>
-        <a
-          href="mailto:revops@nextconsulting.dev"
+          Start a Project
+        </Link>
+        <Link
+          href="/case-studies"
           className="flex-1 flex items-center justify-center py-3 font-[var(--font-display)] text-xs font-600 tracking-[0.1em] uppercase"
           style={{ border: "1px solid #c4835a", color: "#c4835a" }}
         >
-          Email Us
-        </a>
+          See Our Work
+        </Link>
       </div>
     </>
   );
