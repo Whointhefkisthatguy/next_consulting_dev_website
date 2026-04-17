@@ -3,13 +3,14 @@ type Props = { kicker?: string; headline: string; subhead?: string; attribution?
 export default function GraphicDesignHero({ kicker, headline, subhead, attribution }: Props) {
   return (
     <section className="relative min-h-[90vh] flex items-center px-6 sm:px-14 pt-40 pb-24 overflow-hidden">
-      {/* paper grain */}
+      {/* subtle drafting grid */}
       <div
         aria-hidden
-        className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-screen"
+        className="absolute inset-0 opacity-[0.04] pointer-events-none"
         style={{
-          backgroundImage: "url('/images/bg-paper.jpg')",
-          backgroundSize: "cover",
+          backgroundImage:
+            "linear-gradient(to right, rgba(240,235,227,0.9) 1px, transparent 1px), linear-gradient(to bottom, rgba(240,235,227,0.9) 1px, transparent 1px)",
+          backgroundSize: "80px 80px",
         }}
       />
       {/* oversized ampersand */}
