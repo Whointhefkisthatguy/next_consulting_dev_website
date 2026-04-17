@@ -19,9 +19,9 @@ export default function AutomationHero({ kicker, headline, subhead }: Props) {
           </p>
         )}
       </div>
-      <div aria-hidden className="relative z-10 font-mono text-[10px] tracking-[0.25em] uppercase text-[#6b6560] flex items-center gap-3">
+      <div aria-hidden="true" className="relative z-10 font-mono text-[10px] tracking-[0.25em] uppercase text-[#a39d97] flex items-center gap-3">
         <span>Continue</span>
-        <span className="h-px w-10 bg-[#6b6560]" />
+        <span className="h-px w-10 bg-[#a39d97]" />
       </div>
     </section>
   );
