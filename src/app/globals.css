@@ -17,7 +17,9 @@
   --muted: #6b6560;
   --copper: #c4835a;
   --copper-hover: #d4935a;
-  --divider: rgba(240, 235, 227, 0.06);
+  --divider: rgba(240, 235, 227, 0.15);
+  --divider-strong: rgba(240, 235, 227, 0.22);
+  --divider-accent: rgba(196, 131, 90, 0.35);
 }
 
 /* ═══ BASE ═══ */
