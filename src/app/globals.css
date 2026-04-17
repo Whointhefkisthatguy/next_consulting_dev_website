@@ -101,3 +101,7 @@ body::after {
     padding-bottom: 64px;
   }
 }
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
