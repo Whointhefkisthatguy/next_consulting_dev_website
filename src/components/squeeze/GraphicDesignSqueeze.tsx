@@ -1,5 +1,6 @@
 import { graphicDesignContent as c } from "@/content/squeeze/graphic-design";
 import GraphicDesignHero from "./graphic-design/GraphicDesignHero";
+import LogoRulesCard from "./graphic-design/LogoRulesCard";
 import SpecimenRow from "./graphic-design/SpecimenRow";
 import TrustStrip from "./TrustStrip";
 import Promise from "./Promise";
@@ -19,6 +20,7 @@ export default function GraphicDesignSqueeze() {
         attribution={c.hero.attribution}
       />
       <TrustStrip stats={c.trustStats} ctaLabel="Start your project" ctaHref="#offer" />
+      <LogoRulesCard />
       <SpecimenRow word="next" />
       <Promise text={c.promise} />
       <WhatYouGet deliverables={c.deliverables} />
