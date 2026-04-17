@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import CTABlock from "@/components/CTABlock";
+import ServiceCard from "@/components/ServiceCard";
 import Link from "next/link";
 
 const SERVICES = [
@@ -190,29 +191,15 @@ export default function Home() {
             What We Build
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8">
             {SERVICES.map((service, i) => (
-              <div key={service.name}>
-                <span className="font-[var(--font-display)] text-xs tracking-[0.15em] uppercase font-600" style={{ color: "#c4835a" }}>
-                  0{i + 1}
-                </span>
-                <h3 className="mt-3 font-[var(--font-display)] text-2xl font-700" style={{ color: "#f0ebe3" }}>
-                  {service.name}
-                </h3>
-                <p className="mt-4 font-[var(--font-body)] text-sm leading-relaxed" style={{ color: "rgba(240,235,227,0.5)" }}>
-                  {service.description}
-                </p>
-                <Link
-                  href={service.href}
-                  className="inline-flex items-center gap-2 mt-6 font-[var(--font-body)] text-sm transition-opacity duration-300 hover:opacity-80"
-                  style={{ color: "#c4835a" }}
-                >
-                  Learn more
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </Link>
-              </div>
+              <ServiceCard
+                key={service.name}
+                index={i}
+                name={service.name}
+                href={service.href}
+                description={service.description}
+              />
             ))}
           </div>
         </div>
