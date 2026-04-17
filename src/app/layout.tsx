@@ -20,11 +20,11 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: "Next Consulting",
-  description: "We build the systems your revenue depends on. Websites, brands, and automation — every engagement starts with a diagnostic.",
+  description: "We build the systems your revenue depends on — websites, brands, and automation that compound.",
   robots: { index: false, follow: false },
   openGraph: {
     title: "Next Consulting",
-    description: "We build the systems your revenue depends on. Websites, brands, and automation — every engagement starts with a diagnostic.",
+    description: "We build the systems your revenue depends on — websites, brands, and automation that compound.",
     url: "https://nextconsulting.dev",
     siteName: "Next Consulting",
     images: [

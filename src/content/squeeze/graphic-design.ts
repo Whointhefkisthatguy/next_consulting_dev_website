@@ -117,9 +117,9 @@ export const graphicDesignContent: SqueezePageContent = {
   ],
   process: [
     {
-      title: "I. Audit",
+      title: "I. Intake",
       description:
-        "We inventory every existing brand asset, identify inconsistencies, and map what customers actually see.",
+        "We inventory every existing brand asset, flag inconsistencies, and map what customers actually see today.",
     },
     {
       title: "II. Strategy",

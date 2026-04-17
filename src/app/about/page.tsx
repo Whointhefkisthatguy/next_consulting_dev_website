@@ -31,7 +31,7 @@ export default function AboutPage() {
             Next Consulting exists because we got tired of watching businesses invest in growth while ignoring the systems that growth depends on. Revenue without architecture is just funded chaos.
           </p>
           <p className="font-[var(--font-body)] text-[15px] leading-[1.8] mb-8" style={{ color: "rgba(240,235,227,0.75)" }}>
-            We work at the intersection of design, technology, and operations. Every engagement starts with a diagnostic &mdash; not a pitch. We audit before we build, we frame every deliverable through client experience and revenue impact, and we don&rsquo;t disappear after launch.
+            We work at the intersection of design, technology, and operations. Every engagement starts with a real scoping conversation &mdash; not a pitch deck. We frame every deliverable through client experience and revenue impact, we quote the work straight, and we don&rsquo;t disappear after launch.
           </p>
 
           <blockquote className="my-16 pl-6" style={{ borderLeft: "2px solid #c4835a" }}>

@@ -135,7 +135,7 @@ export default function Home() {
             We&rsquo;ve watched this pattern destroy good businesses. Revenue goes up, but margins don&rsquo;t. Headcount grows, but output doesn&rsquo;t. The website looks fine, but it doesn&rsquo;t convert. The brand exists, but it doesn&rsquo;t command.
           </p>
           <p className="mt-6 font-[var(--font-body)] text-base sm:text-lg leading-relaxed" style={{ color: "rgba(240,235,227,0.45)" }}>
-            Next Consulting works at the intersection of design, technology, and operations. We don&rsquo;t pitch &mdash; we diagnose. Then we build systems that compound.
+            Next Consulting works at the intersection of design, technology, and operations. No pitch deck, no theater &mdash; we scope the work, quote it straight, and build systems that compound.
           </p>
         </div>
       </section>
@@ -154,8 +154,8 @@ export default function Home() {
             {[
               {
                 step: "01",
-                title: "Diagnose",
-                body: "We audit your current systems \u2014 website, brand, operations \u2014 and identify exactly where revenue is leaking. No assumptions. No pitches. Just data.",
+                title: "Scope",
+                body: "You tell us what you\u2019re trying to build, fix, or automate. We ask sharp questions, pinpoint where revenue is actually leaking, and come back with a real plan and a real price.",
               },
               {
                 step: "02",

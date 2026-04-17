@@ -59,7 +59,7 @@ export const websitesContent: SqueezePageContent = {
     { title: "Sam Boswell brand site", client: "Sam Boswell", tags: ["Single-page", "Brand"], image: "/images/bg-ink.jpg", status: "placeholder" },
   ],
   process: [
-    { title: "Discovery", description: "We audit your current experience, map your customer journey, and define what success looks like." },
+    { title: "Scope", description: "We sit with you, map your customer journey, and define what success looks like — before we propose anything." },
     { title: "Architecture", description: "Information architecture, stack decisions, and wireframes before a pixel is placed." },
     { title: "Build", description: "Design and development in parallel, with checkpoints at every milestone." },
     { title: "Launch & iterate", description: "Deployment, monitoring, and continuous improvement on real data." },
@@ -67,7 +67,7 @@ export const websitesContent: SqueezePageContent = {
   startProject: {
     headline: "Ready to build a site that actually converts?",
     subhead:
-      "Tell us what you're working with and what you want it to do. We'll reach out by email or SMS within one business day with next steps — no audit theater, no pitch deck.",
+      "Tell us what you're working with and what you want it to do. We'll reach out by email or SMS within one business day with real next steps — no pitch deck, no theater.",
     submitLabel: "Start the project",
   },
 };

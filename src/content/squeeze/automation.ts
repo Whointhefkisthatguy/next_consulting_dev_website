@@ -49,7 +49,7 @@ export const automationContent: SqueezePageContent = {
     "You walk away with a map of which processes to automate, in what order, and where the leverage actually compounds.",
   deliverables: [
     {
-      name: "Process audit",
+      name: "Process map",
       description:
         "A full map of your current lead and service workflows — every handoff, delay, and manual step documented.",
     },
@@ -72,7 +72,7 @@ export const automationContent: SqueezePageContent = {
   workSamples: undefined,
   process: [
     {
-      title: "Audit",
+      title: "Map",
       description:
         "We map every manual step in your lead and service workflows — finding the gaps where revenue is leaking today.",
     },
