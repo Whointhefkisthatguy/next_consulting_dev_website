@@ -23,11 +23,12 @@ export default function LogoRulesCard() {
   const ux = logoW / 4;
   const uy = logoH / 4;
 
-  // clearspace (dashed) box: main logo + 1 unit on every side
-  const bx = lx - ux;
-  const by = ly - uy;
-  const bw = logoW + ux * 2;
-  const bh = logoH + uy * 2;
+  // clearspace (dashed) box hugs the main logo — the clearspace IS the
+  // ghost-monogram ring that sits flush outside this box.
+  const bx = lx;
+  const by = ly;
+  const bw = logoW;
+  const bh = logoH;
 
   // 8 surrounding ghost cells — tight to their monogram
   const cells = [
