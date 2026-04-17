@@ -12,7 +12,7 @@ export const automationContent: SqueezePageContent = {
   hero: {
     kicker: "Automation",
     headline:
-      "1 in 5 dealerships still takes over an hour to respond to an internet lead. 3 in 4 never send a price. The follow-up that closes buyers is the one that never gets sent.",
+      "80% of businesses still fail to return client communication inside one hour — costing them money we recover.",
     subhead:
       "DAS Technology 2025 Lead Response Study, mystery-shopped 1,700 non-DAS dealerships over Q3–Q4 2024.",
   },

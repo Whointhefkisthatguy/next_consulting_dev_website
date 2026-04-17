@@ -17,25 +17,25 @@ export default async function AutomationSqueeze() {
       <AutomationHero kicker={c.hero.kicker} headline={c.hero.headline} subhead={c.hero.subhead} />
       <TrustStrip stats={c.trustStats} accent="mono" ctaLabel="Start your project" ctaHref="#offer" />
       <section className="px-6 sm:px-14 py-28" style={{ borderTop: "1px solid var(--divider)" }}>
-        <div className="max-w-[900px]">
+        <div className="max-w-[900px] mx-auto">
           <RomanSection numeral="I" label="The thesis" />
           <Promise text={c.promise} />
         </div>
       </section>
       <section className="px-6 sm:px-14 py-28" style={{ borderTop: "1px solid var(--divider)", background: "#0c0c0e" }}>
-        <div className="max-w-[1100px]">
+        <div className="max-w-[1100px] mx-auto">
           <RomanSection numeral="II" label="What you get" />
           <WhatYouGet deliverables={c.deliverables} heading="" />
         </div>
       </section>
       <section className="px-6 sm:px-14 py-28" style={{ borderTop: "1px solid var(--divider)" }}>
-        <div className="max-w-[1100px]">
+        <div className="max-w-[1100px] mx-auto">
           <RomanSection numeral="III" label="Evidence" />
           <CaseStudyList studies={studies} />
         </div>
       </section>
       <section className="px-6 sm:px-14 py-28" style={{ borderTop: "1px solid var(--divider)" }}>
-        <div className="max-w-[1100px]">
+        <div className="max-w-[1100px] mx-auto">
           <RomanSection numeral="IV" label="Method" />
           <Process steps={c.process} heading="" />
         </div>
