@@ -313,3 +313,7 @@ No CMS, no admin UI, no publishing queue. Authoring loop: drop MDX + OG image in
 - No changes to homepage, `/about`, `/contact`, `/work`, or `/case-studies` routes beyond what's needed to keep nav consistent.
 - No redesign of `ServicePageLayout.tsx` itself — it's retired from these routes; future generic service pages can still use it.
 - No new CMS-agnostic image pipeline — `public/` + `next/image` is sufficient for Project 1.
+
+---
+
+**Implementation:** Shipped per `docs/superpowers/plans/2026-04-17-squeeze-pages-redesign.md`. See git log `feat:` / `fix(a11y):` commits from 2026-04-17.
