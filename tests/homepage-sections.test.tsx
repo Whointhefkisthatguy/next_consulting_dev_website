@@ -2,25 +2,73 @@ import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import Home from "@/app/page";
 
-describe("homepage composition", () => {
-  it("renders hero, category claim, 3 phases, pricing, arena invite", () => {
-    const { container } = render(<Home />);
+describe("homepage SB7 composition", () => {
+  it("renders the full 7-beat arc: hero, guide, problem, plan, pricing, cta+doors, success, stakes", () => {
+    render(<Home />);
+    // hero (character + problem)
     expect(screen.getByText(/Your revenue has a ceiling/)).toBeInTheDocument();
+    // guide (category claim)
     expect(screen.getByText(/We don't build websites/)).toBeInTheDocument();
-    expect(container.querySelector("#foundation")).not.toBeNull();
-    expect(container.querySelector("#automation")).not.toBeNull();
-    expect(container.querySelector("#scale")).not.toBeNull();
-    expect(container.querySelector("#pricing")).not.toBeNull();
-    expect(container.querySelector("#arena")).not.toBeNull();
-    expect(screen.getByText(/not sold on us/i)).toBeInTheDocument();
+    // problem
+    expect(
+      screen.getByRole("heading", { level: 2, name: /leaks at the seams/i })
+    ).toBeInTheDocument();
+    // plan (three phases section)
+    expect(
+      screen.getByRole("heading", { level: 2, name: /three phases/i })
+    ).toBeInTheDocument();
+    // pricing ladder (the component renders "every phase has a price tag" in its h2)
+    expect(
+      screen.getByRole("heading", { level: 2, name: /every phase has a price tag/i })
+    ).toBeInTheDocument();
+    // cta + doors
+    expect(
+      screen.getByRole("heading", { level: 2, name: /start a project. or pick a door/i })
+    ).toBeInTheDocument();
+    // success
+    expect(
+      screen.getByRole("heading", { level: 2, name: /your website converts/i })
+    ).toBeInTheDocument();
+    // stakes
+    expect(
+      screen.getByText(/funded chaos/i)
+    ).toBeInTheDocument();
   });
-  it("no longer links to /websites /graphic-design /automation", () => {
+
+  it("hero routes primary CTA to /contact and secondary to /diagnostic", () => {
     const { container } = render(<Home />);
     const hrefs = Array.from(container.querySelectorAll("a")).map(
       (a) => a.getAttribute("href") ?? ""
     );
-    expect(hrefs).not.toContain("/websites");
-    expect(hrefs).not.toContain("/graphic-design");
-    expect(hrefs).not.toContain("/automation");
+    expect(hrefs).toContain("/contact");
+    expect(hrefs).toContain("/diagnostic");
+  });
+
+  it("phase roadmap links to each phase's dedicated page", () => {
+    const { container } = render(<Home />);
+    const hrefs = Array.from(container.querySelectorAll("a")).map(
+      (a) => a.getAttribute("href") ?? ""
+    );
+    expect(hrefs).toContain("/websites");
+    expect(hrefs).toContain("/automation");
+    expect(hrefs).toContain("/scale");
+  });
+
+  it("three doors link to manifesto, diagnostic, arena", () => {
+    const { container } = render(<Home />);
+    const hrefs = Array.from(container.querySelectorAll("a")).map(
+      (a) => a.getAttribute("href") ?? ""
+    );
+    expect(hrefs).toContain("/manifesto");
+    expect(hrefs).toContain("/diagnostic");
+    expect(hrefs).toContain("/arena");
+  });
+
+  it("problem section links to /revenue-systems-architecture for the full thesis", () => {
+    const { container } = render(<Home />);
+    const hrefs = Array.from(container.querySelectorAll("a")).map(
+      (a) => a.getAttribute("href") ?? ""
+    );
+    expect(hrefs).toContain("/revenue-systems-architecture");
   });
 });

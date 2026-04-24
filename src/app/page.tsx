@@ -1,13 +1,65 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import CTABlock from "@/components/CTABlock";
-import CategoryClaim from "@/components/home/CategoryClaim";
-import PhaseSection from "@/components/home/PhaseSection";
-import PricingLadder from "@/components/home/PricingLadder";
-import ArenaInvite from "@/components/home/ArenaInvite";
-import { positioning } from "@/content/site/positioning";
 import Link from "next/link";
+import CategoryClaim from "@/components/home/CategoryClaim";
+import PricingLadder from "@/components/home/PricingLadder";
+
+type PhaseCard = {
+  n: "01" | "02" | "03";
+  name: "Foundation" | "Automation" | "Scale";
+  oneLiner: string;
+  href: string;
+};
+
+const PHASES: PhaseCard[] = [
+  {
+    n: "01",
+    name: "Foundation",
+    oneLiner: "Website + brand. Credibility in the first 50 milliseconds.",
+    href: "/websites",
+  },
+  {
+    n: "02",
+    name: "Automation",
+    oneLiner: "Lead capture to paid invoice, without babysitting.",
+    href: "/automation",
+  },
+  {
+    n: "03",
+    name: "Scale",
+    oneLiner: "Ongoing iteration, new channels, honest reporting.",
+    href: "/scale",
+  },
+];
+
+type Door = {
+  kicker: string;
+  title: string;
+  body: string;
+  href: string;
+};
+
+const DOORS: Door[] = [
+  {
+    kicker: "Door 01 · Read",
+    title: "Read the Manifesto",
+    body: "Why the Marketing-Industrial Complex exists, what it costs you, and why transparency is the only way out.",
+    href: "/manifesto",
+  },
+  {
+    kicker: "Door 02 · Get Scored",
+    title: "Run the Diagnostic",
+    body: "A human-written System Score across all five layers, sent inside 24 hours. No chatbot.",
+    href: "/diagnostic",
+  },
+  {
+    kicker: "Door 03 · Pay the Crowd",
+    title: "Enter the Arena",
+    body: "Don’t believe us. Post a brief, let real builders fight tournament-style for your business, pick the winner.",
+    href: "/arena",
+  },
+];
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -19,8 +71,8 @@ export default function Home() {
 
   return (
     <>
-      {/* ═══ HERO · Character + Problem ═══ */}
-      <section className="relative h-dvh min-h-[800px] flex flex-col justify-center overflow-hidden">
+      {/* ═══ 1. HERO · Character + Problem (plan preview inline) ═══ */}
+      <section className="relative h-dvh min-h-[760px] flex flex-col justify-center overflow-hidden">
         <div className="absolute inset-0">
           <video
             autoPlay
@@ -50,7 +102,7 @@ export default function Home() {
 
         <div className="relative z-10 max-w-[1400px] mx-auto w-full px-6 sm:px-14">
           <div
-            className="max-w-[720px] transition-all duration-[1200ms] ease-out"
+            className="max-w-[760px] transition-all duration-[1200ms] ease-out"
             style={{
               opacity: mounted ? 1 : 0,
               transform: mounted ? "translateY(0)" : "translateY(30px)",
@@ -63,43 +115,75 @@ export default function Home() {
               The Art of Engineered Profitability
             </span>
 
-            <h1 className="font-[var(--font-display)] font-800 text-[clamp(2.8rem,5.5vw,4.5rem)] leading-[1.05] tracking-[-0.02em]" style={{ color: "#f0ebe3" }}>
+            <h1
+              className="font-[var(--font-display)] font-800 text-[clamp(2.8rem,5.5vw,4.5rem)] leading-[1.05] tracking-[-0.02em]"
+              style={{ color: "#f0ebe3" }}
+            >
               Your revenue has a ceiling.
               <br />
-              <span style={{ color: "rgba(240,235,227,0.45)" }}>It&rsquo;s not the market.</span>
+              <span style={{ color: "rgba(240,235,227,0.45)" }}>
+                It&rsquo;s not the market.
+              </span>
               <br />
-              It&rsquo;s the <em className="italic" style={{ color: "#c4835a" }}>system</em>.
+              It&rsquo;s the{" "}
+              <em className="italic" style={{ color: "#c4835a" }}>system</em>.
             </h1>
 
-            <p className="mt-6 font-[var(--font-body)] text-base sm:text-lg leading-relaxed max-w-[560px]" style={{ color: "rgba(240,235,227,0.6)" }}>
-              You built something worth scaling. But the website doesn&rsquo;t convert, the brand doesn&rsquo;t command, and your team is buried in manual work that should have been automated last year.
+            <p
+              className="mt-7 font-[var(--font-body)] text-base sm:text-lg leading-relaxed max-w-[560px]"
+              style={{ color: "rgba(240,235,227,0.65)" }}
+            >
+              Your website, your brand, your lead flow, your reporting. Five
+              layers that leak at the seams because you rented them from
+              five different vendors. We install the whole stack as one owned
+              system, in three phases, with the price tag on the door.
             </p>
 
-            <p className="mt-4 font-[var(--font-body)] text-base sm:text-lg leading-relaxed max-w-[560px]" style={{ color: "rgba(240,235,227,0.45)" }}>
-              That&rsquo;s not a growth problem. That&rsquo;s an architecture problem.
-            </p>
-
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <div className="mt-9 flex flex-wrap items-center gap-4">
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 px-8 py-3.5 font-[var(--font-display)] text-xs font-600 tracking-[0.15em] uppercase transition-colors duration-300 hover:brightness-110"
                 style={{ backgroundColor: "#c4835a", color: "#070708" }}
               >
-                Start a Project
+                Start a project
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </Link>
               <Link
-                href="/case-studies"
+                href="/diagnostic"
                 className="inline-flex items-center gap-2 font-[var(--font-body)] text-sm transition-opacity duration-300 hover:opacity-80"
                 style={{ color: "#c4835a" }}
               >
-                See how we work
+                Get your System Score
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </Link>
+            </div>
+
+            {/* Plan-preview chip row: the SB7 Plan beat, visible above the fold */}
+            <div className="mt-10 flex flex-wrap items-center gap-x-4 gap-y-2">
+              {PHASES.map((phase, i) => (
+                <div key={phase.n} className="flex items-center gap-3">
+                  <Link
+                    href={phase.href}
+                    className="font-[var(--font-display)] text-[11px] font-600 tracking-[0.2em] uppercase transition-colors hover:text-[var(--cream)]"
+                    style={{ color: "rgba(240,235,227,0.7)" }}
+                  >
+                    <span style={{ color: "#c4835a" }}>{phase.n}</span>{" "}
+                    {phase.name}
+                  </Link>
+                  {i < PHASES.length - 1 && (
+                    <span
+                      className="font-[var(--font-display)] text-xs"
+                      style={{ color: "rgba(240,235,227,0.3)" }}
+                    >
+                      →
+                    </span>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -118,107 +202,282 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ CATEGORY CLAIM ═══ */}
+      {/* ═══ 2. GUIDE · Category claim ═══ */}
       <CategoryClaim />
 
-      {/* ═══ GUIDE · empathy + authority ═══ */}
-      <section className="py-24 px-6 sm:px-14" style={{ borderTop: "1px solid rgba(240,235,227,0.08)" }}>
-        <div className="max-w-[800px] mx-auto">
-          <p className="font-[var(--font-body)] text-base sm:text-lg leading-relaxed" style={{ color: "rgba(240,235,227,0.6)" }}>
-            We&rsquo;ve watched this pattern destroy good businesses. Revenue goes up, but margins don&rsquo;t. Headcount grows, but output doesn&rsquo;t. The website looks fine, but it doesn&rsquo;t convert. The brand exists, but it doesn&rsquo;t command.
+      {/* ═══ 3. PROBLEM · Name the pain (seam-leak thesis) ═══ */}
+      <section
+        className="py-24 px-6 sm:px-14"
+        style={{ borderTop: "1px solid var(--divider)" }}
+      >
+        <div className="max-w-[900px] mx-auto">
+          <span
+            className="font-[var(--font-display)] text-xs font-600 tracking-[0.25em] uppercase"
+            style={{ color: "var(--copper)" }}
+          >
+            § The Problem
+          </span>
+          <h2
+            className="mt-4 font-[var(--font-display)] font-700 text-[clamp(1.8rem,3.6vw,2.75rem)] leading-[1.15] tracking-[-0.01em] max-w-[760px]"
+            style={{ color: "var(--cream)" }}
+          >
+            Revenue leaks at the seams between vendors. Not in any single piece.
+          </h2>
+          <p
+            className="mt-6 font-[var(--font-body)] text-base sm:text-lg leading-relaxed max-w-[720px]"
+            style={{ color: "rgba(240,235,227,0.6)" }}
+          >
+            Your agency runs ads. Your website sits on a platform. Your CRM
+            rents by the seat. Your call center has its own dashboard. Each
+            piece is competent in isolation. None of them talk to each other.
+            The contractor buying them spends a decade stitching seams that
+            keep coming apart. That&rsquo;s the leak.
           </p>
-          <p className="mt-6 font-[var(--font-body)] text-base sm:text-lg leading-relaxed" style={{ color: "rgba(240,235,227,0.45)" }}>
-            Next Consulting works at the intersection of design, technology, and operations. No pitch deck, no theater. We scope the work, quote it straight, and build systems that compound.
+          <p className="mt-8">
+            <Link
+              href="/revenue-systems-architecture"
+              className="inline-flex items-center gap-2 font-[var(--font-display)] text-xs font-600 tracking-[0.15em] uppercase transition-opacity hover:opacity-80"
+              style={{ color: "var(--copper)" }}
+            >
+              Read the full thesis
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
           </p>
         </div>
       </section>
 
-      {/* ═══ PLAN · 3 steps ═══ */}
-      <section className="py-28 px-6 sm:px-14" style={{ borderTop: "1px solid rgba(240,235,227,0.08)", background: "#0c0c0e" }}>
+      {/* ═══ 4. PLAN · Three phases, bought in order ═══ */}
+      <section
+        className="py-28 px-6 sm:px-14"
+        style={{
+          borderTop: "1px solid var(--divider)",
+          background: "#0c0c0e",
+        }}
+      >
         <div className="max-w-[1200px] mx-auto">
-          <h2 className="font-[var(--font-display)] font-700 text-3xl sm:text-4xl mb-6" style={{ color: "#f0ebe3" }}>
-            How It Works
+          <span
+            className="font-[var(--font-display)] text-xs font-600 tracking-[0.25em] uppercase"
+            style={{ color: "var(--copper)" }}
+          >
+            § The Plan
+          </span>
+          <h2
+            className="mt-4 font-[var(--font-display)] font-700 text-[clamp(1.8rem,3.6vw,2.75rem)] leading-[1.15] tracking-[-0.01em] max-w-[820px]"
+            style={{ color: "var(--cream)" }}
+          >
+            Three phases. Bought in order. Stop whenever.
           </h2>
-          <p className="font-[var(--font-body)] text-sm mb-16" style={{ color: "rgba(240,235,227,0.4)" }}>
-            Every engagement follows the same discipline.
+          <p
+            className="mt-5 font-[var(--font-body)] text-base leading-relaxed max-w-[640px]"
+            style={{ color: "rgba(240,235,227,0.55)" }}
+          >
+            Every phase ships with code, data, and domain rights handed to
+            you the day it goes live. No retainer. No lock-in.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {[
-              {
-                step: "01",
-                title: "Scope",
-                body: "You tell us what you\u2019re trying to build, fix, or automate. We ask sharp questions, pinpoint where revenue is actually leaking, and come back with a real plan and a real price.",
-              },
-              {
-                step: "02",
-                title: "Architect",
-                body: "We design the fix. Whether it\u2019s a full website rebuild, a brand identity system, or workflow automation, we architect the solution before touching a single pixel.",
-              },
-              {
-                step: "03",
-                title: "Build & Compound",
-                body: "We build it, launch it, and stay. Every system we deploy is designed to compound, not expire. We monitor, iterate, and optimize after go-live.",
-              },
-            ].map((item) => (
-              <div key={item.step} style={{ padding: "32px", border: "1px solid rgba(240,235,227,0.06)" }}>
-                <span className="font-[var(--font-display)] text-sm font-700" style={{ color: "#c4835a" }}>
-                  {item.step}
+          <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {PHASES.map((phase) => (
+              <Link
+                key={phase.n}
+                href={phase.href}
+                className="group block"
+                style={{
+                  padding: "28px",
+                  border: "1px solid var(--divider)",
+                  background: "var(--surface)",
+                }}
+              >
+                <span
+                  className="font-[var(--font-display)] text-xs font-600 tracking-[0.2em] uppercase"
+                  style={{ color: "var(--copper)" }}
+                >
+                  Phase {phase.n} · {phase.name}
                 </span>
-                <h3 className="mt-3 font-[var(--font-display)] text-xl font-700" style={{ color: "#f0ebe3" }}>
-                  {item.title}
-                </h3>
-                <p className="mt-4 font-[var(--font-body)] text-sm leading-relaxed" style={{ color: "rgba(240,235,227,0.45)" }}>
-                  {item.body}
+                <p
+                  className="mt-5 font-[var(--font-display)] text-xl sm:text-2xl font-700 leading-tight group-hover:text-[var(--copper)] transition-colors duration-300"
+                  style={{ color: "var(--cream)" }}
+                >
+                  {phase.oneLiner}
                 </p>
-              </div>
+                <span
+                  className="mt-6 inline-flex items-center gap-2 font-[var(--font-display)] text-[11px] font-600 tracking-[0.2em] uppercase"
+                  style={{ color: "var(--copper)" }}
+                >
+                  See {phase.name}
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ═══ PHASED OS · Foundation · Automation, Scale ═══ */}
-      {positioning.phases.map((phase) => (
-        <PhaseSection key={phase.slug} phase={phase} />
-      ))}
-
-      {/* ═══ PRICING TRANSPARENCY ═══ */}
+      {/* ═══ 5. PRICING · Transparent price tags ═══ */}
       <PricingLadder />
 
-      {/* ═══ ARENA INVITE · "not sold on us? we built an arena for that" ═══ */}
-      <ArenaInvite />
-
-      {/* ═══ SUCCESS · paint the after ═══ */}
-      <section className="py-28 px-6 sm:px-14" style={{ borderTop: "1px solid rgba(240,235,227,0.08)", background: "#0c0c0e" }}>
-        <div className="max-w-[900px] mx-auto text-center">
-          <h2 className="font-[var(--font-display)] font-700 text-[clamp(2rem,4vw,3rem)] leading-[1.15]" style={{ color: "#f0ebe3" }}>
-            Your website converts. Your brand commands the room.
-            <br />
-            Your operations <em className="italic" style={{ color: "#c4835a" }}>run themselves</em>.
+      {/* ═══ 6. CTA + THREE DOORS · Direct ask, softer alternatives ═══ */}
+      <section
+        className="py-28 px-6 sm:px-14"
+        style={{ borderTop: "1px solid var(--divider)" }}
+      >
+        <div className="max-w-[1200px] mx-auto">
+          <span
+            className="font-[var(--font-display)] text-xs font-600 tracking-[0.25em] uppercase"
+            style={{ color: "var(--copper)" }}
+          >
+            § Where to start
+          </span>
+          <h2
+            className="mt-4 font-[var(--font-display)] font-700 text-[clamp(1.8rem,3.6vw,2.75rem)] leading-[1.15] tracking-[-0.01em] max-w-[820px]"
+            style={{ color: "var(--cream)" }}
+          >
+            Start a project. Or pick a door.
           </h2>
-          <p className="mt-8 font-[var(--font-body)] text-base leading-relaxed max-w-[600px] mx-auto" style={{ color: "rgba(240,235,227,0.45)" }}>
-            That&rsquo;s not a fantasy. It&rsquo;s what happens when you stop scaling a broken system and start building one that compounds.
+          <p
+            className="mt-5 font-[var(--font-body)] text-base leading-relaxed max-w-[640px]"
+            style={{ color: "rgba(240,235,227,0.55)" }}
+          >
+            Ready to build? Skip to the contact form. Not there yet? Every
+            page on this site is a different way into the same architecture.
+          </p>
+
+          <div className="mt-10 flex flex-wrap items-center gap-4">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-8 py-3.5 font-[var(--font-display)] text-xs font-600 tracking-[0.15em] uppercase transition-colors duration-300 hover:brightness-110"
+              style={{ background: "var(--copper)", color: "var(--void)" }}
+            >
+              Start a project
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
+            <Link
+              href="/case-studies"
+              className="inline-flex items-center gap-2 font-[var(--font-body)] text-sm transition-opacity hover:opacity-80"
+              style={{ color: "var(--copper)" }}
+            >
+              See how we work
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
+
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {DOORS.map((door) => (
+              <Link
+                key={door.href}
+                href={door.href}
+                className="group block p-6 transition-colors"
+                style={{
+                  border: "1px solid var(--divider)",
+                  background: "var(--surface)",
+                }}
+              >
+                <p
+                  className="font-[var(--font-display)] text-xs font-600 tracking-[0.25em] uppercase"
+                  style={{ color: "var(--copper)" }}
+                >
+                  {door.kicker}
+                </p>
+                <h3
+                  className="mt-4 font-[var(--font-display)] text-xl font-700 leading-tight group-hover:text-[var(--copper)] transition-colors"
+                  style={{ color: "var(--cream)" }}
+                >
+                  {door.title}
+                </h3>
+                <p
+                  className="mt-3 font-[var(--font-body)] text-sm leading-relaxed"
+                  style={{ color: "rgba(240,235,227,0.55)" }}
+                >
+                  {door.body}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ 7. SUCCESS · Paint the after ═══ */}
+      <section
+        className="py-28 px-6 sm:px-14"
+        style={{
+          borderTop: "1px solid var(--divider)",
+          background: "#0c0c0e",
+        }}
+      >
+        <div className="max-w-[900px] mx-auto text-center">
+          <span
+            className="font-[var(--font-display)] text-xs font-600 tracking-[0.25em] uppercase"
+            style={{ color: "var(--copper)" }}
+          >
+            § What you walk away with
+          </span>
+          <h2
+            className="mt-6 font-[var(--font-display)] font-700 text-[clamp(2rem,4vw,3rem)] leading-[1.15] tracking-[-0.01em]"
+            style={{ color: "var(--cream)" }}
+          >
+            Your website converts.
+            <br />
+            Your brand commands the room.
+            <br />
+            Your operations{" "}
+            <em className="italic" style={{ color: "#c4835a" }}>
+              run themselves
+            </em>
+            .
+          </h2>
+          <p
+            className="mt-8 font-[var(--font-body)] text-base sm:text-lg leading-relaxed max-w-[620px] mx-auto"
+            style={{ color: "rgba(240,235,227,0.55)" }}
+          >
+            That&rsquo;s not a fantasy. It&rsquo;s what happens when you stop
+            scaling a broken system and start compounding an owned one.
           </p>
         </div>
       </section>
 
-      {/* ═══ STAKES · what happens if you don't ═══ */}
-      <section className="py-24 px-6 sm:px-14" style={{ borderTop: "1px solid rgba(240,235,227,0.08)" }}>
-        <div className="max-w-[800px] mx-auto text-center">
-          <blockquote className="font-[var(--font-body)] italic text-xl sm:text-2xl leading-relaxed" style={{ color: "#f0ebe3", opacity: 0.55 }}>
-            &ldquo;The purpose of business is to create a customer. The business enterprise has two basic functions, and only two: marketing and innovation. Marketing and innovation produce results. All the rest are costs.&rdquo;
-          </blockquote>
-          <cite className="block mt-6 font-[var(--font-display)] not-italic text-xs font-500 tracking-[0.2em] uppercase" style={{ color: "#6b6560" }}>
-            Peter Drucker
-          </cite>
-          <p className="mt-10 font-[var(--font-body)] text-sm leading-relaxed max-w-[500px] mx-auto" style={{ color: "rgba(240,235,227,0.35)" }}>
-            Every quarter you delay, the gap between where you are and where you should be compounds. Revenue without architecture is funded chaos.
+      {/* ═══ 8. STAKES · What happens if you don't ═══ */}
+      <section
+        className="py-24 px-6 sm:px-14"
+        style={{ borderTop: "1px solid var(--divider)" }}
+      >
+        <div className="max-w-[820px] mx-auto text-center">
+          <span
+            className="font-[var(--font-display)] text-xs font-600 tracking-[0.25em] uppercase"
+            style={{ color: "var(--copper)" }}
+          >
+            § The Stakes
+          </span>
+          <p
+            className="mt-6 font-[var(--font-body)] italic text-xl sm:text-2xl leading-relaxed"
+            style={{ color: "#f0ebe3", opacity: 0.6 }}
+          >
+            Every quarter you delay, the gap between where you are and where
+            you should be compounds. Revenue without architecture is funded
+            chaos.
           </p>
+
+          <div className="mt-12">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-8 py-3.5 font-[var(--font-display)] text-xs font-600 tracking-[0.15em] uppercase transition-colors duration-300 hover:brightness-110"
+              style={{ background: "var(--copper)", color: "var(--void)" }}
+            >
+              Install the system
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
+
         </div>
       </section>
-
-      {/* ═══ CTA ═══ */}
-      <CTABlock />
 
       {/* ═══ MOBILE STICKY CTA ═══ */}
       <div
@@ -238,11 +497,11 @@ export default function Home() {
           Start a Project
         </Link>
         <Link
-          href="/case-studies"
+          href="/diagnostic"
           className="flex-1 flex items-center justify-center py-3 font-[var(--font-display)] text-xs font-600 tracking-[0.1em] uppercase"
           style={{ border: "1px solid #c4835a", color: "#c4835a" }}
         >
-          See Our Work
+          System Score
         </Link>
       </div>
     </>
