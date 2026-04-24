@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import CountUp from "@/components/CountUp";
 
 type Props = { kicker?: string; headline: string; subhead?: string };
 
@@ -172,9 +173,10 @@ export default function AutomationHero({ kicker, headline, subhead }: Props) {
               { k: "UPTIME", v: "99.9" },
             ].map((spec) => (
               <div key={spec.k} className="border-t border-[#f0ebe3]/15 pt-3">
-                <div className="font-[var(--font-display)] font-800 text-2xl tracking-tight text-[#c4835a]">
-                  {spec.v}
-                </div>
+                <CountUp
+                  value={spec.v}
+                  className="block font-[var(--font-display)] font-800 text-2xl tracking-tight text-[#c4835a]"
+                />
                 <div className="mt-1 font-mono text-[9px] tracking-[0.2em] uppercase text-[#6b6560]">
                   {spec.k}
                 </div>

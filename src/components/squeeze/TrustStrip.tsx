@@ -1,5 +1,6 @@
 import type { TrustStat } from "@/content/squeeze/types";
 import Link from "next/link";
+import CountUp from "@/components/CountUp";
 
 type Props = {
   stats: [TrustStat, TrustStat, TrustStat];
@@ -19,9 +20,10 @@ export default function TrustStrip({ stats, accent = "copper", ctaLabel, ctaHref
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
         {stats.map((s, i) => (
           <div key={i} className="flex flex-col gap-3">
-            <div className={`font-[var(--font-display)] text-5xl md:text-6xl font-800 tracking-tight ${valueColor}`}>
-              {s.value}
-            </div>
+            <CountUp
+              value={s.value}
+              className={`font-[var(--font-display)] text-5xl md:text-6xl font-800 tracking-tight ${valueColor}`}
+            />
             <div className="text-[15px] leading-[1.55] text-[#f0ebe3]/90 font-[var(--font-body)]">
               {s.label}
             </div>
