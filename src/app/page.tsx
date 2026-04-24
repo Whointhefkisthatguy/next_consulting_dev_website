@@ -2,29 +2,12 @@
 
 import { useEffect, useState } from "react";
 import CTABlock from "@/components/CTABlock";
-import ServiceCard from "@/components/ServiceCard";
+import CategoryClaim from "@/components/home/CategoryClaim";
+import PhaseSection from "@/components/home/PhaseSection";
+import PricingLadder from "@/components/home/PricingLadder";
+import ArenaInvite from "@/components/home/ArenaInvite";
+import { positioning } from "@/content/site/positioning";
 import Link from "next/link";
-
-const SERVICES = [
-  {
-    name: "Websites",
-    href: "/websites",
-    description:
-      "Revenue-generating systems engineered for conversion, built to last.",
-  },
-  {
-    name: "Graphic Design",
-    href: "/graphic-design",
-    description:
-      "Brand identity that communicates authority before a word is read.",
-  },
-  {
-    name: "Automation",
-    href: "/automation",
-    description:
-      "Intelligent automation that removes the manual and scales the system.",
-  },
-];
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -128,6 +111,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ═══ CATEGORY CLAIM ═══ */}
+      <CategoryClaim />
+
       {/* ═══ GUIDE — empathy + authority ═══ */}
       <section className="py-24 px-6 sm:px-14" style={{ borderTop: "1px solid rgba(240,235,227,0.08)" }}>
         <div className="max-w-[800px] mx-auto">
@@ -184,26 +170,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ SERVICES ═══ */}
-      <section className="py-28 px-6 sm:px-14" style={{ borderTop: "1px solid rgba(240,235,227,0.08)" }}>
-        <div className="max-w-[1200px] mx-auto">
-          <h2 className="font-[var(--font-display)] font-700 text-3xl sm:text-4xl mb-16" style={{ color: "#f0ebe3" }}>
-            What We Build
-          </h2>
+      {/* ═══ PHASED OS — Foundation, Automation, Scale ═══ */}
+      {positioning.phases.map((phase) => (
+        <PhaseSection key={phase.slug} phase={phase} />
+      ))}
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8">
-            {SERVICES.map((service, i) => (
-              <ServiceCard
-                key={service.name}
-                index={i}
-                name={service.name}
-                href={service.href}
-                description={service.description}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ═══ PRICING TRANSPARENCY ═══ */}
+      <PricingLadder />
+
+      {/* ═══ ARENA INVITE — "not sold on us? we built an arena for that" ═══ */}
+      <ArenaInvite />
 
       {/* ═══ SUCCESS — paint the after ═══ */}
       <section className="py-28 px-6 sm:px-14" style={{ borderTop: "1px solid rgba(240,235,227,0.08)", background: "#0c0c0e" }}>
