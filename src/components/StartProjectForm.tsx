@@ -138,7 +138,7 @@ export default function StartProjectForm({
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
           <label htmlFor="sp-phone" className={labelClass} style={labelStyle}>
-            Phone <span className="text-[#6b6560] normal-case tracking-normal">(optional — for SMS updates)</span>
+            Phone <span className="text-[#6b6560] normal-case tracking-normal">(optional, for SMS updates)</span>
           </label>
           <input
             id="sp-phone"

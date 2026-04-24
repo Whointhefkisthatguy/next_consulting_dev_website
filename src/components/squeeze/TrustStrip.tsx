@@ -33,7 +33,7 @@ export default function TrustStrip({ stats, accent = "copper", ctaLabel, ctaHref
               rel="noopener noreferrer"
               className="text-xs tracking-[0.1em] uppercase text-[#8a8480] hover:text-[#c4835a] transition-colors w-fit"
             >
-              &mdash; {s.source.label} &nearr;
+             , {s.source.label} &nearr;
             </a>
           </div>
         ))}

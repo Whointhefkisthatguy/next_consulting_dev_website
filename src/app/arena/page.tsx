@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Arena — Next Consulting",
+  title: "Arena · Next Consulting",
   description:
-    "Don't believe us. Pay the crowd. Real builders fight tournament-style to earn your business — we're only here to see you win.",
+    "Don't believe us. Pay the crowd. Real builders fight tournament-style to earn your business. We're only here to see you win.",
 };
 
 const bodyClass =
@@ -46,7 +46,7 @@ const STEPS: Step[] = [
     n: "01",
     title: "Post the brief.",
     body:
-      "You write what you need built — a site, a rebrand, a landing page — and set the prize. Everything is public: the brief, the budget, the deadline.",
+      "You write what you need built (a site, a rebrand, a landing page) and set the prize. Everything is public: the brief, the budget, the deadline.",
   },
   {
     n: "02",
@@ -64,13 +64,13 @@ const STEPS: Step[] = [
     n: "04",
     title: "You pick the winner.",
     body:
-      "At the end of five days, you pick the work you actually want. The top builders get paid out of your prize pool. Losing builders do not get stiffed on dignity — the top three all take a cut.",
+      "At the end of five days, you pick the work you actually want. The top builders get paid out of your prize pool. Losing builders don't get stiffed on dignity. The top three all take a cut.",
   },
   {
     n: "05",
     title: "You own everything.",
     body:
-      "Source files, code, IP, the domain the work lives on — yours the moment you pay out. No retainers. No licensing language. No one to call to export your own assets.",
+      "Source files, code, IP, the domain the work lives on. Yours the moment you pay out. No retainers. No licensing language. No one to call to export your own assets.",
   },
 ];
 
@@ -112,11 +112,11 @@ export default function Arena() {
         >
           If NEXT is the right answer, you&rsquo;ll see it play out. If
           someone else builds it better, you get that work instead. Either
-          way, the business problem gets solved &mdash; and that is the
-          only outcome we are optimizing for.
+          way, the business problem gets solved. That&rsquo;s the only
+          outcome we&rsquo;re optimizing for.
         </p>
 
-        {/* ═══ § I — How it works ═══ */}
+        {/* ═══ § I · How it works ═══ */}
         <SectionEyebrow numeral="I" title="How it works" />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-10">
@@ -144,7 +144,7 @@ export default function Arena() {
           ))}
         </div>
 
-        {/* ═══ § II — Why we built it ═══ */}
+        {/* ═══ § II · Why we built it ═══ */}
         <SectionEyebrow numeral="II" title="Why we built it" />
 
         <p className={bodyClass} style={bodyStyle}>
@@ -158,7 +158,7 @@ export default function Arena() {
           Arena breaks it. The skeptic buyer does not have to take our word
           for anything. Post the brief, let the crowd compete, see the
           submissions, pay the winner. If we win, we earned it in public.
-          If a better builder wins, you got what you came for &mdash; and
+          If a better builder wins, you got what you came for, and
           we learn who to partner with next.
         </p>
 
@@ -171,29 +171,29 @@ export default function Arena() {
           So we stopped pretending we&rsquo;re the only answer.
         </blockquote>
 
-        {/* ═══ § III — How it pairs with NEXT ═══ */}
+        {/* ═══ § III · How it pairs with NEXT ═══ */}
         <SectionEyebrow numeral="III" title="How it pairs with NEXT" />
 
         <p className={bodyClass} style={bodyStyle}>
           Arena is the on-ramp. NEXT is the full installation.
         </p>
         <p className={`mt-6 ${bodyClass}`} style={bodyStyle}>
-          You can run Arena and stop there &mdash; you walk away with a
-          finished deliverable, owned outright. Or you can use Arena to
-          prove the website out, then keep building with us on Phase 2
-          (Automation) and Phase 3 (Scale). Builders who win Arena
-          contests often end up joining our delivery network, which is how
-          the system compounds in both directions: you get proof on the
-          way in, we get talent on the way out.
+          You can run Arena and stop there. You walk away with a finished
+          deliverable, owned outright. Or you can use Arena to prove the
+          website out, then keep building with us on Phase 2 (Automation)
+          and Phase 3 (Scale). Builders who win Arena contests often end up
+          joining our delivery network, which is how the system compounds
+          in both directions: you get proof on the way in, we get talent on
+          the way out.
         </p>
 
-        {/* ═══ § IV — Get early access ═══ */}
+        {/* ═══ § IV · Get early access ═══ */}
         <SectionEyebrow numeral="IV" title="Get early access" />
 
         <p className={bodyClass} style={bodyStyle}>
-          Arena is live in private and opening publicly soon. If you want
-          a seat in the first cohort of public briefs &mdash; or you want
-          to compete as a builder &mdash; tell us what you&rsquo;d post.
+          Arena is live in private and opening publicly soon. If you want a
+          seat in the first cohort of public briefs, or you want to compete
+          as a builder, tell us what you&rsquo;d post.
         </p>
 
         <div

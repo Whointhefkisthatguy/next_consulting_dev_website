@@ -4,9 +4,9 @@ export const websitesContent: SqueezePageContent = {
   slug: "websites",
   route: "/websites",
   meta: {
-    title: "Websites — Next Consulting",
+    title: "Websites · Next Consulting",
     description:
-      "Custom websites engineered for conversion. Tell us about your project — we'll get back within one business day.",
+      "Custom websites engineered for conversion. Tell us about your project. We'll get back within one business day.",
     ogImage: "/og/websites.png",
   },
   hero: {
@@ -34,7 +34,7 @@ export const websitesContent: SqueezePageContent = {
     },
     {
       value: "50 milliseconds",
-      label: "Users form a credibility judgment about your website in as little as 50 milliseconds — before they read a single word",
+      label: "Users form a credibility judgment about your website in as little as 50 milliseconds, before they read a single word",
       source: {
         label: "Lindgaard et al., Behaviour & Information Technology, 2006",
         url: "https://www.tandfonline.com/doi/abs/10.1080/01449290500330448",
@@ -42,10 +42,10 @@ export const websitesContent: SqueezePageContent = {
     },
   ],
   promise:
-    "You walk away with a site that loads fast, reads clear, and turns strangers into customers — not a style trophy.",
+    "You walk away with a site that loads fast, reads clear, and turns strangers into customers. Not a style trophy.",
   deliverables: [
     { name: "Custom UI/UX design", description: "Wireframes through high-fidelity, informed by your actual customer journey." },
-    { name: "Full-stack development", description: "Frontend, backend, database, deployment — one team, one standard." },
+    { name: "Full-stack development", description: "Frontend, backend, database, deployment. One team, one standard." },
     { name: "Backend integration", description: "Auth, payments, CRM hooks, and third-party APIs wired in from day one." },
     { name: "SEO & performance", description: "Structured for search, optimized for speed. Foundations, not afterthoughts." },
     { name: "Ongoing support", description: "Iteration, monitoring, and optimization after launch. We don't disappear." },
@@ -59,7 +59,7 @@ export const websitesContent: SqueezePageContent = {
     { title: "Sam Boswell brand site", client: "Sam Boswell", tags: ["Single-page", "Brand"], image: "/images/bg-ink.jpg", status: "placeholder" },
   ],
   process: [
-    { title: "Scope", description: "We sit with you, map your customer journey, and define what success looks like — before we propose anything." },
+    { title: "Scope", description: "We sit with you, map your customer journey, and define what success looks like before we propose anything." },
     { title: "Architecture", description: "Information architecture, stack decisions, and wireframes before a pixel is placed." },
     { title: "Build", description: "Design and development in parallel, with checkpoints at every milestone." },
     { title: "Launch & iterate", description: "Deployment, monitoring, and continuous improvement on real data." },
@@ -67,7 +67,7 @@ export const websitesContent: SqueezePageContent = {
   startProject: {
     headline: "Ready to build a site that actually converts?",
     subhead:
-      "Tell us what you're working with and what you want it to do. We'll reach out by email or SMS within one business day with real next steps — no pitch deck, no theater.",
+      "Tell us what you're working with and what you want it to do. We'll reach out by email or SMS within one business day with real next steps. No pitch deck, no theater.",
     submitLabel: "Start the project",
   },
 };

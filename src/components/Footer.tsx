@@ -127,7 +127,7 @@ export default function Footer() {
               style={{ color: "rgba(240,235,227,0.55)" }}
             >
               Next Consulting installs operating systems for businesses tired
-              of marketing vendors. Three phases &mdash; Foundation,
+              of marketing vendors. Three phases, Foundation,
               Automation, Scale. Transparent pricing. You own the code, the
               data, and the domain from day one.
             </p>

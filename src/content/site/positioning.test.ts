@@ -4,7 +4,7 @@ import { positioning } from "./positioning";
 describe("positioning content", () => {
   it("exposes the category claim line", () => {
     expect(positioning.categoryClaim).toBe(
-      "We don't build websites. We install operating systems — starting with the website."
+      "We don't build websites. We install operating systems. It starts with the website."
     );
   });
   it("has exactly three phases in order Foundation, Automation, Scale", () => {

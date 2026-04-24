@@ -4,7 +4,7 @@ export const automationContent: SqueezePageContent = {
   slug: "automation",
   route: "/automation",
   meta: {
-    title: "Automation — Next Consulting",
+    title: "Automation · Next Consulting",
     description:
       "Process automation for automotive retail. CRM workflows, lead routing, and follow-up cadences that recover the revenue underused software never does.",
     ogImage: "/og/automation.png",
@@ -12,7 +12,7 @@ export const automationContent: SqueezePageContent = {
   hero: {
     kicker: "Automation",
     headline:
-      "80% of businesses still fail to return client communication inside one hour — costing them money we recover.",
+      "80% of businesses still fail to return client communication inside one hour. That's money we recover.",
     subhead:
       "DAS Technology 2025 Lead Response Study, mystery-shopped 1,700 non-DAS dealerships over Q3–Q4 2024.",
   },
@@ -51,7 +51,7 @@ export const automationContent: SqueezePageContent = {
     {
       name: "Process map",
       description:
-        "A full map of your current lead and service workflows — every handoff, delay, and manual step documented.",
+        "A full map of your current lead and service workflows. Every handoff, delay, and manual step documented.",
     },
     {
       name: "Automation architecture",
@@ -61,7 +61,7 @@ export const automationContent: SqueezePageContent = {
     {
       name: "Build",
       description:
-        "We implement the automations — CRM workflows, routing rules, follow-up cadences — not just the spec.",
+        "We implement the automations. CRM workflows, routing rules, follow-up cadences. Not just the spec.",
     },
     {
       name: "Handoff & documentation",
@@ -74,7 +74,7 @@ export const automationContent: SqueezePageContent = {
     {
       title: "Map",
       description:
-        "We map every manual step in your lead and service workflows — finding the gaps where revenue is leaking today.",
+        "We map every manual step in your lead and service workflows. That's where we find the gaps where revenue is leaking today.",
     },
     {
       title: "Design",
@@ -84,7 +84,7 @@ export const automationContent: SqueezePageContent = {
     {
       title: "Build",
       description:
-        "We build and test the automations inside your actual stack — no throwaway demos, no sandbox-only prototypes.",
+        "We build and test the automations inside your actual stack. No throwaway demos, no sandbox-only prototypes.",
     },
     {
       title: "Handoff",

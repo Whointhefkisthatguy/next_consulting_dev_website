@@ -19,7 +19,7 @@ export default function Home() {
 
   return (
     <>
-      {/* ═══ HERO — Character + Problem ═══ */}
+      {/* ═══ HERO · Character + Problem ═══ */}
       <section className="relative h-dvh min-h-[800px] flex flex-col justify-center overflow-hidden">
         <div className="absolute inset-0">
           <video
@@ -66,9 +66,9 @@ export default function Home() {
             <h1 className="font-[var(--font-display)] font-800 text-[clamp(2.8rem,5.5vw,4.5rem)] leading-[1.05] tracking-[-0.02em]" style={{ color: "#f0ebe3" }}>
               Your revenue has a ceiling.
               <br />
-              <span style={{ color: "rgba(240,235,227,0.45)" }}>It&rsquo;s not the market &mdash;</span>
+              <span style={{ color: "rgba(240,235,227,0.45)" }}>It&rsquo;s not the market.</span>
               <br />
-              it&rsquo;s the <em className="italic" style={{ color: "#c4835a" }}>system</em>.
+              It&rsquo;s the <em className="italic" style={{ color: "#c4835a" }}>system</em>.
             </h1>
 
             <p className="mt-6 font-[var(--font-body)] text-base sm:text-lg leading-relaxed max-w-[560px]" style={{ color: "rgba(240,235,227,0.6)" }}>
@@ -121,19 +121,19 @@ export default function Home() {
       {/* ═══ CATEGORY CLAIM ═══ */}
       <CategoryClaim />
 
-      {/* ═══ GUIDE — empathy + authority ═══ */}
+      {/* ═══ GUIDE · empathy + authority ═══ */}
       <section className="py-24 px-6 sm:px-14" style={{ borderTop: "1px solid rgba(240,235,227,0.08)" }}>
         <div className="max-w-[800px] mx-auto">
           <p className="font-[var(--font-body)] text-base sm:text-lg leading-relaxed" style={{ color: "rgba(240,235,227,0.6)" }}>
             We&rsquo;ve watched this pattern destroy good businesses. Revenue goes up, but margins don&rsquo;t. Headcount grows, but output doesn&rsquo;t. The website looks fine, but it doesn&rsquo;t convert. The brand exists, but it doesn&rsquo;t command.
           </p>
           <p className="mt-6 font-[var(--font-body)] text-base sm:text-lg leading-relaxed" style={{ color: "rgba(240,235,227,0.45)" }}>
-            Next Consulting works at the intersection of design, technology, and operations. No pitch deck, no theater &mdash; we scope the work, quote it straight, and build systems that compound.
+            Next Consulting works at the intersection of design, technology, and operations. No pitch deck, no theater. We scope the work, quote it straight, and build systems that compound.
           </p>
         </div>
       </section>
 
-      {/* ═══ PLAN — 3 steps ═══ */}
+      {/* ═══ PLAN · 3 steps ═══ */}
       <section className="py-28 px-6 sm:px-14" style={{ borderTop: "1px solid rgba(240,235,227,0.08)", background: "#0c0c0e" }}>
         <div className="max-w-[1200px] mx-auto">
           <h2 className="font-[var(--font-display)] font-700 text-3xl sm:text-4xl mb-6" style={{ color: "#f0ebe3" }}>
@@ -153,12 +153,12 @@ export default function Home() {
               {
                 step: "02",
                 title: "Architect",
-                body: "We design the fix. Whether it\u2019s a full website rebuild, a brand identity system, or workflow automation \u2014 we architect the solution before touching a single pixel.",
+                body: "We design the fix. Whether it\u2019s a full website rebuild, a brand identity system, or workflow automation, we architect the solution before touching a single pixel.",
               },
               {
                 step: "03",
                 title: "Build & Compound",
-                body: "We build it, launch it, and stay. Every system we deploy is designed to compound \u2014 not expire. We monitor, iterate, and optimize after go-live.",
+                body: "We build it, launch it, and stay. Every system we deploy is designed to compound, not expire. We monitor, iterate, and optimize after go-live.",
               },
             ].map((item) => (
               <div key={item.step} style={{ padding: "32px", border: "1px solid rgba(240,235,227,0.06)" }}>
@@ -177,7 +177,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ PHASED OS — Foundation, Automation, Scale ═══ */}
+      {/* ═══ PHASED OS · Foundation · Automation, Scale ═══ */}
       {positioning.phases.map((phase) => (
         <PhaseSection key={phase.slug} phase={phase} />
       ))}
@@ -185,10 +185,10 @@ export default function Home() {
       {/* ═══ PRICING TRANSPARENCY ═══ */}
       <PricingLadder />
 
-      {/* ═══ ARENA INVITE — "not sold on us? we built an arena for that" ═══ */}
+      {/* ═══ ARENA INVITE · "not sold on us? we built an arena for that" ═══ */}
       <ArenaInvite />
 
-      {/* ═══ SUCCESS — paint the after ═══ */}
+      {/* ═══ SUCCESS · paint the after ═══ */}
       <section className="py-28 px-6 sm:px-14" style={{ borderTop: "1px solid rgba(240,235,227,0.08)", background: "#0c0c0e" }}>
         <div className="max-w-[900px] mx-auto text-center">
           <h2 className="font-[var(--font-display)] font-700 text-[clamp(2rem,4vw,3rem)] leading-[1.15]" style={{ color: "#f0ebe3" }}>
@@ -202,14 +202,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ STAKES — what happens if you don't ═══ */}
+      {/* ═══ STAKES · what happens if you don't ═══ */}
       <section className="py-24 px-6 sm:px-14" style={{ borderTop: "1px solid rgba(240,235,227,0.08)" }}>
         <div className="max-w-[800px] mx-auto text-center">
           <blockquote className="font-[var(--font-body)] italic text-xl sm:text-2xl leading-relaxed" style={{ color: "#f0ebe3", opacity: 0.55 }}>
-            &ldquo;The purpose of business is to create a customer, the business enterprise thus has two&mdash;and only two basic functions: marketing and innovation. Marketing and innovation produce results, all the rest are costs.&rdquo;
+            &ldquo;The purpose of business is to create a customer. The business enterprise has two basic functions, and only two: marketing and innovation. Marketing and innovation produce results. All the rest are costs.&rdquo;
           </blockquote>
           <cite className="block mt-6 font-[var(--font-display)] not-italic text-xs font-500 tracking-[0.2em] uppercase" style={{ color: "#6b6560" }}>
-            &mdash; Peter Drucker
+            Peter Drucker
           </cite>
           <p className="mt-10 font-[var(--font-body)] text-sm leading-relaxed max-w-[500px] mx-auto" style={{ color: "rgba(240,235,227,0.35)" }}>
             Every quarter you delay, the gap between where you are and where you should be compounds. Revenue without architecture is funded chaos.

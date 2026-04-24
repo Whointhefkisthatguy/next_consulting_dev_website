@@ -3,9 +3,9 @@ import Link from "next/link";
 import ScaleHero from "@/components/squeeze/scale/ScaleHero";
 
 export const metadata: Metadata = {
-  title: "Scale — Next Consulting",
+  title: "Scale · Next Consulting",
   description:
-    "Phase 3. Ongoing iteration, new channels, reporting that tells you what's actually working — on top of a Foundation and Automation that are already live.",
+    "Phase 3. Ongoing iteration, new channels, reporting that tells you what's actually working, on top of a Foundation and Automation that are already live.",
 };
 
 const bodyClass =
@@ -47,13 +47,13 @@ const AREAS: Area[] = [
     n: "01",
     title: "Conversion iteration.",
     body:
-      "Weekly review of what the site is actually doing. What pages are leaking. Which offers are converting. Which forms die on mobile. Small, tested changes — not redesigns.",
+      "Weekly review of what the site is actually doing. What pages are leaking. Which offers are converting. Which forms die on mobile. Small, tested changes, not redesigns.",
   },
   {
     n: "02",
     title: "New channels.",
     body:
-      "SEO, SEM, paid social, local service ads, OTT, direct mail — picked one at a time based on what your customer data actually says about where they came from. Nothing runs without a measurement plan.",
+      "SEO, SEM, paid social, local service ads, OTT, direct mail, picked one at a time based on what your customer data actually says about where they came from. Nothing runs without a measurement plan.",
   },
   {
     n: "03",
@@ -82,8 +82,8 @@ export default function ScalePage() {
         >
           Ads, content, channels, funnels. The reason the industry&rsquo;s
           version of Scale doesn&rsquo;t work is that it runs on top of
-          nothing. Foundation isn&rsquo;t there; Automation isn&rsquo;t
-          there; every dollar added to the top of the funnel leaks out
+          nothing. Foundation isn&rsquo;t there. Automation isn&rsquo;t
+          there. Every dollar added to the top of the funnel leaks out
           through a broken system somewhere downstream.
         </p>
         <p
@@ -96,7 +96,7 @@ export default function ScalePage() {
           channels compounds instead of leaking.
         </p>
 
-        {/* ═══ § I — What Scale covers ═══ */}
+        {/* ═══ § I · What Scale covers ═══ */}
         <SectionEyebrow numeral="I" title="What Scale covers" />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-10">
@@ -124,7 +124,7 @@ export default function ScalePage() {
           ))}
         </div>
 
-        {/* ═══ § II — Why it comes last ═══ */}
+        {/* ═══ § II · Why it comes last ═══ */}
         <SectionEyebrow numeral="II" title="Why it comes last" />
         <p className={bodyClass} style={bodyStyle}>
           Scale on a broken Foundation is expensive noise. You can generate
@@ -136,7 +136,7 @@ export default function ScalePage() {
         </p>
         <p className={`mt-6 ${bodyClass}`} style={bodyStyle}>
           Phase 1 fixes credibility. Phase 2 fixes operations. Phase 3 is
-          where the compounding happens — and it compounds because the first
+          where the compounding happens, and it compounds because the first
           two are done.
         </p>
 
@@ -145,10 +145,10 @@ export default function ScalePage() {
           style={{ color: "#f0ebe3", opacity: 0.55 }}
         >
           Scale is the only phase the Marketing-Industrial Complex knows how
-          to sell. It is also the only phase that should be bought last.
+          to sell. It&rsquo;s also the only phase that should be bought last.
         </blockquote>
 
-        {/* ═══ § III — Cadence ═══ */}
+        {/* ═══ § III · Cadence ═══ */}
         <SectionEyebrow numeral="III" title="Cadence" />
         <p className={bodyClass} style={bodyStyle}>
           Scale is a standing engagement, not a campaign. We check in every
@@ -157,7 +157,7 @@ export default function ScalePage() {
           build continues working when you do.
         </p>
 
-        {/* ═══ § IV — How pricing works ═══ */}
+        {/* ═══ § IV · How pricing works ═══ */}
         <SectionEyebrow numeral="IV" title="How pricing works" />
         <p className={bodyClass} style={bodyStyle}>
           Scale is custom-scoped because the right channel mix depends on

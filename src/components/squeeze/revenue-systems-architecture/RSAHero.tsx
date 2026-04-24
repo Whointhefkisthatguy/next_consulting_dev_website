@@ -83,8 +83,8 @@ export default function RSAHero() {
           </h1>
           <p className="mt-8 font-[var(--font-body)] text-base sm:text-lg leading-[1.55] text-[#f0ebe3]/70 max-w-[560px]">
             Revenue Systems Architecture is the discipline of installing the
-            whole stack &mdash; brand, website, capture, automation,
-            reporting &mdash; as one owned system instead of five rented
+            whole stack, brand, website, capture, automation,
+            reporting, as one owned system instead of five rented
             pieces.
           </p>
 
@@ -306,7 +306,7 @@ export default function RSAHero() {
               );
             })}
 
-            {/* bedrock — hatched */}
+            {/* bedrock, hatched */}
             <g>
               {(() => {
                 const y = BAND_BOTTOM + 4;

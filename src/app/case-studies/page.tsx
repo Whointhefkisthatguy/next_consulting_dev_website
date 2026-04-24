@@ -1,6 +1,6 @@
 import CaseStudyCard from "@/components/CaseStudyCard";
 
-export const metadata = { title: "Case Studies — Next Consulting" };
+export const metadata = { title: "Case Studies · Next Consulting" };
 
 const CASE_STUDIES = [
   {
@@ -29,7 +29,7 @@ export default function CaseStudiesPage() {
           >
             &ldquo;In God we trust. All others must bring data.&rdquo;
             <span className="block mt-2 not-italic text-xs tracking-[0.15em] uppercase" style={{ color: "#6b6560" }}>
-              &mdash; W. Edwards Deming
+             , W. Edwards Deming
             </span>
           </p>
         </div>

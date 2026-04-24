@@ -35,7 +35,7 @@ async function appendInquiry(inquiry: Inquiry): Promise<void> {
     const parsed = JSON.parse(raw);
     if (Array.isArray(parsed)) existing = parsed;
   } catch {
-    // File doesn't exist yet — that's fine.
+    // File doesn't exist yet, that's fine.
   }
   existing.push(inquiry);
   await fs.writeFile(INQUIRIES_FILE, JSON.stringify(existing, null, 2), "utf8");

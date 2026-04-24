@@ -16,7 +16,7 @@ export default function PhaseSection({ phase }: { phase: Phase }) {
           className="font-[var(--font-display)] text-sm font-700 tracking-[0.2em]"
           style={{ color: "var(--copper)" }}
         >
-          {phase.number} — Phase {phase.number} · {phase.name}
+          {phase.number}, Phase {phase.number} · {phase.name}
         </span>
         <h2
           className="mt-4 font-[var(--font-display)] font-700 text-[clamp(1.8rem,3.6vw,2.75rem)] leading-[1.15] tracking-[-0.01em] max-w-[820px]"

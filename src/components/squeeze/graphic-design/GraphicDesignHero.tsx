@@ -31,7 +31,7 @@ export default function GraphicDesignHero({ kicker, headline, subhead, attributi
 
   return (
     <section className="relative min-h-[90vh] flex items-center px-6 sm:px-14 pt-40 pb-24 overflow-hidden">
-      {/* specimen construction — masked for text contrast */}
+      {/* specimen construction, masked for text contrast */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"

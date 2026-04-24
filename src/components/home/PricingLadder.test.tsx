@@ -5,9 +5,9 @@ import PricingLadder from "./PricingLadder";
 describe("PricingLadder", () => {
   it("renders all three tier labels", () => {
     render(<PricingLadder />);
-    expect(screen.getByText(/Phase 1 — Foundation/)).toBeInTheDocument();
-    expect(screen.getByText(/Phase 2 — Automation/)).toBeInTheDocument();
-    expect(screen.getByText(/Phase 3 — Scale/)).toBeInTheDocument();
+    expect(screen.getByText(/Phase 1 · Foundation/)).toBeInTheDocument();
+    expect(screen.getByText(/Phase 2 · Automation/)).toBeInTheDocument();
+    expect(screen.getByText(/Phase 3 · Scale/)).toBeInTheDocument();
   });
   it("surfaces the 'you own everything' promise in the heading", () => {
     render(<PricingLadder />);

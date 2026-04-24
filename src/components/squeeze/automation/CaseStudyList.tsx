@@ -25,7 +25,7 @@ export default function CaseStudyList({ studies }: Props) {
                 <li key={ri} className="flex gap-4">
                   <span className="font-[var(--font-display)] font-700 text-[#f0ebe3] w-20 shrink-0">{r.value}</span>
                   <span className="text-[#f0ebe3]/85">
-                    {r.metric} — <span className="text-[#8a8480]">{r.context}</span>
+                    {r.metric}, <span className="text-[#8a8480]">{r.context}</span>
                   </span>
                 </li>
               ))}
@@ -42,7 +42,7 @@ export default function CaseStudyList({ studies }: Props) {
                         rel="noopener noreferrer"
                         className="text-xs text-[#8a8480] hover:text-[#c4835a]"
                       >
-                        — {src.label} ↗
+                       , {src.label} ↗
                       </a>
                     </li>
                   ))}

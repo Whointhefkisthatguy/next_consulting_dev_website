@@ -2,7 +2,7 @@
  * Clearspace + pixel-bounds specimen.
  * Canvas viewBox matches the card's 16:7 aspect (160 × 70).
  * Main logo = full Next Consulting wordmark PNG (overlay).
- * Ghost ring = 8 monogram marks sized to a monogram's own aspect —
+ * Ghost ring = 8 monogram marks sized to a monogram's own aspect , 
  * "clearspace = 1 monogram on every side."
  */
 const MAIN_ASPECT = 854 / 298;       // full wordmark content bounds
@@ -21,7 +21,7 @@ export default function LogoRulesCard() {
   const lx = cx - logoW / 2;
   const ly = cy - logoH / 2;
 
-  // clearspace unit — ghost monogram, sized to its own aspect
+  // clearspace unit, ghost monogram, sized to its own aspect
   const ghostW = logoW / 4;
   const ghostH = ghostW / GHOST_ASPECT;
 
@@ -81,7 +81,7 @@ export default function LogoRulesCard() {
                 <polyline points="193.1,23.3 169.8,0 131.6,0 176.9,45.3 128,94.2 145.3,94.2 166.2,94.2 187.8,72.6 204.5,55.7 204.1,56.3 215.1,45.3 196,26.2 196,26.2" />
               </symbol>
 
-              {/* clearspace outer box (dashed) — hugs full logo */}
+              {/* clearspace outer box (dashed), hugs full logo */}
               <rect
                 x={bx}
                 y={by}
@@ -94,7 +94,7 @@ export default function LogoRulesCard() {
                 strokeDasharray="1.2 1"
               />
 
-              {/* 8 monogram ghost cells — clearspace markers */}
+              {/* 8 monogram ghost cells, clearspace markers */}
               {cells.map((c, i) => (
                 <g key={i}>
                   <rect
@@ -120,7 +120,7 @@ export default function LogoRulesCard() {
                 </g>
               ))}
 
-              {/* top dimension caliper — spans the clearspace box width */}
+              {/* top dimension caliper, spans the clearspace box width */}
               {(() => {
                 const tickY = by - ghostH - 2.5;
                 const stubLen = 1.4;
@@ -143,7 +143,7 @@ export default function LogoRulesCard() {
                 X
               </text>
 
-              {/* left dimension caliper — spans the clearspace box height */}
+              {/* left dimension caliper, spans the clearspace box height */}
               {(() => {
                 const tickX = bx - ghostW - 2.5;
                 const stubLen = 1.4;
@@ -167,7 +167,7 @@ export default function LogoRulesCard() {
               </text>
             </svg>
 
-            {/* full wordmark overlay — positioned in the same coordinate space */}
+            {/* full wordmark overlay, positioned in the same coordinate space */}
             <img
               src="/brand/logo-white-full-tight.png"
               alt=""
@@ -181,7 +181,7 @@ export default function LogoRulesCard() {
               }}
             />
 
-            {/* corner drafting tags — hidden on mobile */}
+            {/* corner drafting tags, hidden on mobile */}
             <div className="hidden sm:block absolute top-3 left-3 font-mono text-[9px] tracking-[0.25em] uppercase text-[#6b6560]">
               <span className="text-[#c4835a]/80">01</span> · Clearspace = 1X
             </div>

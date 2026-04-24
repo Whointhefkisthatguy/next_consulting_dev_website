@@ -1,7 +1,7 @@
 import { positioning } from "@/content/site/positioning";
 
 export default function CategoryClaim() {
-  const [lead, tail] = positioning.categoryClaim.split("—").map((s) => s.trim());
+  const [lead, tail] = positioning.categoryClaim.split(", ").map((s) => s.trim());
   return (
     <section
       className="py-20 px-6 sm:px-14"
@@ -13,7 +13,7 @@ export default function CategoryClaim() {
           style={{ color: "var(--cream)" }}
         >
           {lead}
-          <span style={{ color: "var(--copper)" }}> — </span>
+          <span style={{ color: "var(--copper)" }}>, </span>
           <em className="italic" style={{ color: "rgba(240,235,227,0.65)" }}>
             {tail}
           </em>

@@ -133,7 +133,7 @@ export default function WebsitesHero({ kicker, headline, subhead }: Props) {
         }}
       />
 
-      {/* crosshair ticks in corners — drafting plate feel */}
+      {/* crosshair ticks in corners, drafting plate feel */}
       <div aria-hidden className="absolute top-28 left-6 sm:left-14 flex items-center gap-2 font-mono text-[9px] tracking-[0.25em] uppercase text-[#6b6560]">
         <span className="block w-3 h-px bg-[#6b6560]" />
         <span className="block w-px h-3 bg-[#6b6560]" />
@@ -161,7 +161,7 @@ export default function WebsitesHero({ kicker, headline, subhead }: Props) {
             </p>
           )}
 
-          {/* spec callouts — feels like engineering drawing notes */}
+          {/* spec callouts, feels like engineering drawing notes */}
           <div className="mt-10 grid grid-cols-3 gap-4 max-w-[460px]">
             {[
               { k: "BREAKPOINTS", v: "4" },

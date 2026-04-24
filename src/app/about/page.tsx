@@ -1,6 +1,6 @@
 import CTABlock from "@/components/CTABlock";
 
-export const metadata = { title: "About — Next Consulting" };
+export const metadata = { title: "About · Next Consulting" };
 
 export default function AboutPage() {
   return (
@@ -19,7 +19,7 @@ export default function AboutPage() {
           >
             &ldquo;The best way to predict the future is to create it.&rdquo;
             <span className="block mt-2 not-italic text-xs tracking-[0.15em] uppercase" style={{ color: "#6b6560" }}>
-              &mdash; Peter Drucker
+             , Peter Drucker
             </span>
           </p>
         </div>
@@ -31,7 +31,7 @@ export default function AboutPage() {
             Next Consulting exists because we got tired of watching businesses invest in growth while ignoring the systems that growth depends on. Revenue without architecture is just funded chaos.
           </p>
           <p className="font-[var(--font-body)] text-[15px] leading-[1.8] mb-8" style={{ color: "rgba(240,235,227,0.75)" }}>
-            We work at the intersection of design, technology, and operations. Every engagement starts with a real scoping conversation &mdash; not a pitch deck. We frame every deliverable through client experience and revenue impact, we quote the work straight, and we don&rsquo;t disappear after launch.
+            We work at the intersection of design, technology, and operations. Every engagement starts with a real scoping conversation, not a pitch deck. We frame every deliverable through client experience and revenue impact, we quote the work straight, and we don&rsquo;t disappear after launch.
           </p>
 
           <blockquote className="my-16 pl-6" style={{ borderLeft: "2px solid #c4835a" }}>
@@ -41,7 +41,7 @@ export default function AboutPage() {
           </blockquote>
 
           <p className="font-[var(--font-body)] text-[15px] leading-[1.8]" style={{ color: "rgba(240,235,227,0.75)" }}>
-            Whether it&rsquo;s a website that converts, a brand that communicates authority, or automation that removes the manual from your operation &mdash; we build systems that compound. Not campaigns that expire.
+            Whether it&rsquo;s a website that converts, a brand that communicates authority, or automation that removes the manual from your operation, we build systems that compound. Not campaigns that expire.
           </p>
         </div>
       </section>

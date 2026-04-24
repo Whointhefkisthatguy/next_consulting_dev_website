@@ -3,9 +3,9 @@ import Link from "next/link";
 import RSAHero from "@/components/squeeze/revenue-systems-architecture/RSAHero";
 
 export const metadata: Metadata = {
-  title: "Revenue Systems Architecture — Next Consulting",
+  title: "Revenue Systems Architecture · Next Consulting",
   description:
-    "The operating-system thesis, laid out in full. Five layers — brand, website, capture, automation, reporting — installed as one owned stack instead of five rented pieces.",
+    "The operating-system thesis, laid out in full. Five layers, brand, website, capture, automation, reporting, installed as one owned stack instead of five rented pieces.",
 };
 
 const bodyClass =
@@ -65,16 +65,16 @@ const LAYERS: Layer[] = [
     n: "00",
     name: "Brand",
     question: "Who are you?",
-    body: "The identity that every other layer inherits from. Name, mark, tone, typography, color. Not decoration — the substrate. When the brand is inconsistent, every downstream layer costs more to produce and converts less.",
-    owned: "Source files, design tokens, type licenses, usage rules — in a folder with your name on it.",
+    body: "The identity that every other layer inherits from. Name, mark, tone, typography, color. Not decoration, the substrate. When the brand is inconsistent, every downstream layer costs more to produce and converts less.",
+    owned: "Source files, design tokens, type licenses, usage rules, in a folder with your name on it.",
     rented: "Canva templates, stock logos, PowerPoint screenshots.",
   },
   {
     n: "01",
     name: "Website",
     question: "Where does the stranger land?",
-    body: "The first forty-eight hours. Load speed, clarity, conversion. A site that loads in four seconds is a broken layer no matter how pretty it is. This is Phase 1 of the installation — nothing above it can compound until this runs.",
-    owned: "A repo, a hosting account, a domain, an analytics account — all registered to you.",
+    body: "The first forty-eight hours. Load speed, clarity, conversion. A site that loads in four seconds is a broken layer no matter how pretty it is. This is Phase 1 of the installation, nothing above it can compound until this runs.",
+    owned: "A repo, a hosting account, a domain, an analytics account, all registered to you.",
     rented: "A Wix subscription, a CMS theme you can't export, a platform that holds your data hostage.",
   },
   {
@@ -89,7 +89,7 @@ const LAYERS: Layer[] = [
     n: "03",
     name: "Automation",
     question: "What runs without you?",
-    body: "Follow-up sequences, quoting, invoicing, status updates, reporting digests. The manual steps your team shouldn't still be doing. This is Phase 2 — and it only works on top of Layer 02 actually being real.",
+    body: "Follow-up sequences, quoting, invoicing, status updates, reporting digests. The manual steps your team shouldn't still be doing. This is Phase 2, and it only works on top of Layer 02 actually being real.",
     owned: "Workflows written into code you can read. Vendors you can swap. Logic documented somewhere other than one employee's head.",
     rented: "A chatbot widget. A Zap someone built in 2023 that nobody remembers the login for. An 'AI agent' that's a prompt and a prayer.",
   },
@@ -97,8 +97,8 @@ const LAYERS: Layer[] = [
     n: "04",
     name: "Feedback",
     question: "How do you know it's working?",
-    body: "Reporting that ties to revenue. Channel attribution. Weekly numbers. Quarterly architecture review. This is Phase 3 — the compounding layer. Without it, the rest of the stack drifts silently.",
-    owned: "One dashboard answering one question — did the number go up. Access to the raw data underneath.",
+    body: "Reporting that ties to revenue. Channel attribution. Weekly numbers. Quarterly architecture review. This is Phase 3, the compounding layer. Without it, the rest of the stack drifts silently.",
+    owned: "One dashboard answering one question, did the number go up. Access to the raw data underneath.",
     rented: "A monthly PDF with vanity metrics. Screenshots from a vendor's platform that you can't audit.",
   },
 ];
@@ -119,7 +119,7 @@ export default function RevenueSystemsArchitecture() {
           The rest of this page lays it out layer by layer.
         </p>
 
-        {/* ═══ § I — The problem with 'services' ═══ */}
+        {/* ═══ § I · The problem with 'services' ═══ */}
         <SectionEyebrow numeral="I" title="The problem with 'services'" />
 
         <p className={bodyClass} style={bodyStyle}>
@@ -143,12 +143,12 @@ export default function RevenueSystemsArchitecture() {
           The piece is never the problem. The seam is the problem.
         </Pullquote>
 
-        {/* ═══ § II — What an operating system is ═══ */}
+        {/* ═══ § II · What an operating system is ═══ */}
         <SectionEyebrow numeral="II" title="What an operating system actually is" />
 
         <p className={bodyClass} style={bodyStyle}>
           Borrow the word from software. macOS is not a collection of
-          features you rent from Apple &mdash; it is an installed stack
+          features you rent from Apple, it is an installed stack
           where every layer knows about every other layer by design. The
           keyboard drivers know about the window server. The window server
           knows about the file system. The file system knows about the
@@ -160,13 +160,13 @@ export default function RevenueSystemsArchitecture() {
           business. Brand knows about the website. The website knows about
           capture. Capture knows about automation. Automation knows about
           reporting. When a customer touches the system at any layer, the
-          whole stack responds &mdash; because it was designed to.
+          whole stack responds, because it was designed to.
         </p>
         <p className={`mt-6 ${bodyClass}`} style={bodyStyle}>
           You cannot buy that at a marketplace. You install it.
         </p>
 
-        {/* ═══ § III — The five layers ═══ */}
+        {/* ═══ § III · The five layers ═══ */}
         <SectionEyebrow numeral="III" title="The five layers" />
 
         <p className={bodyClass} style={bodyStyle}>
@@ -255,7 +255,7 @@ export default function RevenueSystemsArchitecture() {
           ))}
         </div>
 
-        {/* ═══ § IV — Why this compounds ═══ */}
+        {/* ═══ § IV · Why this compounds ═══ */}
         <SectionEyebrow numeral="IV" title="Why this compounds (and nothing else does)" />
 
         <p className={bodyClass} style={bodyStyle}>
@@ -280,7 +280,7 @@ export default function RevenueSystemsArchitecture() {
           Nothing about the math is subtle.
         </Pullquote>
 
-        {/* ═══ § V — Installation order ═══ */}
+        {/* ═══ § V · Installation order ═══ */}
         <SectionEyebrow numeral="V" title="Installation order (Foundation → Automation → Scale)" />
 
         <p className={bodyClass} style={bodyStyle}>
@@ -383,7 +383,7 @@ export default function RevenueSystemsArchitecture() {
           </div>
         </div>
 
-        {/* ═══ § VI — Where to start ═══ */}
+        {/* ═══ § VI · Where to start ═══ */}
         <SectionEyebrow numeral="VI" title="Where to start (three doors, one room)" />
 
         <p className={bodyClass} style={bodyStyle}>

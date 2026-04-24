@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — Next Consulting",
+  title: "Terms of Service · Next Consulting",
   description:
     "Plain-English terms covering how you engage with Next Consulting, what you own, and what we promise.",
 };
@@ -96,7 +96,7 @@ export default function Terms() {
           </p>
         </div>
 
-        {/* ═══ § I — Who we are ═══ */}
+        {/* ═══ § I · Who we are ═══ */}
         <SectionEyebrow numeral="I" title="Who we are" />
         <p className={bodyClass} style={bodyStyle}>
           Next Consulting Corp. (&ldquo;Next Consulting,&rdquo; &ldquo;we,&rdquo;
@@ -111,7 +111,7 @@ export default function Terms() {
           or contract says otherwise.
         </p>
 
-        {/* ═══ § II — What you agree to by using the site ═══ */}
+        {/* ═══ § II · What you agree to by using the site ═══ */}
         <SectionEyebrow numeral="II" title="What you agree to by using the site" />
         <p className={bodyClass} style={bodyStyle}>
           By visiting nextconsulting.dev you agree to use it for lawful
@@ -120,13 +120,13 @@ export default function Terms() {
           private. We reserve the right to block traffic that violates these.
         </p>
         <p className={`mt-4 ${bodyClass}`} style={bodyStyle}>
-          Content on the site &mdash; articles, the manifesto, copy,
-          diagrams, screenshots &mdash; is ours. You are welcome to quote
-          short excerpts with attribution. You are not welcome to republish
+          Content on the site (articles, the manifesto, copy, diagrams,
+          screenshots) is ours. You&rsquo;re welcome to quote short
+          excerpts with attribution. You&rsquo;re not welcome to republish
           the whole thing.
         </p>
 
-        {/* ═══ § III — What you own when we build for you ═══ */}
+        {/* ═══ § III · What you own when we build for you ═══ */}
         <SectionEyebrow numeral="III" title="What you own when we build for you" />
         <p className={bodyClass} style={bodyStyle}>
           The central promise of Next Consulting is that you own what we
@@ -150,8 +150,8 @@ export default function Terms() {
             style={{ color: "rgba(240,235,227,0.78)" }}
           >
             <strong style={{ color: "var(--cream)" }}>Design assets.</strong>{" "}
-            Brand files, logo source, Figma boards &mdash; delivered in
-            editable form.
+            Brand files, logo source, Figma boards. Delivered in editable
+            form.
           </li>
           <li
             className="font-[var(--font-body)] text-base leading-relaxed list-disc"
@@ -176,7 +176,7 @@ export default function Terms() {
           written permission.
         </p>
 
-        {/* ═══ § IV — Third-party software and subscriptions ═══ */}
+        {/* ═══ § IV · Third-party software and subscriptions ═══ */}
         <SectionEyebrow
           numeral="IV"
           title="Third-party software and subscriptions"
@@ -189,7 +189,7 @@ export default function Terms() {
           use before you sign.
         </p>
 
-        {/* ═══ § V — Payment and scope ═══ */}
+        {/* ═══ § V · Payment and scope ═══ */}
         <SectionEyebrow numeral="V" title="Payment and scope" />
         <p className={bodyClass} style={bodyStyle}>
           Payment, milestones, and scope are set in the signed proposal for
@@ -203,7 +203,7 @@ export default function Terms() {
           the signed proposal.
         </p>
 
-        {/* ═══ § VI — Warranties and limits ═══ */}
+        {/* ═══ § VI · Warranties and limits ═══ */}
         <SectionEyebrow numeral="VI" title="Warranties and limits" />
         <p className={bodyClass} style={bodyStyle}>
           We stand behind the quality of our work. If something we built
@@ -211,14 +211,14 @@ export default function Terms() {
         </p>
         <p className={`mt-4 ${bodyClass}`} style={bodyStyle}>
           Beyond that, the site and the services are provided
-          &ldquo;as is.&rdquo; We do not guarantee specific revenue,
+          &ldquo;as is.&rdquo; We don&rsquo;t guarantee specific revenue,
           conversion, or ranking outcomes. Our aggregate liability for any
           engagement is capped at the amount you paid us for that
-          engagement. This is a legally important limit and counsel will
+          engagement. This is a legally important limit, and counsel will
           harden it in the final version of these terms.
         </p>
 
-        {/* ═══ § VII — Changes and contact ═══ */}
+        {/* ═══ § VII · Changes and contact ═══ */}
         <SectionEyebrow numeral="VII" title="Changes and contact" />
         <p className={bodyClass} style={bodyStyle}>
           We may update these terms. When we do, the &ldquo;Last updated&rdquo;

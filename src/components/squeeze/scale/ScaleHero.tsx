@@ -25,7 +25,7 @@ const CHECKPOINTS = [
   { q: "Q5", x: 228, y: 22, delta: "+89%" },
 ];
 
-// Decaying baseline — what happens without the architecture underneath.
+// Decaying baseline, what happens without the architecture underneath.
 const BASELINE_START = { x: 12, y: 108 };
 const BASELINE_END = { x: 228, y: 114 };
 
@@ -141,7 +141,7 @@ export default function ScaleHero() {
           </h1>
           <p className="mt-8 font-[var(--font-body)] text-base sm:text-lg leading-[1.55] text-[#f0ebe3]/70 max-w-[560px]">
             Scale is the only phase the Marketing-Industrial Complex has ever
-            actually sold. Our version runs last on purpose &mdash; so adding
+            actually sold. Our version runs last on purpose, so adding
             channels compounds instead of leaking.
           </p>
           {/* spec callouts */}

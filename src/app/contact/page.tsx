@@ -1,7 +1,7 @@
 import StartProjectForm from "@/components/StartProjectForm";
 
 export const metadata = {
-  title: "Contact — Next Consulting",
+  title: "Contact · Next Consulting",
   description:
     "Tell us about your project. We'll reach out by email or SMS within one business day.",
 };
@@ -26,14 +26,14 @@ export default function ContactPage() {
               className="block mt-2 not-italic text-xs tracking-[0.15em] uppercase"
               style={{ color: "#6b6560" }}
             >
-              &mdash; George Bernard Shaw
+             , George Bernard Shaw
             </span>
           </p>
           <p
             className="mt-10 font-[var(--font-body)] text-[15px] leading-[1.8] max-w-md"
             style={{ color: "rgba(240,235,227,0.75)" }}
           >
-            Tell us about your project. We&rsquo;ll reach out by email or SMS within one business day with honest next steps — no pitch deck, no discovery theater.
+            Tell us about your project. We&rsquo;ll reach out by email or SMS within one business day with honest next steps, no pitch deck, no discovery theater.
           </p>
         </div>
 

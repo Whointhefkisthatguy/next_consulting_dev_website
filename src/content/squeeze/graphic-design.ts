@@ -4,7 +4,7 @@ export const graphicDesignContent: SqueezePageContent = {
   slug: "graphic-design",
   route: "/graphic-design",
   meta: {
-    title: "Graphic Design — Next Consulting",
+    title: "Graphic Design · Next Consulting",
     description:
       "Brand identity, guidelines, and kit-of-parts design for automotive retail. Systems that hold up across every touchpoint.",
     ogImage: "/og/graphic-design.png",
@@ -12,11 +12,11 @@ export const graphicDesignContent: SqueezePageContent = {
   hero: {
     kicker: "Graphic Design",
     headline: "\u201CDesign is thinking made visible.\u201D",
-    attribution: "— Saul Bass",
+    attribution: "Saul Bass",
     subhead: "We do that, ya know.",
   },
   promise:
-    "You walk away with a brand system that holds up across every medium — not a logo in a vacuum.",
+    "You walk away with a brand system that holds up across every medium. Not a logo in a vacuum.",
   trustStats: [
     {
       value: "33%",
@@ -37,7 +37,7 @@ export const graphicDesignContent: SqueezePageContent = {
     {
       value: "34%",
       label:
-        "Consumers who actually trust most of the brands they buy — the gap is the opportunity",
+        "Consumers who actually trust most of the brands they buy. The gap is the opportunity.",
       source: {
         label: "Edelman Trust Barometer Special Report: In Brands We Trust?, 2019",
         url: "https://www.prnewswire.com/news-releases/only-one-third-of-consumers-trust-most-of-the-brands-they-buy-300869683.html",
@@ -68,7 +68,7 @@ export const graphicDesignContent: SqueezePageContent = {
     {
       name: "Collateral & specimens",
       description:
-        "Real-world applications — print, digital, signage — that prove the system works before you ship it.",
+        "Real-world applications across print, digital, and signage. They prove the system works before you ship it.",
     },
   ],
   workSamples: [

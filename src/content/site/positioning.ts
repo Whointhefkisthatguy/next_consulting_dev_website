@@ -23,7 +23,7 @@ export type PricingTier = {
 
 export const positioning = {
   categoryClaim:
-    "We don't build websites. We install operating systems — starting with the website.",
+    "We don't build websites. We install operating systems. It starts with the website.",
   phases: [
     {
       number: "01",
@@ -31,7 +31,7 @@ export const positioning = {
       name: "Foundation",
       headline: "The website and brand that earn credibility in 50 milliseconds.",
       subhead:
-        "Phase 1 gives you a revenue-grade site and the identity system that runs on top of it. Nothing is bolted on — it's architected.",
+        "Phase 1 gives you a revenue-grade site and the identity system that runs on top of it. Nothing is bolted on. It's architected.",
       deliverables: [websitesContent, graphicDesignContent],
     },
     {
@@ -49,28 +49,28 @@ export const positioning = {
       name: "Scale",
       headline: "The layer that compounds once the first two are live.",
       subhead:
-        "Phase 3 is ongoing optimization — conversion iteration, new-channel playbooks, and the reporting that tells you what's actually working.",
+        "Phase 3 is ongoing optimization. Conversion iteration, new-channel playbooks, and reporting that tells you what's actually working.",
       deliverables: [],
     },
   ] as const satisfies readonly Phase[],
   pricing: [
     {
       phaseSlug: "foundation",
-      label: "Phase 1 — Foundation",
-      priceRange: "$3,000 – $5,500", // LOCKED 2026-04-24 — website build anchor
+      label: "Phase 1 · Foundation",
+      priceRange: "$3,000 – $5,500", // LOCKED 2026-04-24. Website build anchor.
       oneLiner:
-        "Website + brand system. The website is the anchor; brand stacks on top. You own the code, the DB, the domain.",
+        "Website + brand system. The website is the anchor, brand stacks on top. You own the code, the DB, the domain.",
     },
     {
       phaseSlug: "automation",
-      label: "Phase 2 — Automation",
-      priceRange: "Custom scope", // DEFERRED — "leave them for now"
+      label: "Phase 2 · Automation",
+      priceRange: "Custom scope", // DEFERRED. "Leave them for now."
       oneLiner: "Lead-to-revenue plumbing. Integrated with Phase 1, not a bolt-on.",
     },
     {
       phaseSlug: "scale",
-      label: "Phase 3 — Scale",
-      priceRange: "Custom scope", // DEFERRED — "leave them for now"
+      label: "Phase 3 · Scale",
+      priceRange: "Custom scope", // DEFERRED. "Leave them for now."
       oneLiner: "Ongoing architecture. Stop whenever. You keep everything.",
     },
   ] as const satisfies readonly PricingTier[],
@@ -78,7 +78,7 @@ export const positioning = {
     eyebrow: "Not sold on us?",
     headline: "We built an arena for that.",
     body:
-      "Don't believe us. Pay the crowd. Real builders fight tournament-style to earn your business — we're only here to see you win.",
+      "Don't believe us. Pay the crowd. Real builders fight tournament-style to earn your business. We're only here to see you win.",
     // Homepage teaser CTA routes to the /arena marketing page for the full pitch.
     // The /arena page itself exposes "Get early access" → /contact?interest=arena
     // while hosting is pending. When Arena ships, flip the /arena CTA to the

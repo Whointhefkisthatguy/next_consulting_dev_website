@@ -61,8 +61,8 @@ export default function Diagnostic() {
           className="mt-6 font-[var(--font-body)] text-base sm:text-lg leading-relaxed"
           style={{ color: "rgba(240,235,227,0.6)" }}
         >
-          We audit your site across six vectors &mdash; speed, conversion, CRM
-          connectivity, mobile behavior, stack bloat, and lead handoff &mdash;
+          We audit your site across six vectors, speed, conversion, CRM
+          connectivity, mobile behavior, stack bloat, and lead handoff , 
           and send you a human-written diagnostic inside 24 hours. No chatbot.
         </p>
 

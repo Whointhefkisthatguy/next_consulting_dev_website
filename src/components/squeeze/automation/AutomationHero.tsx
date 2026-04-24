@@ -27,7 +27,7 @@ const NODES: Node[] = [
   { id: "handoff",  x: 196, y: 50, w: 40, h: 26, label: "HANDOFF",  sub: "Human",      port: "05" },
 ];
 
-// fallback branch — drops off "SEND" if no reply
+// fallback branch, drops off "SEND" if no reply
 const BRANCH = { x: 100, y: 104, w: 40, h: 26, label: "FALLBACK", sub: "Voicemail", port: "03a" };
 
 const EDGE_LABELS = [
@@ -94,7 +94,7 @@ export default function AutomationHero({ kicker, headline, subhead }: Props) {
     return () => clearTimeout(t);
   }, []);
 
-  // mainline path — center-to-center across nodes
+  // mainline path, center-to-center across nodes
   const mainPath = NODES.reduce((acc, n, i) => {
     const cx = n.x + n.w / 2;
     const cy = n.y + n.h / 2;
@@ -328,7 +328,7 @@ export default function AutomationHero({ kicker, headline, subhead }: Props) {
               />
             </circle>
 
-            {/* overall bounds caliper — bottom */}
+            {/* overall bounds caliper, bottom */}
             {(() => {
               const y = 136;
               const stub = 1.4;

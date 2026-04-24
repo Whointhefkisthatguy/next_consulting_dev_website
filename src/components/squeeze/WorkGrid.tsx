@@ -16,7 +16,7 @@ export default function WorkGrid({ samples, heading }: Props) {
               <div className="relative aspect-[4/3] bg-[#0f0f11]" style={{ border: "1px solid var(--divider-strong)" }}>
                 <Image
                   src={s.image}
-                  alt={s.status === "placeholder" ? `Mock: ${s.client} ${s.title}` : `${s.client} — ${s.title}`}
+                  alt={s.status === "placeholder" ? `Mock: ${s.client} ${s.title}` : `${s.client}, ${s.title}`}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"

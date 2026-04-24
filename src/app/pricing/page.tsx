@@ -3,7 +3,7 @@ import Link from "next/link";
 import PricingLadder from "@/components/home/PricingLadder";
 
 export const metadata: Metadata = {
-  title: "Pricing — Next Consulting",
+  title: "Pricing · Next Consulting",
   description:
     "Published on the site, not hidden behind intake calls. Foundation $3,000–$5,500. Automation and Scale custom-scoped. You own everything from day one.",
 };
@@ -95,7 +95,7 @@ const FAQ_ITEMS: FAQ[] = [
   },
   {
     q: "Why isn't Automation priced the same way?",
-    a: "Because the scope depends entirely on what your current operations look like. We quote it after one conversation — usually the same call that kicks off Phase 1.",
+    a: "Because the scope depends entirely on what your current operations look like. We quote it after one conversation, usually the same call that kicks off Phase 1.",
   },
 ];
 
@@ -120,22 +120,22 @@ export default function PricingPage() {
           style={{ ...bodyStyle, maxWidth: "720px" }}
         >
           The agency industry runs on &ldquo;contact us for pricing.&rdquo;
-          That phrase is the number-one trust-killer in home-service marketing,
-          and the number-one reason contractors get burned. We publish the
-          range that matters &mdash; Phase 1, the website that anchors the
-          whole system &mdash; directly on the site. Phase 2 and Phase 3 are
-          custom-scoped because the right scope depends on what your
+          That phrase is the number-one trust-killer in home-service
+          marketing, and the number-one reason contractors get burned. So
+          we publish the range that matters directly on the site: Phase 1,
+          the website that anchors the whole system. Phase 2 and Phase 3
+          are custom-scoped because the right scope depends on what your
           operations actually look like.
         </p>
       </div>
 
-      {/* ═══ LADDER (reused homepage component, rendered inline) ═══ */}
+      {/* ═══ LADDER (reused homepage component · rendered inline) ═══ */}
       <div className="mt-8 -mx-6 sm:-mx-14">
         <PricingLadder />
       </div>
 
       <div className="max-w-[1100px] mx-auto">
-        {/* ═══ § I — What Phase 1 includes ═══ */}
+        {/* ═══ § I · What Phase 1 includes ═══ */}
         <SectionEyebrow
           numeral="I"
           title="What Phase 1 ($3,000 – $5,500) includes"
@@ -168,7 +168,7 @@ export default function PricingPage() {
           ))}
         </div>
 
-        {/* ═══ § II — Where the range lands ═══ */}
+        {/* ═══ § II · Where the range lands ═══ */}
         <SectionEyebrow numeral="II" title="Where the range lands" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -183,7 +183,7 @@ export default function PricingPage() {
               className="font-[var(--font-display)] text-xs font-600 tracking-[0.2em] uppercase"
               style={{ color: "var(--copper)" }}
             >
-              $3,000 &mdash; Floor
+              $3,000, Floor
             </p>
             <p
               className="mt-4 font-[var(--font-display)] text-lg font-700 leading-tight"
@@ -210,7 +210,7 @@ export default function PricingPage() {
               className="font-[var(--font-display)] text-xs font-600 tracking-[0.2em] uppercase"
               style={{ color: "var(--copper)" }}
             >
-              $5,500 &mdash; Ceiling
+              $5,500, Ceiling
             </p>
             <p
               className="mt-4 font-[var(--font-display)] text-lg font-700 leading-tight"
@@ -229,10 +229,10 @@ export default function PricingPage() {
           </div>
         </div>
 
-        {/* ═══ § III — What's NOT included ═══ */}
+        {/* ═══ § III · What's NOT included ═══ */}
         <SectionEyebrow numeral="III" title="What's NOT included (and won't be padded in)" />
         <p className={bodyClass} style={bodyStyle}>
-          Third-party subscriptions run under your own accounts &mdash;
+          Third-party subscriptions run under your own accounts , 
           hosting, email sending, CRM seats, analytics, ad budgets. We tell
           you every line item before you sign. We never mark them up, and we
           never bundle them into our invoice to make it look like we&rsquo;re
@@ -240,7 +240,7 @@ export default function PricingPage() {
           depending on traffic and feature mix.
         </p>
 
-        {/* ═══ § IV — FAQ ═══ */}
+        {/* ═══ § IV · FAQ ═══ */}
         <SectionEyebrow numeral="IV" title="FAQ" />
 
         <div className="space-y-12">

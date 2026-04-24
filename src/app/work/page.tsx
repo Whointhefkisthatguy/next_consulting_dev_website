@@ -46,7 +46,7 @@ export default function WorkPage() {
           >
             &ldquo;Quality is not an act, it is a habit.&rdquo;
             <span className="block mt-2 not-italic text-xs tracking-[0.15em] uppercase" style={{ color: "#6b6560" }}>
-              &mdash; Aristotle
+             , Aristotle
             </span>
           </p>
         </div>

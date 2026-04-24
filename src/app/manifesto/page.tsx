@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Manifesto — Next Consulting",
+  title: "Manifesto · Next Consulting",
   description:
     "The Marketing-Industrial Complex is lying to your business. Here is what we actually sell, and why.",
 };
@@ -76,7 +76,7 @@ export default function Manifesto() {
           Shawn Beekman &middot; April 2026
         </p>
 
-        {/* ═══ § I — The Lie ═══ */}
+        {/* ═══ § I · The Lie ═══ */}
         <SectionEyebrow numeral="I" title="The Lie" />
 
         <p className={bodyClass} style={bodyStyle}>
@@ -94,9 +94,9 @@ export default function Manifesto() {
           continues.
         </p>
         <p className={`mt-6 ${bodyClass}`} style={bodyStyle}>
-          Peter Drucker &mdash; who had the unfashionable habit of telling
-          executives the truth &mdash; wrote a sentence that the industry
-          has spent decades trying to help its clients forget.
+          Peter Drucker had an unfashionable habit of telling executives the
+          truth. He wrote a sentence the industry has spent decades trying
+          to help its clients forget.
         </p>
 
         <div className="my-10 py-4 text-center">
@@ -110,7 +110,7 @@ export default function Manifesto() {
             className="block mt-6 font-[var(--font-display)] not-italic text-xs font-500 tracking-[0.2em] uppercase"
             style={{ color: "#6b6560" }}
           >
-            &mdash; Peter Drucker
+            Peter Drucker
           </cite>
         </div>
 
@@ -130,32 +130,32 @@ export default function Manifesto() {
           clients to forget that distinction.
         </p>
 
-        {/* ═══ § II — What the Lie Costs ═══ */}
+        {/* ═══ § II · What the Lie Costs ═══ */}
         <SectionEyebrow numeral="II" title="What the Lie Costs" />
 
         <p className={bodyClass} style={bodyStyle}>
-          Here is what the forgetting looks like in practice. A home-service
-          company in Phoenix &mdash; plumbing, roofing, HVAC, it doesn&rsquo;t
-          matter &mdash; signs a contract with an agency. The agency runs ads.
-          The ads drive traffic to a website the company does not own, built
-          on a platform the company does not control, feeding a CRM the
-          company rents by the seat. Leads come in. Leads get routed to a
-          call center. The call center has its own dashboard. Appointments
-          get booked. Appointments get canceled. Some appointments turn into
-          revenue. The monthly report arrives, beautifully designed. The
-          revenue number at the top is the only number anyone reads. And
-          when the contract renews, the agency raises the rate, because
-          costs have gone up.
+          Here&rsquo;s what the forgetting looks like in practice. A
+          home-service company in Phoenix signs a contract with an agency.
+          Plumbing, roofing, HVAC, it doesn&rsquo;t matter. The agency runs
+          ads. The ads drive traffic to a website the company doesn&rsquo;t
+          own, built on a platform the company can&rsquo;t control, feeding
+          a CRM the company rents by the seat. Leads come in. Leads get
+          routed to a call center. The call center has its own dashboard.
+          Appointments get booked. Appointments get canceled. Some
+          appointments turn into revenue. The monthly report arrives,
+          beautifully designed. The revenue number at the top is the only
+          number anyone reads. When the contract renews, the agency raises
+          the rate, because costs have gone up.
         </p>
         <p className={`mt-6 ${bodyClass}`} style={bodyStyle}>
-          If you asked the owner of that business to draw, on a piece of
-          paper, the system that produces their revenue &mdash; they
-          couldn&rsquo;t. Not because they are not smart. Because they are
-          not allowed to see it. The agency controls the ads. The platform
+          If you asked the owner of that business to draw the system that
+          produces their revenue on a piece of paper, they couldn&rsquo;t.
+          Not because they&rsquo;re not smart. Because they&rsquo;re not
+          allowed to see it. The agency controls the ads. The platform
           controls the site. The CRM vendor controls the data. The call
           center controls the conversation. The owner controls the
-          checkbook. That is the only piece of the system they are permitted
-          to operate.
+          checkbook. That&rsquo;s the only piece of the system they&rsquo;re
+          permitted to operate.
         </p>
 
         <Pullquote>
@@ -167,17 +167,16 @@ export default function Manifesto() {
           &ldquo;custom quote,&rdquo; every &ldquo;strategy call,&rdquo;
           every &ldquo;performance optimization&rdquo; is a lock on a door
           the client paid to install. The longer the opacity holds, the
-          longer the contract renews. Transparency &mdash; real prices, real
-          code ownership, real architecture &mdash; is the one thing the
-          industry cannot afford to offer, because transparency is how
-          clients leave.
+          longer the contract renews. Real prices, real code ownership,
+          real architecture. Those are the things the industry can&rsquo;t
+          afford to offer, because transparency is how clients leave.
         </p>
 
-        {/* ═══ § III — The Alternative ═══ */}
+        {/* ═══ § III · The Alternative ═══ */}
         <SectionEyebrow numeral="III" title="The Alternative" />
 
         <p className={bodyClass} style={bodyStyle}>
-          We built Next Consulting to be the thing the complex cannot sell.
+          We built Next Consulting to be the thing the complex can&rsquo;t sell.
         </p>
         <p className={`mt-6 ${bodyClass}`} style={bodyStyle}>
           A website you own. Code you can read. A database that belongs to
@@ -208,14 +207,14 @@ export default function Manifesto() {
           <strong className={phaseNameClass} style={phaseNameStyle}>
             Foundation
           </strong>{" "}
-          is the website and the brand that runs on top of it. It is the
-          first thing that touches a stranger. It is the first forty-eight
-          hours after someone has heard your name. If the site loads in four
-          seconds, they do not come back. If the brand reads like a
-          trade-show kiosk, they do not trust you. Foundation is not
-          decoration. Foundation is credibility, compressed into
-          milliseconds, and it has to be real before anything else can be
-          built on top of it.
+          is the website and the brand that runs on top of it. It&rsquo;s
+          the first thing that touches a stranger. It&rsquo;s the first
+          forty-eight hours after someone has heard your name. If the site
+          loads in four seconds, they don&rsquo;t come back. If the brand
+          reads like a trade-show kiosk, they don&rsquo;t trust you.
+          Foundation isn&rsquo;t decoration. Foundation is credibility,
+          compressed into milliseconds, and it has to be real before
+          anything else can be built on top of it.
         </p>
         <p className={`mt-6 ${bodyClass}`} style={bodyStyle}>
           <strong className={phaseNameClass} style={phaseNameStyle}>
@@ -234,13 +233,13 @@ export default function Manifesto() {
             Scale
           </strong>{" "}
           is the layer that compounds once Foundation and Automation are
-          live. It is the continuous iteration &mdash; new channels tested,
-          new funnels pressure-tested, conversion ratios tightened &mdash;
-          and it is the only phase we would describe as
-          &ldquo;marketing.&rdquo; The Marketing-Industrial Complex sells
-          Scale without Foundation and without Automation, which is why
-          their clients never compound. Scale on a broken Foundation is not
-          growth. It is expensive noise.
+          live. Continuous iteration. New channels tested. New funnels
+          pressure-tested. Conversion ratios tightened. It&rsquo;s the only
+          phase we&rsquo;d describe as &ldquo;marketing.&rdquo; The
+          Marketing-Industrial Complex sells Scale without Foundation and
+          without Automation, which is why their clients never compound.
+          Scale on a broken Foundation isn&rsquo;t growth. It&rsquo;s
+          expensive noise.
         </p>
         <p className={`mt-6 ${bodyClass}`} style={bodyStyle}>
           Phases are bought in order. You do not skip Foundation because it
@@ -250,7 +249,7 @@ export default function Manifesto() {
           delivered. You do not pay us to keep a seat warm.
         </p>
 
-        {/* ═══ § IV — The Stakes ═══ */}
+        {/* ═══ § IV · The Stakes ═══ */}
         <SectionEyebrow numeral="IV" title="The Stakes" />
 
         <p className={bodyClass} style={bodyStyle}>
@@ -296,8 +295,8 @@ export default function Manifesto() {
           className="mt-12 font-[var(--font-display)] font-700 text-[clamp(1.4rem,2.6vw,2rem)] leading-[1.25] tracking-[-0.01em]"
           style={{ color: "var(--cream)" }}
         >
-          The question was never whether something needs to change. It is
-          whether you will be the one who changes it.
+          The question was never whether something needs to change.
+          It&rsquo;s whether you&rsquo;ll be the one who changes it.
         </p>
 
         <div
