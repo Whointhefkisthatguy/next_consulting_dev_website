@@ -19,12 +19,14 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Next Consulting",
-  description: "We build the systems your revenue depends on — websites, brands, and automation that compound.",
+  title: "Next Consulting — The Operating System for Revenue",
+  description:
+    "We don't build websites. We install operating systems — starting with the website. Foundation → Automation → Scale.",
   robots: { index: false, follow: false },
   openGraph: {
-    title: "Next Consulting",
-    description: "We build the systems your revenue depends on — websites, brands, and automation that compound.",
+    title: "Next Consulting — The Operating System for Revenue",
+    description:
+      "We don't build websites. We install operating systems — starting with the website.",
     url: "https://nextconsulting.dev",
     siteName: "Next Consulting",
     images: [
@@ -32,15 +34,16 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Next Consulting — Revenue Architecture & Design",
+        alt: "Next Consulting — The Operating System for Revenue",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Next Consulting",
-    description: "We build the systems your revenue depends on.",
+    title: "Next Consulting — The Operating System for Revenue",
+    description:
+      "We don't build websites. We install operating systems — starting with the website.",
     images: ["/og-image.png"],
   },
 };
