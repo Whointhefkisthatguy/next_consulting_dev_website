@@ -10,14 +10,48 @@ export const metadata: Metadata = {
 const bodyClass =
   "font-[var(--font-body)] text-lg leading-[1.75] tracking-[0.005em]";
 const bodyStyle = { color: "rgba(240,235,227,0.78)" } as const;
-const breakStyle = {
-  borderTop: "1px solid var(--divider)",
-  width: "40px",
-  margin: "48px 0",
-} as const;
 const phaseNameClass =
   "font-[var(--font-display)] font-700 tracking-[-0.01em]";
 const phaseNameStyle = { color: "var(--cream)" } as const;
+
+function SectionEyebrow({
+  numeral,
+  title,
+}: {
+  numeral: string;
+  title: string;
+}) {
+  return (
+    <div
+      className="mt-20 mb-10 pt-10 flex items-baseline gap-4"
+      style={{ borderTop: "1px solid var(--divider)" }}
+    >
+      <span
+        className="font-[var(--font-display)] text-xs font-600 tracking-[0.25em] uppercase"
+        style={{ color: "var(--copper)" }}
+      >
+        § {numeral}
+      </span>
+      <span
+        className="font-[var(--font-display)] text-xs font-500 tracking-[0.25em] uppercase"
+        style={{ color: "var(--muted)" }}
+      >
+        {title}
+      </span>
+    </div>
+  );
+}
+
+function Pullquote({ children }: { children: React.ReactNode }) {
+  return (
+    <blockquote
+      className="my-12 font-[var(--font-body)] italic text-xl sm:text-2xl leading-relaxed text-center"
+      style={{ color: "#f0ebe3", opacity: 0.55 }}
+    >
+      {children}
+    </blockquote>
+  );
+}
 
 export default function Manifesto() {
   return (
@@ -42,7 +76,10 @@ export default function Manifesto() {
           Shawn Beekman &middot; April 2026
         </p>
 
-        <p className={`mt-12 ${bodyClass}`} style={bodyStyle}>
+        {/* ═══ § I — The Lie ═══ */}
+        <SectionEyebrow numeral="I" title="The Lie" />
+
+        <p className={bodyClass} style={bodyStyle}>
           There is an entire industry whose business model depends on you not
           understanding what is happening inside your own company.
         </p>
@@ -58,10 +95,29 @@ export default function Manifesto() {
         </p>
         <p className={`mt-6 ${bodyClass}`} style={bodyStyle}>
           Peter Drucker &mdash; who had the unfashionable habit of telling
-          executives the truth &mdash; wrote that the purpose of a business is
-          to create a customer. Notice what he did not say. He did not say the
-          purpose of a business is to generate leads. He did not say the
-          purpose of a business is to optimize a funnel. He said{" "}
+          executives the truth &mdash; wrote a sentence that the industry
+          has spent decades trying to help its clients forget.
+        </p>
+
+        <div className="my-10 py-4 text-center">
+          <blockquote
+            className="font-[var(--font-body)] italic text-xl sm:text-2xl leading-relaxed"
+            style={{ color: "#f0ebe3", opacity: 0.55 }}
+          >
+            &ldquo;The purpose of a business is to create a customer.&rdquo;
+          </blockquote>
+          <cite
+            className="block mt-6 font-[var(--font-display)] not-italic text-xs font-500 tracking-[0.2em] uppercase"
+            style={{ color: "#6b6560" }}
+          >
+            &mdash; Peter Drucker
+          </cite>
+        </div>
+
+        <p className={bodyClass} style={bodyStyle}>
+          Notice what he did not say. He did not say the purpose of a business
+          is to generate leads. He did not say the purpose of a business is to
+          optimize a funnel. He said{" "}
           <em className="italic" style={{ color: "var(--cream)" }}>
             create a customer.
           </em>{" "}
@@ -74,7 +130,8 @@ export default function Manifesto() {
           clients to forget that distinction.
         </p>
 
-        <hr style={breakStyle} />
+        {/* ═══ § II — What the Lie Costs ═══ */}
+        <SectionEyebrow numeral="II" title="What the Lie Costs" />
 
         <p className={bodyClass} style={bodyStyle}>
           Here is what the forgetting looks like in practice. A home-service
@@ -100,10 +157,12 @@ export default function Manifesto() {
           checkbook. That is the only piece of the system they are permitted
           to operate.
         </p>
-        <p className={`mt-6 ${bodyClass}`} style={bodyStyle}>
+
+        <Pullquote>
           This is not an accident. This is the product.
-        </p>
-        <p className={`mt-6 ${bodyClass}`} style={bodyStyle}>
+        </Pullquote>
+
+        <p className={bodyClass} style={bodyStyle}>
           The Marketing-Industrial Complex sells opacity as a service. Every
           &ldquo;custom quote,&rdquo; every &ldquo;strategy call,&rdquo;
           every &ldquo;performance optimization&rdquo; is a lock on a door
@@ -114,7 +173,8 @@ export default function Manifesto() {
           clients leave.
         </p>
 
-        <hr style={breakStyle} />
+        {/* ═══ § III — The Alternative ═══ */}
+        <SectionEyebrow numeral="III" title="The Alternative" />
 
         <p className={bodyClass} style={bodyStyle}>
           We built Next Consulting to be the thing the complex cannot sell.
@@ -180,7 +240,8 @@ export default function Manifesto() {
           delivered. You do not pay us to keep a seat warm.
         </p>
 
-        <hr style={breakStyle} />
+        {/* ═══ § IV — The Stakes ═══ */}
+        <SectionEyebrow numeral="IV" title="The Stakes" />
 
         <p className={bodyClass} style={bodyStyle}>
           The question every owner asks, correctly, is:{" "}
@@ -188,9 +249,16 @@ export default function Manifesto() {
             how do I know you are different.
           </em>{" "}
           The answer is that we put a price on the site, we publish the code
-          you&rsquo;ll get, and we built an arena on the internet where
-          builders fight in public for your business if you don&rsquo;t want
-          to take our word for it. Nothing about our model survives the
+          you&rsquo;ll get, and we built{" "}
+          <Link
+            href="/arena"
+            className="underline decoration-[rgba(196,131,90,0.4)] decoration-1 underline-offset-4 transition-colors hover:decoration-[var(--copper)]"
+            style={{ color: "var(--copper)" }}
+          >
+            an arena
+          </Link>{" "}
+          where builders fight in public for your business if you don&rsquo;t
+          want to take our word for it. Nothing about our model survives the
           introduction of transparency, and that is the point.
         </p>
         <p className={`mt-6 ${bodyClass}`} style={bodyStyle}>
@@ -203,15 +271,19 @@ export default function Manifesto() {
           onto an already-crowded product, is a question that gets answered
           in the next eighteen months.
         </p>
-        <p className={`mt-6 ${bodyClass}`} style={bodyStyle}>
+
+        <Pullquote>
           Revenue without architecture is funded chaos. Marketing without
-          architecture is a more expensive version of the same thing. If
-          your business is running on the first, we can show you what the
+          architecture is a more expensive version of the same thing.
+        </Pullquote>
+
+        <p className={bodyClass} style={bodyStyle}>
+          If your business is running on the first, we can show you what the
           second looks like. If your business is already running on the
           second, we can show you what it costs to stop.
         </p>
         <p
-          className="mt-10 font-[var(--font-display)] font-700 text-[clamp(1.4rem,2.6vw,2rem)] leading-[1.25] tracking-[-0.01em]"
+          className="mt-12 font-[var(--font-display)] font-700 text-[clamp(1.4rem,2.6vw,2rem)] leading-[1.25] tracking-[-0.01em]"
           style={{ color: "var(--cream)" }}
         >
           The question was never whether something needs to change. It is

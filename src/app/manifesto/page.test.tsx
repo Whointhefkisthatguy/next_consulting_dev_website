@@ -30,4 +30,23 @@ describe("Manifesto page", () => {
       screen.getByRole("link", { name: /return home/i })
     ).toHaveAttribute("href", "/");
   });
+  it("renders the four numbered section eyebrows", () => {
+    render(<Manifesto />);
+    expect(screen.getByText("§ I")).toBeInTheDocument();
+    expect(screen.getByText("§ II")).toBeInTheDocument();
+    expect(screen.getByText("§ III")).toBeInTheDocument();
+    expect(screen.getByText("§ IV")).toBeInTheDocument();
+  });
+  it("renders the Drucker quote as a blockquote with a cite", () => {
+    const { container } = render(<Manifesto />);
+    const block = container.querySelector("blockquote");
+    expect(block?.textContent).toMatch(/purpose of a business is to create a customer/i);
+    const cite = container.querySelector("cite");
+    expect(cite?.textContent).toMatch(/peter drucker/i);
+  });
+  it("links to the Arena page inline", () => {
+    render(<Manifesto />);
+    const link = screen.getByRole("link", { name: /an arena/i });
+    expect(link).toHaveAttribute("href", "/arena");
+  });
 });
