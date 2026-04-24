@@ -46,6 +46,11 @@ const SECTIONS: FooterSection[] = [
     heading: "Platform",
     links: [
       {
+        label: "Revenue Systems Architecture",
+        href: "/revenue-systems-architecture",
+        description: "The thesis. The five layers. Why every road ends here.",
+      },
+      {
         label: "Manifesto",
         href: "/manifesto",
         description: "The Marketing-Industrial Complex is lying to your business.",

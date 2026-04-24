@@ -6,11 +6,11 @@ import { usePathname } from "next/navigation";
 
 const NAV_LINKS: Array<{ label: string; href: string }> = [
   { label: "Home", href: "/" },
+  { label: "Architecture", href: "/revenue-systems-architecture" },
   { label: "Manifesto", href: "/manifesto" },
   { label: "Diagnostic", href: "/diagnostic" },
-  { label: "Case Studies", href: "/case-studies" },
-  { label: "Our Work", href: "/work" },
   { label: "Arena", href: "/arena" },
+  { label: "Case Studies", href: "/case-studies" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];

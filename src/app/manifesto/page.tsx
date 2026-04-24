@@ -191,7 +191,17 @@ export default function Manifesto() {
         </p>
         <p className={`mt-6 ${bodyClass}`} style={bodyStyle}>
           The system has three phases, and it is important that you
-          understand the order.
+          understand the order. If you want the long-form explanation of
+          what that system actually is, layer by layer, it lives on its
+          own page:{" "}
+          <Link
+            href="/revenue-systems-architecture"
+            className="underline decoration-[rgba(196,131,90,0.4)] decoration-1 underline-offset-4 transition-colors hover:decoration-[var(--copper)]"
+            style={{ color: "var(--copper)" }}
+          >
+            Revenue Systems Architecture
+          </Link>
+          .
         </p>
 
         <p className={`mt-10 ${bodyClass}`} style={bodyStyle}>
