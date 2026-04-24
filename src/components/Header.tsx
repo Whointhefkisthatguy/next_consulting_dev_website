@@ -11,6 +11,7 @@ const NAV_LINKS: Array<{ label: string; href: string }> = [
   { label: "Diagnostic", href: "/diagnostic" },
   { label: "Arena", href: "/arena" },
   { label: "Case Studies", href: "/case-studies" },
+  { label: "Writing", href: "/writing" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];

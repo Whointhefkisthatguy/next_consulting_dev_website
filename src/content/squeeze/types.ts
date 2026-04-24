@@ -53,13 +53,31 @@ export type SqueezePageContent = {
   startProject: StartProjectBlock;
 };
 
+export type TierLabel = "Realized" | "In-Flight" | "Thesis";
+
 export type CaseStudyFrontmatter = {
   slug: string;
   title: string;
-  problem: string;
-  hypothesis: string;
-  results: Array<{ metric: string; value: string; context: string }>;
-  sources: Array<{ label: string; url: string }>;
-  ogImage?: string;
+  description: string;
+  plate: string;
+  tier: 1 | 2 | 3;
+  tierLabel: TierLabel;
+  industry: string;
+  engagement: string;
+  thesis: string;
+  ogImage: string;
   publishedAt: string;
+  draft?: boolean;
+};
+
+export type EssayFrontmatter = {
+  slug: string;
+  title: string;
+  description: string;
+  author: string;
+  authorTitle: string;
+  category: string;
+  publishedAt: string;
+  ogImage: string;
+  draft?: boolean;
 };

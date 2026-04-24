@@ -70,6 +70,11 @@ const SECTIONS: FooterSection[] = [
         href: "/case-studies",
         description: "Real work with real numbers.",
       },
+      {
+        label: "Writing",
+        href: "/writing",
+        description: "Critique, thesis, and the questions nobody asks.",
+      },
     ],
   },
   {

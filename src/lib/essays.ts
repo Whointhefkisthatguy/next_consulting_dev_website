@@ -1,11 +1,11 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import matter from "gray-matter";
-import type { CaseStudyFrontmatter } from "@/content/squeeze/types";
+import type { EssayFrontmatter } from "@/content/squeeze/types";
 
-export type CaseStudyRecord = CaseStudyFrontmatter & { body: string };
+export type EssayRecord = EssayFrontmatter & { body: string };
 
-const DIR = path.join(process.cwd(), "src/content/case-studies");
+const DIR = path.join(process.cwd(), "src/content/writing");
 
 async function listMdx(): Promise<string[]> {
   try {
@@ -16,13 +16,13 @@ async function listMdx(): Promise<string[]> {
   }
 }
 
-export async function loadCaseStudies(): Promise<CaseStudyRecord[]> {
+export async function loadEssays(): Promise<EssayRecord[]> {
   const files = await listMdx();
   const records = await Promise.all(
     files.map(async (file) => {
       const raw = await fs.readFile(path.join(DIR, file), "utf8");
       const parsed = matter(raw);
-      const fm = parsed.data as CaseStudyFrontmatter;
+      const fm = parsed.data as EssayFrontmatter;
       return { ...fm, body: parsed.content };
     }),
   );
@@ -31,7 +31,7 @@ export async function loadCaseStudies(): Promise<CaseStudyRecord[]> {
     .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));
 }
 
-export async function loadCaseStudyBySlug(slug: string): Promise<CaseStudyRecord | null> {
-  const all = await loadCaseStudies();
+export async function loadEssayBySlug(slug: string): Promise<EssayRecord | null> {
+  const all = await loadEssays();
   return all.find((r) => r.slug === slug) ?? null;
 }
