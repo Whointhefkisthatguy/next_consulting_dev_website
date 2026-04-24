@@ -8,7 +8,12 @@ type Inquiry = {
   phone?: string;
   company: string;
   projectDescription: string;
-  service: "websites" | "graphic-design" | "automation" | "general";
+  service:
+    | "websites"
+    | "graphic-design"
+    | "automation"
+    | "diagnostic"
+    | "general";
   receivedAt: string;
 };
 
@@ -16,6 +21,7 @@ const VALID_SERVICES: Inquiry["service"][] = [
   "websites",
   "graphic-design",
   "automation",
+  "diagnostic",
   "general",
 ];
 
