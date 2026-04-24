@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ScaleHero from "@/components/squeeze/scale/ScaleHero";
 
 export const metadata: Metadata = {
   title: "Scale — Next Consulting",
@@ -70,30 +71,20 @@ const AREAS: Area[] = [
 
 export default function ScalePage() {
   return (
-    <article className="pt-32 pb-28 px-6 sm:px-14">
-      <div className="max-w-[900px] mx-auto">
-        <span
-          className="font-[var(--font-display)] text-xs font-600 tracking-[0.25em] uppercase"
-          style={{ color: "var(--copper)" }}
-        >
-          § Phase 03 · Scale
-        </span>
-        <h1
-          className="mt-5 font-[var(--font-display)] font-800 text-[clamp(2.4rem,5.5vw,4rem)] leading-[1.05] tracking-[-0.02em]"
-          style={{ color: "var(--cream)" }}
-        >
-          The layer that compounds once Foundation and Automation are live.
-        </h1>
+    <>
+      <ScaleHero />
+
+      <article className="pb-28 px-6 sm:px-14">
+        <div className="max-w-[900px] mx-auto">
         <p
-          className={`mt-8 ${bodyClass}`}
+          className={`${bodyClass}`}
           style={{ ...bodyStyle, maxWidth: "720px" }}
         >
-          Scale is the only phase the Marketing-Industrial Complex has ever
-          actually sold. Ads, content, channels, funnels. The reason their
-          version doesn&rsquo;t work is that it runs on top of nothing.
-          Foundation isn&rsquo;t there; Automation isn&rsquo;t there; every
-          dollar added to the top of the funnel leaks out through a broken
-          system somewhere downstream.
+          Ads, content, channels, funnels. The reason the industry&rsquo;s
+          version of Scale doesn&rsquo;t work is that it runs on top of
+          nothing. Foundation isn&rsquo;t there; Automation isn&rsquo;t
+          there; every dollar added to the top of the funnel leaks out
+          through a broken system somewhere downstream.
         </p>
         <p
           className={`mt-6 ${bodyClass}`}
@@ -200,7 +191,8 @@ export default function ScalePage() {
             </svg>
           </Link>
         </div>
-      </div>
-    </article>
+        </div>
+      </article>
+    </>
   );
 }

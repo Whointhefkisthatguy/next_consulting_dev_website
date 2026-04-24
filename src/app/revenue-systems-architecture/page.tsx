@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import RSAHero from "@/components/squeeze/revenue-systems-architecture/RSAHero";
 
 export const metadata: Metadata = {
   title: "Revenue Systems Architecture — Next Consulting",
@@ -104,36 +105,18 @@ const LAYERS: Layer[] = [
 
 export default function RevenueSystemsArchitecture() {
   return (
-    <article className="pt-32 pb-28 px-6 sm:px-14">
-      <div className="max-w-[900px] mx-auto">
-        <span
-          className="font-[var(--font-display)] text-xs font-600 tracking-[0.25em] uppercase"
-          style={{ color: "var(--copper)" }}
-        >
-          § The Thesis
-        </span>
-        <h1
-          className="mt-5 font-[var(--font-display)] font-800 text-[clamp(2.4rem,5.5vw,4rem)] leading-[1.05] tracking-[-0.02em]"
-          style={{ color: "var(--cream)" }}
-        >
-          Revenue doesn&rsquo;t leak from marketing.
-          <br />
-          It leaks from{" "}
-          <span style={{ color: "var(--copper)" }}>
-            the seams between vendors.
-          </span>
-        </h1>
+    <>
+      <RSAHero />
 
+      <article className="pb-28 px-6 sm:px-14">
+        <div className="max-w-[900px] mx-auto">
         <p
-          className={`mt-10 ${bodyClass}`}
+          className={`${bodyClass}`}
           style={{ ...bodyStyle, maxWidth: "720px" }}
         >
-          Revenue Systems Architecture is the discipline of installing a
-          business&rsquo;s entire revenue-producing stack &mdash; brand,
-          website, capture, automation, reporting &mdash; as one owned
-          system instead of five rented pieces. Everything Next Consulting
-          does, every phase we sell, every conversation we have, eventually
-          routes back to this one idea.
+          Everything Next Consulting does, every phase we sell, every
+          conversation we have, eventually routes back to this one idea.
+          The rest of this page lays it out layer by layer.
         </p>
 
         {/* ═══ § I — The problem with 'services' ═══ */}
@@ -530,7 +513,8 @@ export default function RevenueSystemsArchitecture() {
             </svg>
           </Link>
         </div>
-      </div>
-    </article>
+        </div>
+      </article>
+    </>
   );
 }
