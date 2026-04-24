@@ -8,7 +8,6 @@ export const metadata = buildPageMetadata({
   description:
     "Real engagements, real numbers. Operating systems installed across services, infrastructure, and energy-transition markets.",
   path: "/case-studies",
-  ogImage: "/og-image.png",
 });
 
 export default async function CaseStudiesPage() {

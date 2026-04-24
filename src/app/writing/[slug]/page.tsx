@@ -19,7 +19,6 @@ export async function generateMetadata({ params }: { params: Promise<Params> }) 
     title: `${e.title} · Next Consulting`,
     description: e.description,
     path: `/writing/${e.slug}`,
-    ogImage: e.ogImage,
     publishedAt: e.publishedAt,
   });
 }
@@ -35,7 +34,7 @@ export default async function EssayDetail({ params }: { params: Promise<Params> 
     description: e.description,
     url,
     datePublished: e.publishedAt,
-    image: e.ogImage,
+    image: `/writing/${e.slug}/opengraph-image`,
   });
 
   return (

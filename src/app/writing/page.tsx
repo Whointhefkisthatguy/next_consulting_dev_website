@@ -7,7 +7,6 @@ export const metadata = buildPageMetadata({
   description:
     "Long-form thinking on operating systems, marketing accountability, and the categories the consensus refuses to challenge.",
   path: "/writing",
-  ogImage: "/og-image.png",
 });
 
 function formatDate(iso: string): string {

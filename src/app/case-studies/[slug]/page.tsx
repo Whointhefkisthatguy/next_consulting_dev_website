@@ -19,7 +19,6 @@ export async function generateMetadata({ params }: { params: Promise<Params> }) 
     title: `${cs.title} · Case Study · Next Consulting`,
     description: cs.description,
     path: `/case-studies/${cs.slug}`,
-    ogImage: cs.ogImage,
     publishedAt: cs.publishedAt,
   });
 }
@@ -35,7 +34,7 @@ export default async function CaseStudyDetail({ params }: { params: Promise<Para
     description: cs.description,
     url,
     datePublished: cs.publishedAt,
-    image: cs.ogImage,
+    image: `/case-studies/${cs.slug}/opengraph-image`,
   });
 
   return (

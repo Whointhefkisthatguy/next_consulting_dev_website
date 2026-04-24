@@ -3,34 +3,46 @@ import type { Metadata } from "next";
 const SITE_ORIGIN = "https://nextconsulting.dev";
 const SITE_NAME = "Next Consulting";
 
+export function siteOrigin(): string {
+  return SITE_ORIGIN;
+}
+
 type PageMetaInput = {
   title: string;
   description: string;
   path: string;
-  ogImage: string;
+  ogImage?: string;
 };
+
+function resolveImage(ogImage: string): string {
+  return ogImage.startsWith("http") ? ogImage : `${SITE_ORIGIN}${ogImage}`;
+}
 
 export function buildPageMetadata(input: PageMetaInput): Metadata {
   const url = `${SITE_ORIGIN}${input.path}`;
-  const image = input.ogImage.startsWith("http") ? input.ogImage : `${SITE_ORIGIN}${input.ogImage}`;
+  const baseOg: NonNullable<Metadata["openGraph"]> = {
+    title: input.title,
+    description: input.description,
+    url,
+    siteName: SITE_NAME,
+    type: "website",
+  };
+  const baseTwitter: NonNullable<Metadata["twitter"]> = {
+    card: "summary_large_image",
+    title: input.title,
+    description: input.description,
+  };
+  if (input.ogImage) {
+    const image = resolveImage(input.ogImage);
+    baseOg.images = [{ url: image, width: 1200, height: 630, alt: input.title }];
+    baseTwitter.images = [image];
+  }
   return {
     title: input.title,
     description: input.description,
     alternates: { canonical: url },
-    openGraph: {
-      title: input.title,
-      description: input.description,
-      url,
-      siteName: SITE_NAME,
-      images: [{ url: image, width: 1200, height: 630, alt: input.title }],
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: input.title,
-      description: input.description,
-      images: [image],
-    },
+    openGraph: baseOg,
+    twitter: baseTwitter,
   };
 }
 
@@ -64,7 +76,7 @@ export function buildArticleSchema(input: {
   datePublished: string;
   image: string;
 }) {
-  const image = input.image.startsWith("http") ? input.image : `${SITE_ORIGIN}${input.image}`;
+  const image = resolveImage(input.image);
   return {
     "@context": "https://schema.org",
     "@type": "Article",

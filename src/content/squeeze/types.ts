@@ -65,7 +65,6 @@ export type CaseStudyFrontmatter = {
   industry: string;
   engagement: string;
   thesis: string;
-  ogImage: string;
   publishedAt: string;
   draft?: boolean;
 };
@@ -78,6 +77,5 @@ export type EssayFrontmatter = {
   authorTitle: string;
   category: string;
   publishedAt: string;
-  ogImage: string;
   draft?: boolean;
 };
