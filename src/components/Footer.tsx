@@ -17,27 +17,27 @@ const SECTIONS: FooterSection[] = [
     links: [
       {
         label: "Websites",
-        href: "/#foundation",
+        href: "/websites",
         description: "Revenue-grade sites, owned by you.",
       },
       {
         label: "Graphic Design",
-        href: "/#foundation",
+        href: "/graphic-design",
         description: "Brand systems that earn trust in 50 milliseconds.",
       },
       {
         label: "Automation",
-        href: "/#automation",
+        href: "/automation",
         description: "The manual work your team shouldn't still be doing.",
       },
       {
         label: "Scale",
-        href: "/#scale",
+        href: "/scale",
         description: "Ongoing iteration, new channels, reporting.",
       },
       {
         label: "Pricing",
-        href: "/#pricing",
+        href: "/pricing",
         description: "Published on the site, not hidden behind intake calls.",
       },
     ],
