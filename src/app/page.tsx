@@ -56,6 +56,13 @@ export default function Home() {
               transform: mounted ? "translateY(0)" : "translateY(30px)",
             }}
           >
+            <span
+              className="block font-[var(--font-display)] text-[11px] font-600 tracking-[0.3em] uppercase mb-5"
+              style={{ color: "#c4835a" }}
+            >
+              The Art of Engineered Profitability
+            </span>
+
             <h1 className="font-[var(--font-display)] font-800 text-[clamp(2.8rem,5.5vw,4.5rem)] leading-[1.05] tracking-[-0.02em]" style={{ color: "#f0ebe3" }}>
               Your revenue has a ceiling.
               <br />

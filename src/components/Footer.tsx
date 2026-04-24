@@ -16,7 +16,15 @@ export default function Footer() {
   return (
     <footer className="border-t border-[var(--divider)] py-12 px-6 sm:px-14">
       <div className="max-w-[1400px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-8">
-        <img src="/brand/monogram.svg" alt="Next Consulting" className="h-6 w-auto brightness-0 invert opacity-50" />
+        <div className="flex flex-col items-center sm:items-start gap-2">
+          <img src="/brand/monogram.svg" alt="Next Consulting" className="h-6 w-auto brightness-0 invert opacity-50" />
+          <span
+            className="font-[var(--font-display)] text-[10px] font-500 tracking-[0.22em] uppercase"
+            style={{ color: "var(--muted)" }}
+          >
+            The Art of Engineered Profitability
+          </span>
+        </div>
 
         <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
           {FOOTER_LINKS.map((link) => (
