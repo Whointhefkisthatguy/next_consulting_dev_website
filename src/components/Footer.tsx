@@ -107,9 +107,9 @@ export default function Footer() {
           {/* ═══ BRAND COLUMN ═══ */}
           <div className="max-w-[320px]">
             <img
-              src="/brand/monogram.svg"
+              src="/brand/logo-white-full-tight.png"
               alt="Next Consulting"
-              className="h-7 w-auto brightness-0 invert opacity-80"
+              className="h-12 w-auto opacity-90"
             />
             <p
               className="mt-4 font-[var(--font-display)] text-[11px] font-600 tracking-[0.22em] uppercase"
