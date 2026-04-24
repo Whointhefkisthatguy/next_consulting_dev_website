@@ -10,7 +10,7 @@ const NAV_LINKS: Array<{ label: string; href: string }> = [
   { label: "Diagnostic", href: "/diagnostic" },
   { label: "Case Studies", href: "/case-studies" },
   { label: "Our Work", href: "/work" },
-  { label: "Arena", href: "/#arena" },
+  { label: "Arena", href: "/arena" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -32,7 +32,6 @@ export default function Header() {
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
-    if (href.startsWith("/#")) return false;
     return pathname.startsWith(href);
   };
 

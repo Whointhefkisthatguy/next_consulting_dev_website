@@ -17,11 +17,11 @@ describe("ArenaInvite", () => {
     render(<ArenaInvite />);
     expect(screen.getByText(/fight tournament-style/i)).toBeInTheDocument();
   });
-  it("exposes an Arena CTA link", () => {
+  it("exposes an Arena CTA link pointing at /arena", () => {
     render(<ArenaInvite />);
     const link = screen.getByRole("link", {
-      name: /(enter the arena|get early access)/i,
+      name: /see how arena works|enter the arena|get early access/i,
     });
-    expect(link).toHaveAttribute("href");
+    expect(link).toHaveAttribute("href", "/arena");
   });
 });

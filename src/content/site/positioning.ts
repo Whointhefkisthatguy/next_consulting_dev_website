@@ -78,12 +78,13 @@ export const positioning = {
     eyebrow: "Not sold on us?",
     headline: "We built an arena for that.",
     body:
-      "Real builders fight tournament-style to earn your business. You post a brief, they compete for five days, and you pick the winner — only the best work gets paid.",
-    // DEFERRED 2026-04-24 — Arena is waiting on hosting. CTA routes to /contact
-    // with an arena-interest tag so skeptic-buyers still convert. When Arena ships,
-    // flip ctaLabel → "Enter the arena", href → live URL, external → true.
-    ctaLabel: "Get early access",
-    href: "/contact?interest=arena",
+      "Don't believe us. Pay the crowd. Real builders fight tournament-style to earn your business — we're only here to see you win.",
+    // Homepage teaser CTA routes to the /arena marketing page for the full pitch.
+    // The /arena page itself exposes "Get early access" → /contact?interest=arena
+    // while hosting is pending. When Arena ships, flip the /arena CTA to the
+    // live URL and leave this one pointing at /arena as the content hub.
+    ctaLabel: "See how Arena works",
+    href: "/arena",
     external: false,
   },
 } as const;
