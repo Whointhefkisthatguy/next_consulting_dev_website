@@ -202,6 +202,118 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ═══ 1.5. FEATURED INSIGHT · INSIGHT 01 release strip ═══ */}
+      <section
+        className="relative px-6 sm:px-14 py-20 overflow-hidden"
+        style={{
+          borderTop: "1px solid var(--divider)",
+          borderBottom: "1px solid var(--divider)",
+          background:
+            "linear-gradient(180deg, #0a0a0c 0%, var(--surface) 100%)",
+        }}
+      >
+        {/* Faint grid background */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 opacity-[0.04] pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(196,131,90,1) 1px, transparent 1px), linear-gradient(90deg, rgba(196,131,90,1) 1px, transparent 1px)",
+            backgroundSize: "80px 80px",
+            maskImage:
+              "radial-gradient(ellipse at center, rgba(0,0,0,0.9) 0%, transparent 80%)",
+          }}
+        />
+
+        <div className="relative max-w-[1200px] mx-auto">
+          <div className="flex items-center justify-between font-mono text-[10px] tracking-[0.35em] uppercase mb-12">
+            <span style={{ color: "var(--copper)" }}>
+              Just Published · April 2026
+            </span>
+            <span style={{ color: "rgba(240,235,227,0.5)" }}>
+              Plate 00 · Volume I
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-[160px_1fr_auto] gap-10 lg:gap-14 items-center">
+            {/* Volume number */}
+            <Link
+              href="/insights/01-recursive-business-management-system"
+              className="group block"
+              aria-label="Read Insight 01"
+            >
+              <div className="font-[var(--font-display)] font-800 leading-none tracking-[-0.04em] text-[clamp(5rem,12vw,9rem)] transition-colors duration-300 group-hover:opacity-90"
+                style={{ color: "var(--copper)" }}
+              >
+                01
+              </div>
+              <div
+                className="mt-1 font-mono text-[10px] tracking-[0.35em] uppercase"
+                style={{ color: "rgba(240,235,227,0.55)" }}
+              >
+                INSIGHT
+              </div>
+            </Link>
+
+            {/* Headline + subtitle */}
+            <div>
+              <Link
+                href="/insights/01-recursive-business-management-system"
+                className="group block"
+              >
+                <h2
+                  className="font-[var(--font-display)] font-800 text-[clamp(1.75rem,3.4vw,2.75rem)] leading-[1.1] tracking-[-0.02em] transition-colors duration-300 group-hover:text-[var(--copper)]"
+                  style={{ color: "var(--cream)" }}
+                >
+                  The Recursive Business Management System
+                </h2>
+                <p
+                  className="mt-4 font-[var(--font-display)] italic text-[clamp(1rem,1.6vw,1.25rem)] leading-[1.45] max-w-[680px]"
+                  style={{ color: "rgba(240,235,227,0.7)" }}
+                >
+                  An architectural and operational theory of the category that
+                  replaces enterprise software.
+                </p>
+              </Link>
+              <div
+                className="mt-6 font-[var(--font-body)] text-sm leading-[1.5]"
+                style={{ color: "rgba(240,235,227,0.55)" }}
+              >
+                <span style={{ color: "var(--cream)" }}>Shawn Beekman</span>
+                <span className="mx-2 text-[rgba(240,235,227,0.35)]">·</span>
+                <span>
+                  Founder, NEXT Consulting Corp.
+                </span>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <Link
+              href="/insights/01-recursive-business-management-system"
+              className="inline-flex items-center justify-between gap-4 px-6 py-4 font-[var(--font-display)] text-[11px] font-600 tracking-[0.18em] uppercase border transition-colors duration-300 hover:bg-[var(--copper)] hover:text-[var(--void)] group"
+              style={{
+                borderColor: "var(--copper)",
+                color: "var(--copper)",
+                minWidth: "200px",
+              }}
+            >
+              <span>Read Volume I</span>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ═══ 2. GUIDE · Category claim ═══ */}
       <CategoryClaim />
 

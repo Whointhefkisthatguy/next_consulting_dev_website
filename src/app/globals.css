@@ -276,3 +276,221 @@ body::after {
 .case-study-prose td strong {
   font-weight: 700;
 }
+
+/* ═══ INSIGHT PROSE — premium long-form research treatment ═══ */
+.insight-prose {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.78;
+  color: rgba(240, 235, 227, 0.88);
+}
+
+.insight-prose > * + * {
+  margin-top: 1.6rem;
+}
+
+.insight-prose p {
+  font-feature-settings: "kern", "liga";
+}
+
+/* Part dividers — biggest break, copper rule + centered display type */
+.insight-prose h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.875rem, 4vw, 2.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+  margin-top: 6rem;
+  margin-bottom: 2rem;
+  padding-top: 4rem;
+  border-top: 2px solid var(--copper);
+  text-align: center;
+}
+
+.insight-prose h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+  text-align: left;
+}
+
+/* Chapter headings */
+.insight-prose h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  color: var(--cream);
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--divider);
+}
+
+/* Sub-section headings within a chapter */
+.insight-prose h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  color: var(--cream);
+  margin-top: 2.75rem;
+  margin-bottom: 1rem;
+}
+
+.insight-prose strong {
+  color: var(--cream);
+  font-weight: 700;
+}
+
+.insight-prose em {
+  font-style: italic;
+  color: rgba(240, 235, 227, 0.95);
+}
+
+.insight-prose a {
+  color: var(--copper);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  transition: color 0.2s ease;
+}
+
+.insight-prose a:hover {
+  color: var(--copper-hover);
+}
+
+/* Blockquotes — used for both pull-quotes and citation-style attributed quotes */
+.insight-prose blockquote {
+  border-left: 2px solid var(--copper);
+  padding: 1.25rem 0 1.25rem 1.75rem;
+  margin: 2.5rem 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--cream);
+  font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.insight-prose blockquote p {
+  margin: 0;
+  font-feature-settings: "kern";
+}
+
+.insight-prose blockquote p + p {
+  margin-top: 0.75rem;
+  font-size: 0.85em;
+  font-style: normal;
+  font-family: var(--font-body);
+  color: rgba(240, 235, 227, 0.6);
+}
+
+.insight-prose ul,
+.insight-prose ol {
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.insight-prose ul > li {
+  list-style: disc;
+}
+
+.insight-prose ol > li {
+  list-style: decimal;
+}
+
+.insight-prose li {
+  margin: 0.5rem 0;
+  color: rgba(240, 235, 227, 0.85);
+}
+
+.insight-prose li::marker {
+  color: var(--copper);
+}
+
+.insight-prose hr {
+  border: none;
+  border-top: 1px solid var(--divider);
+  margin: 4rem auto;
+  width: 60%;
+}
+
+/* Code blocks — for SQL/TypeScript samples in technical insights */
+.insight-prose pre {
+  background: rgba(7, 7, 8, 0.6);
+  border: 1px solid var(--divider);
+  border-left: 2px solid var(--copper);
+  padding: 1.5rem 1.75rem;
+  margin: 2rem 0;
+  overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 13px;
+  line-height: 1.65;
+  color: rgba(240, 235, 227, 0.9);
+}
+
+.insight-prose code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 0.875em;
+  background: rgba(240, 235, 227, 0.08);
+  padding: 0.125em 0.375em;
+  color: var(--cream);
+}
+
+.insight-prose pre code {
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* Tables in research papers */
+.insight-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2.5rem 0;
+  font-size: 15px;
+  line-height: 1.6;
+  font-family: var(--font-body);
+}
+
+.insight-prose thead {
+  border-bottom: 2px solid var(--copper);
+}
+
+.insight-prose th {
+  text-align: left;
+  padding: 0.875rem 1rem 0.875rem 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--copper);
+}
+
+.insight-prose tbody tr {
+  border-bottom: 1px solid var(--divider);
+}
+
+.insight-prose tbody tr:last-child {
+  border-bottom: none;
+}
+
+.insight-prose td {
+  padding: 1rem 1rem 1rem 0;
+  vertical-align: top;
+  color: rgba(240, 235, 227, 0.85);
+}
+
+.insight-prose td:last-child {
+  padding-right: 0;
+}
+
+.insight-prose td strong {
+  font-weight: 700;
+}

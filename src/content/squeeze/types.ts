@@ -79,3 +79,25 @@ export type EssayFrontmatter = {
   publishedAt: string;
   draft?: boolean;
 };
+
+export type InsightSeries = {
+  name: string;
+  volume: string;
+};
+
+export type InsightFrontmatter = {
+  slug: string;
+  title: string;
+  subtitle?: string;
+  description: string;
+  series?: InsightSeries;
+  classification: string;
+  author: string;
+  authorTitle: string;
+  publishedAt: string;
+  abstract?: string;
+  partial?: boolean;
+  partialNote?: string;
+  featured?: boolean;
+  draft?: boolean;
+};

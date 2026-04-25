@@ -7,12 +7,12 @@ import { usePathname } from "next/navigation";
 const NAV_LINKS: Array<{ label: string; href: string }> = [
   { label: "Home", href: "/" },
   { label: "Architecture", href: "/revenue-systems-architecture" },
+  { label: "Insights", href: "/insights" },
+  { label: "Case Studies", href: "/case-studies" },
+  { label: "Writing", href: "/writing" },
   { label: "Manifesto", href: "/manifesto" },
   { label: "Diagnostic", href: "/diagnostic" },
   { label: "Arena", href: "/arena" },
-  { label: "Case Studies", href: "/case-studies" },
-  { label: "Writing", href: "/writing" },
-  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 

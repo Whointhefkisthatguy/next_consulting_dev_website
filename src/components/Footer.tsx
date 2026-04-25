@@ -51,6 +51,21 @@ const SECTIONS: FooterSection[] = [
         description: "The thesis. The five layers. Why every road ends here.",
       },
       {
+        label: "Insights",
+        href: "/insights",
+        description: "Category-defining theory and industry intelligence.",
+      },
+      {
+        label: "Case Studies",
+        href: "/case-studies",
+        description: "Real work with real numbers.",
+      },
+      {
+        label: "Writing",
+        href: "/writing",
+        description: "Critique, thesis, and the questions nobody asks.",
+      },
+      {
         label: "Manifesto",
         href: "/manifesto",
         description: "The Marketing-Industrial Complex is lying to your business.",
@@ -64,16 +79,6 @@ const SECTIONS: FooterSection[] = [
         label: "Arena",
         href: "/arena",
         description: "Don't believe us. Pay the crowd.",
-      },
-      {
-        label: "Case Studies",
-        href: "/case-studies",
-        description: "Real work with real numbers.",
-      },
-      {
-        label: "Writing",
-        href: "/writing",
-        description: "Critique, thesis, and the questions nobody asks.",
       },
     ],
   },
