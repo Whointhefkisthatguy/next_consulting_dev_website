@@ -290,12 +290,7 @@ export default function Home() {
             {/* CTA */}
             <Link
               href="/insights/01-recursive-business-management-system"
-              className="inline-flex items-center justify-between gap-4 px-6 py-4 font-[var(--font-display)] text-[11px] font-600 tracking-[0.18em] uppercase border transition-colors duration-300 hover:bg-[var(--copper)] hover:text-[var(--void)] group"
-              style={{
-                borderColor: "var(--copper)",
-                color: "var(--copper)",
-                minWidth: "200px",
-              }}
+              className="inline-flex items-center justify-between gap-4 px-6 py-4 min-w-[200px] font-[var(--font-display)] text-[11px] font-600 tracking-[0.18em] uppercase border border-[var(--copper)] text-[var(--copper)] transition-colors duration-300 hover:bg-[var(--copper)] hover:text-[var(--void)] group"
             >
               <span>Read Volume I</span>
               <svg
