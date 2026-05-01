@@ -17,6 +17,6 @@ describe("PricingLadder", () => {
   });
   it("shows the locked Foundation price range", () => {
     render(<PricingLadder />);
-    expect(screen.getByText(/\$3,000 – \$5,500/)).toBeInTheDocument();
+    expect(screen.getByText(/\$5,000 – \$15,000/)).toBeInTheDocument();
   });
 });

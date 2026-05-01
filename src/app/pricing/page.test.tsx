@@ -11,7 +11,8 @@ describe("Pricing page", () => {
   });
   it("displays the Foundation range", () => {
     render(<Pricing />);
-    expect(screen.getAllByText(/\$3,000/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/\$5,000/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/\$15,000/).length).toBeGreaterThan(0);
   });
   it("lists at least six FAQ questions", () => {
     render(<Pricing />);

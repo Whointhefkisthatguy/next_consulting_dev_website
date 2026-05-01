@@ -57,7 +57,7 @@ export const positioning = {
     {
       phaseSlug: "foundation",
       label: "Phase 1 · Foundation",
-      priceRange: "$3,000 – $5,500", // LOCKED 2026-04-24. Website build anchor.
+      priceRange: "$5,000 – $15,000", // LOCKED 2026-05-01. Phase 1 expanded — covers entry single-vertical builds through full multi-trade operating-system sites with brand rebuild.
       oneLiner:
         "Website + brand system. The website is the anchor, brand stacks on top. You own the code, the DB, the domain.",
     },

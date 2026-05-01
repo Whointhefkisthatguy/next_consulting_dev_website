@@ -5,7 +5,7 @@ import PricingLadder from "@/components/home/PricingLadder";
 export const metadata: Metadata = {
   title: "Pricing · Next Consulting",
   description:
-    "Published on the site, not hidden behind intake calls. Foundation $3,000–$5,500. Automation and Scale custom-scoped. You own everything from day one.",
+    "Published on the site, not hidden behind intake calls. Foundation $5,000–$15,000. Automation and Scale custom-scoped. You own everything from day one.",
 };
 
 const bodyClass =
@@ -138,7 +138,7 @@ export default function PricingPage() {
         {/* ═══ § I · What Phase 1 includes ═══ */}
         <SectionEyebrow
           numeral="I"
-          title="What Phase 1 ($3,000 – $5,500) includes"
+          title="What Phase 1 ($5,000 – $15,000) includes"
         />
 
         <div className="space-y-10">
@@ -183,7 +183,7 @@ export default function PricingPage() {
               className="font-[var(--font-display)] text-xs font-600 tracking-[0.2em] uppercase"
               style={{ color: "var(--copper)" }}
             >
-              $3,000, Floor
+              $5,000, Floor
             </p>
             <p
               className="mt-4 font-[var(--font-display)] text-lg font-700 leading-tight"
@@ -195,8 +195,9 @@ export default function PricingPage() {
               className="mt-3 font-[var(--font-body)] text-sm leading-relaxed"
               style={{ color: "rgba(240,235,227,0.6)" }}
             >
-              Five to eight pages, one service vertical, lead form to email,
-              existing brand. Launch inside six weeks.
+              Six to ten pages, one service vertical, lead form wired
+              straight into your inbox, existing brand kept and tightened.
+              Launch inside six weeks.
             </p>
           </div>
           <div
@@ -210,21 +211,23 @@ export default function PricingPage() {
               className="font-[var(--font-display)] text-xs font-600 tracking-[0.2em] uppercase"
               style={{ color: "var(--copper)" }}
             >
-              $5,500, Ceiling
+              $15,000, Ceiling
             </p>
             <p
               className="mt-4 font-[var(--font-display)] text-lg font-700 leading-tight"
               style={{ color: "var(--cream)" }}
             >
-              Multi-trade site + brand rebuild.
+              Multi-trade operating-system site + full brand rebuild.
             </p>
             <p
               className="mt-3 font-[var(--font-body)] text-sm leading-relaxed"
               style={{ color: "rgba(240,235,227,0.6)" }}
             >
-              Ten-plus pages, multiple service verticals, full brand system,
-              CRM integration, structured-data SEO pass. Launch inside
-              eight to ten weeks.
+              Twelve-plus pages, multiple service verticals, full brand
+              system from logo to document templates, CRM integration with
+              lead capture wired in, structured-data SEO, conversion
+              analytics, and page-speed tuning. Launch inside ten to
+              twelve weeks.
             </p>
           </div>
         </div>
