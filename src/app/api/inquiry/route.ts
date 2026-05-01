@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import crypto from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 
@@ -25,77 +26,86 @@ const VALID_SERVICES: Inquiry["service"][] = [
   "general",
 ];
 
-const INQUIRIES_FILE = path.join(process.cwd(), "data", "inquiries.json");
+// Outbox path used only when the NLE forward fails (HTTP non-2xx, network
+// error, timeout). Vercel serverless disk is ephemeral, so this is a
+// best-effort durable-within-the-deploy log — the goal is not zero data loss
+// but to leave a forensic trail when NLE is briefly unreachable. The marketing
+// site still returns 200 to the user so the funnel does not break.
+const OUTBOX_FILE = path.join(process.cwd(), "data", "inbound-outbox.jsonl");
 
-async function appendInquiry(inquiry: Inquiry): Promise<void> {
-  await fs.mkdir(path.dirname(INQUIRIES_FILE), { recursive: true });
-  let existing: Inquiry[] = [];
-  try {
-    const raw = await fs.readFile(INQUIRIES_FILE, "utf8");
-    const parsed = JSON.parse(raw);
-    if (Array.isArray(parsed)) existing = parsed;
-  } catch {
-    // File doesn't exist yet, that's fine.
-  }
-  existing.push(inquiry);
-  await fs.writeFile(INQUIRIES_FILE, JSON.stringify(existing, null, 2), "utf8");
+const NLE_TIMEOUT_MS = Number(process.env.NLE_INBOUND_TIMEOUT_MS || 3000);
+
+interface OutboxEntry {
+  inquiry: Inquiry;
+  reason: "non_2xx" | "timeout" | "network_error" | "missing_config";
+  status?: number;
+  error?: string;
+  attemptedAt: string;
 }
 
-// Notification seam. When Postmark is approved, swap this body for the
-// Postmark client call. Everything else stays the same.
-async function sendInquiryNotification(inquiry: Inquiry): Promise<void> {
-  const token = process.env.POSTMARK_SERVER_TOKEN;
-  if (!token) {
-    console.log("[inquiry] notification pending (no POSTMARK_SERVER_TOKEN):", {
-      ...inquiry,
-      projectDescription: `${inquiry.projectDescription.slice(0, 80)}…`,
-    });
-    return;
+async function appendOutbox(entry: OutboxEntry): Promise<void> {
+  try {
+    await fs.mkdir(path.dirname(OUTBOX_FILE), { recursive: true });
+    await fs.appendFile(OUTBOX_FILE, JSON.stringify(entry) + "\n", "utf8");
+  } catch (err) {
+    console.error("[inquiry] outbox append failed:", err);
+  }
+}
+
+interface ForwardResult {
+  ok: boolean;
+  status?: number;
+  reason?: OutboxEntry["reason"];
+  error?: string;
+}
+
+async function forwardToNle(inquiry: Inquiry, sourceUrl: string | null, userAgent: string | null): Promise<ForwardResult> {
+  const url = process.env.NLE_INBOUND_URL;
+  const bearer = process.env.INBOUND_FORM_SECRET;
+  const hmacSecret = process.env.INBOUND_FORM_HMAC_SECRET;
+  if (!url || !bearer || !hmacSecret) {
+    return { ok: false, reason: "missing_config", error: "NLE_INBOUND_URL / INBOUND_FORM_SECRET / INBOUND_FORM_HMAC_SECRET not set" };
   }
 
-  const from = process.env.INQUIRY_FROM_EMAIL || "nextconsulting.ai@gmail.com";
-  const to = process.env.INQUIRY_TO_EMAIL || "nextconsulting.ai@gmail.com";
+  const payload = JSON.stringify({
+    name: inquiry.name,
+    email: inquiry.email,
+    phone: inquiry.phone ?? null,
+    company: inquiry.company,
+    project_description: inquiry.projectDescription,
+    service: inquiry.service,
+    source_url: sourceUrl,
+    user_agent: userAgent,
+    submitted_at: inquiry.receivedAt,
+  });
 
-  const subject = `New inquiry · ${inquiry.service} · ${inquiry.company}`;
-  const textBody = [
-    `Service: ${inquiry.service}`,
-    `Name: ${inquiry.name}`,
-    `Email: ${inquiry.email}`,
-    `Phone: ${inquiry.phone || "(not provided)"}`,
-    `Company: ${inquiry.company}`,
-    "",
-    "Project:",
-    inquiry.projectDescription,
-    "",
-    `Received: ${inquiry.receivedAt}`,
-  ].join("\n");
+  const signature = crypto.createHmac("sha256", hmacSecret).update(payload).digest("hex");
+
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), NLE_TIMEOUT_MS);
 
   try {
-    const res = await fetch("https://api.postmarkapp.com/email", {
+    const res = await fetch(url, {
       method: "POST",
       headers: {
-        Accept: "application/json",
         "Content-Type": "application/json",
-        "X-Postmark-Server-Token": token,
+        Authorization: `Bearer ${bearer}`,
+        "X-Inbound-Signature": `sha256=${signature}`,
       },
-      body: JSON.stringify({
-        From: from,
-        To: to,
-        ReplyTo: inquiry.email,
-        Subject: subject,
-        TextBody: textBody,
-        MessageStream: "outbound",
-      }),
+      body: payload,
+      signal: controller.signal,
     });
     if (!res.ok) {
-      console.error(
-        "[inquiry] Postmark send failed:",
-        res.status,
-        await res.text().catch(() => ""),
-      );
+      return { ok: false, reason: "non_2xx", status: res.status };
     }
+    return { ok: true, status: res.status };
   } catch (err) {
-    console.error("[inquiry] Postmark send threw:", err);
+    if ((err as { name?: string }).name === "AbortError") {
+      return { ok: false, reason: "timeout", error: "NLE_INBOUND_TIMEOUT" };
+    }
+    return { ok: false, reason: "network_error", error: (err as Error).message };
+  } finally {
+    clearTimeout(timer);
   }
 }
 
@@ -152,17 +162,26 @@ export async function POST(request: Request) {
     receivedAt: new Date().toISOString(),
   };
 
-  try {
-    await appendInquiry(inquiry);
-  } catch (err) {
-    console.error("[inquiry] persistence failed:", err);
-    return NextResponse.json(
-      { error: "Could not record your inquiry. Please try again." },
-      { status: 500 },
+  const sourceUrl = request.headers.get("referer") || null;
+  const userAgent = request.headers.get("user-agent") || null;
+
+  const forward = await forwardToNle(inquiry, sourceUrl, userAgent);
+  if (!forward.ok) {
+    await appendOutbox({
+      inquiry,
+      reason: forward.reason ?? "network_error",
+      status: forward.status,
+      error: forward.error,
+      attemptedAt: new Date().toISOString(),
+    });
+    console.error(
+      "[inquiry] NLE forward failed",
+      JSON.stringify({ reason: forward.reason, status: forward.status, service: inquiry.service }),
     );
   }
 
-  await sendInquiryNotification(inquiry);
-
+  // Always return 200 to the user so the funnel never breaks on operator-side
+  // outages. NLE has the lead (or the outbox does) — operator notification
+  // and confirmation email both fire from inside NLE.
   return NextResponse.json({ success: true });
 }
