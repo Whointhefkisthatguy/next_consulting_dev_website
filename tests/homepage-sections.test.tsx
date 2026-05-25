@@ -83,14 +83,14 @@ describe("homepage RBMS composition", () => {
     const hrefs = Array.from(container.querySelectorAll("a")).map(
       (a) => a.getAttribute("href") ?? ""
     );
-    expect(hrefs).toContain("https://pay.nextconsulting.dev/intake");
+    expect(hrefs).toContain("https://nle-inbound.athenavr2.cc/intake");
     expect(hrefs).toContain("#entry-tiers");
   });
 
   it("hero 'Find your worst leak' CTA opens the intake in a new tab", () => {
     const { container } = render(<Home />);
     const hero = container.querySelector(
-      'a[href="https://pay.nextconsulting.dev/intake"]'
+      'a[href="https://nle-inbound.athenavr2.cc/intake"]'
     );
     expect(hero).not.toBeNull();
     expect(hero?.getAttribute("target")).toBe("_blank");

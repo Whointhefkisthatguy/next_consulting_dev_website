@@ -268,13 +268,23 @@ export const positioning = {
     { name: "Landscaping", oneLine: "Recurring routes, install jobs, weather risk." },
   ] as const satisfies readonly Industry[],
   // ===========================================================================
-  // Cross-property URL: NLE diagnostic intake (the 7-section, 22-question
-  // wizard that evaluates a contractor's business and generates a chart
-  // reserved for the discovery call, surfaced in the lead UI). Lives on a
-  // separate deployment, so links to it MUST be absolute and open in a new
-  // tab so the prospect doesn't lose the marketing context.
+  // Cross-property URL: NLE Client Eval intake (7-section / 22-question
+  // diagnostic wizard, "Let's measure it. / A 10-minute look at where your
+  // business is leaking money." — generates the problem-cost chart reserved
+  // for the discovery call, surfaced in the lead UI). Lives on the VM-hosted
+  // NLE deployment via the nle-inbound.athenavr2.cc cloudflared tunnel.
+  //
+  // Why not pay.nextconsulting.dev/intake? That host points at the dormant
+  // Vercel project (per docs/ops/vercel-dormancy.md) which is still serving
+  // the OLD build-intake form ("Let's build it. / Fifteen questions") from
+  // before PR #141. The VM, which IS the canonical deployment, is on current
+  // main and serves the Client Eval form correctly.
+  //
+  // FOLLOW-ON: cut DNS so pay.nextconsulting.dev (or a new vanity host such
+  // as intake.nextconsulting.dev) points at the VM tunnel, then swap this
+  // constant back to the branded host. Tracked in NLE ops backlog.
   // ===========================================================================
-  nleIntakeUrl: "https://pay.nextconsulting.dev/intake",
+  nleIntakeUrl: "https://nle-inbound.athenavr2.cc/intake",
   arena: {
     eyebrow: "Not sold on us?",
     headline: "We built an arena for that.",

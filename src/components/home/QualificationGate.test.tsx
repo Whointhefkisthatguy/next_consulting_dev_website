@@ -36,7 +36,10 @@ describe("QualificationGate", () => {
   it("links to the NLE intake form in a new tab", () => {
     render(<QualificationGate />);
     const cta = screen.getByRole("link", { name: /run the diagnostic/i });
-    expect(cta).toHaveAttribute("href", "https://pay.nextconsulting.dev/intake");
+    expect(cta).toHaveAttribute(
+      "href",
+      "https://nle-inbound.athenavr2.cc/intake"
+    );
     expect(cta).toHaveAttribute("target", "_blank");
     expect(cta).toHaveAttribute("rel", "noopener noreferrer");
   });
