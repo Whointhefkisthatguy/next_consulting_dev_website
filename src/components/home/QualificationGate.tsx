@@ -1,5 +1,12 @@
 import Link from "next/link";
 
+// Cross-property link: this is the NLE diagnostic intake form (7-section
+// wizard, generates a one-page revenue diagnostic reserved for the
+// discovery call). Lives on a different deployment from this site, so the
+// href is absolute and opens in a new tab so the prospect doesn't lose
+// the marketing page context.
+const NLE_INTAKE_URL = "https://pay.nextconsulting.dev/intake";
+
 const QUALIFIERS: string[] = [
   "You're already running 7+ figures and your worst leak is operational, not awareness.",
   "You'll let your team actually use the system. Installed compliance only works if the crew logs in.",
@@ -63,7 +70,9 @@ export default function QualificationGate() {
 
         <div className="mt-8">
           <Link
-            href="/diagnostic"
+            href={NLE_INTAKE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-3.5 font-[var(--font-display)] text-xs font-600 tracking-[0.15em] uppercase transition-colors duration-300 hover:brightness-110"
             style={{ background: "var(--copper)", color: "var(--void)" }}
           >
