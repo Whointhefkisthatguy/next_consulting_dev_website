@@ -78,13 +78,23 @@ describe("homepage RBMS composition", () => {
     expect(screen.getByText(/funded chaos/i)).toBeInTheDocument();
   });
 
-  it("hero primary CTA routes to /diagnostic and secondary to the in-page tiers anchor", () => {
+  it("hero primary CTA routes to the NLE intake form and secondary to the in-page tiers anchor", () => {
     const { container } = render(<Home />);
     const hrefs = Array.from(container.querySelectorAll("a")).map(
       (a) => a.getAttribute("href") ?? ""
     );
-    expect(hrefs).toContain("/diagnostic");
+    expect(hrefs).toContain("https://pay.nextconsulting.dev/intake");
     expect(hrefs).toContain("#entry-tiers");
+  });
+
+  it("hero 'Find your worst leak' CTA opens the intake in a new tab", () => {
+    const { container } = render(<Home />);
+    const hero = container.querySelector(
+      'a[href="https://pay.nextconsulting.dev/intake"]'
+    );
+    expect(hero).not.toBeNull();
+    expect(hero?.getAttribute("target")).toBe("_blank");
+    expect(hero?.getAttribute("rel")).toBe("noopener noreferrer");
   });
 
   it("module chip strip links to the operating-system anchor", () => {

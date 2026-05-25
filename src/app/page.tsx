@@ -95,7 +95,9 @@ export default function Home() {
 
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <Link
-                href="/diagnostic"
+                href={positioning.nleIntakeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-3.5 font-[var(--font-display)] text-xs font-600 tracking-[0.15em] uppercase transition-colors duration-300 hover:brightness-110"
                 style={{ backgroundColor: "#c4835a", color: "#070708" }}
               >

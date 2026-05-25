@@ -267,6 +267,14 @@ export const positioning = {
     { name: "Remodeling", oneLine: "Long jobs, change orders, margin leaks." },
     { name: "Landscaping", oneLine: "Recurring routes, install jobs, weather risk." },
   ] as const satisfies readonly Industry[],
+  // ===========================================================================
+  // Cross-property URL: NLE diagnostic intake (the 7-section, 22-question
+  // wizard that evaluates a contractor's business and generates a chart
+  // reserved for the discovery call, surfaced in the lead UI). Lives on a
+  // separate deployment, so links to it MUST be absolute and open in a new
+  // tab so the prospect doesn't lose the marketing context.
+  // ===========================================================================
+  nleIntakeUrl: "https://pay.nextconsulting.dev/intake",
   arena: {
     eyebrow: "Not sold on us?",
     headline: "We built an arena for that.",
