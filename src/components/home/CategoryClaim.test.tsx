@@ -3,12 +3,11 @@ import { render, screen } from "@testing-library/react";
 import CategoryClaim from "./CategoryClaim";
 
 describe("CategoryClaim", () => {
-  it("renders the claim line verbatim", () => {
+  it("renders the claim lead and tail", () => {
     render(<CategoryClaim />);
+    expect(screen.getByText(/We don't sell software/)).toBeInTheDocument();
     expect(
-      screen.getByText(
-        /We don't build websites\. We install operating systems/
-      )
+      screen.getByText(/we install the operating system one module at a time/)
     ).toBeInTheDocument();
   });
 });
